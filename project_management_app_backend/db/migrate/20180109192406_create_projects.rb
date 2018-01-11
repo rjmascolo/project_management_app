@@ -4,6 +4,7 @@ class CreateProjects < ActiveRecord::Migration[5.1]
       t.string :name
       t.string :project_type
       t.string :description
+      t.string :image
       # t.belongs_to :campaign, foreign_key: true
 
       t.timestamps

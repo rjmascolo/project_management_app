@@ -13,6 +13,11 @@ class NavBar extends Component {
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
+  handleClick = () => {
+    this.props.history.push('/login')
+    this.props.logOut()
+  }
+
   render() {
     const { activeItem } = this.state
     return (
@@ -32,7 +37,7 @@ class NavBar extends Component {
           />
           </Menu.Item>
           <Menu.Item>
-            {!this.props.user ? <Button primary href='/login'>Log In</Button> : <Button onClick={this.props.logOut}>Log Out</Button>}
+            {!this.props.user ? <Button primary href='/login'>Log In</Button> : <Button onClick={this.handleClick}>Log Out</Button>}
           </Menu.Item>
         </Menu.Menu>
       </Menu>
@@ -45,7 +50,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {logOut: () => dispatch(logOut())}
+  return {logOut: () => {dispatch(logOut())}}
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(NavBar)
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(NavBar))

@@ -23,6 +23,7 @@ projects =[
               name: "Q1 Awareness Campaign Banners",
               description: "Banner advertisements for our Q1 campaign.",
               project_type: "Display Media",
+              image: 'https://adsolutions.yp.com/sites/default/files/styles/medium/public/icon-we-build-banner-ads.png?itok=ca7eODhg',
               deliverables: [
                 {description: "2-3 creative mocks for the Q1 awareness banners", date: Date.new(2018,2,3)},
                 {description: "Refined mock up of one Q1 banner asset", date: Date.new(2018,2,7)},
@@ -42,6 +43,7 @@ projects =[
               name: "Twitch Native Content",
               description: "Custom livestream with Twitch influencers and custom media assets",
               project_type: "Custom Content",
+              image: 'https://pbs.twimg.com/profile_images/875860982937014272/FFXrxPK0_400x400.jpg',
               deliverables: [
                 {description: "Brand guidelines and talking points for livestream", date: Date.new(2018,2,1)},
                 {description: "Set design mocks and gameplan for the flow in the livestream", date: Date.new(2018,2,3)},
@@ -62,6 +64,7 @@ projects =[
               name: "YouTube Masthead",
               description: "10 second promotional video to appear on the YouTube homepage",
               project_type: "Display Media",
+              image: 'https://www.youtube.com/yt/about/media/images/brand-resources/icons/YouTube_icon_full-color.svg',
               deliverables: [
                 {description: "2-3 creative mocks ", date: Date.new(2018,2,5)},
                 {description: "Refined mock up of the creative direction chosen", date: Date.new(2018,2,7)},
@@ -82,6 +85,7 @@ projects =[
               name: "Buzzfeed Custom Videos",
               description: "2 custom content videos produced by Buzzfeed's editoral team",
               project_type: "Custom Content",
+              image: 'https://www.buzzfeed.com/static-assets/img/buzzfeed_arrow.e86a786d9e5e2250e1ed3e0ec95ba42d.png',
               deliverables: [
                 {description: "2 draft scripts and set design mocks", date: Date.new(2018,2,3)},
                 {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,7)},
@@ -101,6 +105,7 @@ projects =[
               name: "Spotify Audio Spots",
               description: "2 audio spots produced by Spotify's audio team",
               project_type: "Display Media",
+              image: 'https://pbs.twimg.com/profile_images/805119801660239872/_FtLaP8j.jpg',
               deliverables: [
                 {description: "Demos of possible VO actors", date: Date.new(2018,2,3)},
                 {description: "2 final audio scripts and voice actors selected", date: Date.new(2018,2,7)},
@@ -121,6 +126,7 @@ projects =[
               name: "College Humor Custom Video",
               description: "Custom video created by College Humor's editorial team with assets",
               project_type: "Custom Content",
+              image: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Collegehumor-logo.png',
               deliverables: [
                 {description: "2 draft scripts and set design mocks", date: Date.new(2018,2,3)},
                 {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,7)},
@@ -140,6 +146,7 @@ projects =[
               name: "Bustle Custom Content",
               description: "3 custom articles and 3 social media posts ",
               project_type: "Custom Content",
+              image: 'http://www.crainsnewyork.com/apps/pbcsi.dll/storyimage/CN/20161130/REAL_ESTATE/161139991/AR/0/Bustle.jpg',
               deliverables: [
                 {description: "3 drafts of custom articles", date: Date.new(2018,2,3)},
                 {description: "3 custom social media posts", date: Date.new(2018,2,7)},

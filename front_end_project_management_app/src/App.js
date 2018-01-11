@@ -29,9 +29,9 @@ class App extends Component {
     console.log(this.props)
     return (
       <div className="App">
-        <NavBar />
         <Router>
           <div>
+            <NavBar />
             <Route path="/dashboard" render={() => {
               const token = localStorage.getItem('token')
               return token ? <Dashboard /> : <Redirect to='/login' />

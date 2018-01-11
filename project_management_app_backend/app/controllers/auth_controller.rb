@@ -13,7 +13,7 @@ class AuthController < ApplicationController
     # token = request.headers['Authorization']
     token = request.headers['Authorization']
     begin
-      decoded_token = JWT.decode(token, ENV['token'], true, { :algorithm => 'HS256' }).first
+      decoded_token = JWT.decode(token, ENV['secret'], true, { :algorithm => 'HS256' }).first
     rescue JWT::DecodeError
       decoded_token = [{}]
     end

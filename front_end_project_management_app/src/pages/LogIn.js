@@ -36,37 +36,37 @@ class LogIn extends React.Component {
   render() {
     return (
       <div id="login-form">
-      <div class="ui middle aligned center aligned grid">
-        <div class="column">
-          <h2 class="ui teal image header">
-            <div class="content">
+      <div className="ui middle aligned center aligned grid">
+        <div className="column">
+          <h2 className="ui teal image header">
+            <div className="content">
               Log-in to your account
             </div>
           </h2>
-          <form class="ui large form" onSubmit={this.handleSubmit}>
-            <div class="ui stacked segment">
-              <div class="field">
-                <div class="ui left icon input">
-                  <i class="user icon"></i>
+          <form className="ui large form" onSubmit={this.handleSubmit}>
+            <div className="ui stacked segment">
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="user icon"></i>
                   <input type="text" name="email" placeholder="E-mail address" value={this.state.fields.email} onChange={this.handleChange}/>
                 </div>
               </div>
-              <div class="field">
-                <div class="ui left icon input">
-                  <i class="lock icon"></i>
+              <div className="field">
+                <div className="ui left icon input">
+                  <i className="lock icon"></i>
                   <input type="password" name="password" placeholder="Password" value={this.state.fields.password} onChange={this.handleChange} />
                 </div>
               </div>
-              <input type="submit" class="ui fluid large teal submit button" value="Login" />
+              <input type="submit" className="ui fluid large teal submit button" value="Login" />
             </div>
 
-            <div class="ui error message">
-              {this.state.error ? <div class="header">Not Found</div> : null}
+            <div className="ui error message">
+              {this.state.error ? <div className="header">Not Found</div> : null}
             </div>
 
           </form>
 
-          <div class="ui message">
+          <div className="ui message">
             New to us? <a href="#">Sign Up</a>
           </div>
         </div>
