@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import { Button, Menu, Search } from 'semantic-ui-react'
 
-export default class NavBar extends Component {
+import { logOut } from './reducers/actions/actions'
+import {connect} from 'react-redux'
+
+
+class NavBar extends Component {
 
   state = { activeItem: 'home' }
 
@@ -9,7 +13,7 @@ export default class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
-
+    console.log(this.props)
     return (
       <Menu size='huge'>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
@@ -27,10 +31,20 @@ export default class NavBar extends Component {
           />
           </Menu.Item>
           <Menu.Item>
-            <Button primary>Sign Up</Button>
+            {!this.props.user ? <Button primary href='/login'>Log In</Button> : <Button onClick={this.props.logOut}>Log Out</Button>}
           </Menu.Item>
         </Menu.Menu>
       </Menu>
     )
   }
 }
+
+function mapStateToProps(state) {
+  return {user: state.user}
+}
+
+function mapDispatchToProps(dispatch) {
+  return {logOut: () => dispatch(logOut())}
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(NavBar)

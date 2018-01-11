@@ -1,4 +1,6 @@
 Rails.application.routes.draw do
+  get 'auth/create'
+
   resources :deliverables
   resources :comments
   resources :revision_data
@@ -9,5 +11,8 @@ Rails.application.routes.draw do
   resources :company_campaigns
   resources :campaigns
   resources :companies
+
+  post '/auth', to: 'auth#create'
+  get '/current_user', to: 'auth#show'
   # For details on the DSL available within this file, see http://guides.rubyonrails.org/routing.html
 end

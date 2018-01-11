@@ -2,15 +2,30 @@ import { combineReducers } from 'redux';
 
 
 export const rootReducer = combineReducers({
+  loggedin: loggedinReducer,
   user: userReducer,
   projects: projectsReducer
 });
 
-function userReducer(state = [], action) {
+function userReducer(state = false, action) {
   switch (action.type) {
 
-     case "FETCH_USER":
+    case "FETCH_USER":
       return action.user;
+
+    case  "LOGOUT_USER":
+      return false
+
+    default:
+      return state;
+  }
+}
+
+function loggedinReducer(state = false, action) {
+  switch (action.type) {
+
+     case "USER_LOGGED_IN":
+      return true;
 
     default:
       return state;

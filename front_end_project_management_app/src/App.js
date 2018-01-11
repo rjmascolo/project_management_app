@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import './App.css';
 import { BrowserRouter as Router, Route } from 'react-router-dom';
 
-import { fetchUser } from './reducers/actions/fetchUser'
+import { fetchUser } from './reducers/actions/actions'
 import {connect} from 'react-redux'
 
 import IndividualProject from './pages/individualProject'
@@ -15,11 +15,14 @@ import SignUp from './pages/SignUp'
 class App extends Component {
 
   componentDidMount(){
-    this.props.fetchUser()
+
+    const token = localStorage.getItem('token');
+    if (token){
+      this.props.fetchUser()
+    }
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <NavBar />
@@ -27,7 +30,7 @@ class App extends Component {
           <div>
             <Route path="/dashboard" component={Dashboard} />
             <Route path="/project" component={IndividualProject} />
-            <Route path="/login" component={LogIn} />
+            <Route path="/login" render={ routerProps =>  <LogIn history={routerProps.history} />} />
             <Route path="/sign-up" component={SignUp} />
 
           </div>

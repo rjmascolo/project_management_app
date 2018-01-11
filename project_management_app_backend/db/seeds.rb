@@ -163,7 +163,7 @@ projects =[
 # UserProject.create({project_type: "client", user:ryan, project: q1_banner_ads})
 
 def create_projects(projects, userArray)
-  ryan = User.create({email: "ryan@email.com", password_digest: "123", first_name: "Ryan", last_name: "Mascolo", position:"Coordinator", image: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkiAAAAJDhiMWMxOTMzLTA3YzEtNGQyMS1iYzc3LWNjMjUwZDczY2I2YQ.jpg"} )
+  ryan = User.create({email: "ryan@email.com", password: "123", first_name: "Ryan", last_name: "Mascolo", position:"Coordinator", image: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkiAAAAJDhiMWMxOTMzLTA3YzEtNGQyMS1iYzc3LWNjMjUwZDczY2I2YQ.jpg"} )
   users = createUsers(userArray)
   users.unshift(ryan)
   projects.map{ |project|
@@ -178,7 +178,7 @@ def create_projects(projects, userArray)
 end
 
 def createUsers(userTitleArray)
-  userTitleArray.map{ |position| User.create({email: Faker::Internet.email, password_digest: "123", first_name: Faker::Name.first_name , last_name: Faker::Name.last_name , position: position, image: Faker::Avatar.image}) }
+  userTitleArray.map{ |position| User.create({email: Faker::Internet.email, password: "123", first_name: Faker::Name.first_name , last_name: Faker::Name.last_name , position: position, image: Faker::Avatar.image}) }
 end
 
 def createUserProjects(users, project)
