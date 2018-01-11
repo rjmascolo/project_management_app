@@ -36,9 +36,10 @@ class App extends Component {
               const token = localStorage.getItem('token')
               return token ? <Dashboard /> : <Redirect to='/login' />
               }} />
-            <Route path="/project" render={() => {
+            <Route path="/project" render={(routerProps) => {
               const token = localStorage.getItem('token')
-              return token ? <IndividualProject /> : <Redirect to='/login' />
+              debugger;
+              return token ? <IndividualProject /> : <Redirect to='/login'/>
               }} />
             <Route path="/login" render={ routerProps =>  <LogIn history={routerProps.history} />} />
             <Route path="/sign-up" component={SignUp} />

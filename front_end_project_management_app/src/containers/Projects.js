@@ -6,12 +6,10 @@ import {connect} from 'react-redux'
 class Projects extends React.Component {
   render() {
     const projects = this.props.projects ? this.props.projects.map(project => {
-      return <ProjectItem name={project.name}
-              description={project.description}
-              projectType={project.project_type}
-              />
+      return <ProjectItem project={project}/>
     }): null
     return (
+      
       <Item.Group>
         {projects}
       </Item.Group>

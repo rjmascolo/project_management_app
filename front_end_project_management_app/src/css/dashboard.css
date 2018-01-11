@@ -1,3 +1,7 @@
 #projects-div {
-  width: 60%
+  width: 60%;
+  margin: 0 auto;
+}
+#calendar {
+  height:400px;
 }

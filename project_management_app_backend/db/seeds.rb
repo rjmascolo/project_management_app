@@ -174,7 +174,7 @@ def create_projects(projects, userArray)
   users = createUsers(userArray)
   users.unshift(ryan)
   projects.map{ |project|
-    newProject = Project.create({name: project[:name], description: project[:description], project_type: project[:project_type]})
+    newProject = Project.create({name: project[:name], description: project[:description], project_type: project[:project_type], image: project[:image]})
     createUserProjects(users, newProject)
     project[:deliverables].map{ |deliverable| Deliverable.create({ description: deliverable[:description], date: deliverable[:date], project: newProject})}
     project[:revisions].map{ |revision|
