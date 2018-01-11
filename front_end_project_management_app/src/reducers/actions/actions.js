@@ -1,8 +1,11 @@
 import fetch from 'isomorphic-fetch';
 
+const token = localStorage.getItem('token')
+
 const headers = {
   'Content-Type': 'application/json',
-  Accepts: 'application/json'
+    Accepts: 'application/json',
+    Authorization: token
 }
 
 export function fetchUser(id) {
@@ -25,14 +28,12 @@ export const login = (username, password) => {
   return fetch("http://localhost:3000/auth", {
     method: 'POST',
     headers: headers,
-    body: JSON.stringify({username, password })
+    body: JSON.stringify({username, password }
+    )
   }).then(res => res.json())
 }
 
-export const getCurrentUser = (username, password) => {
-  return fetch("http://localhost:3000/auth", {
-    method: 'POST',
-    headers: headers,
-    body: JSON.stringify({username, password })
-  }).then(res => res.json())
+export const getCurrentUser = () => {
+  return fetch("http://localhost:3000/current_user/", {
+    headers: headers } ).then(res => res.json())
 }

@@ -26,10 +26,11 @@ class LogIn extends React.Component {
         this.setState({error:true})
       } else {
         this.props.fetchUser(user.id)
+        localStorage.setItem('token', user.token)
         this.props.history.push('/dashboard')
       }
     })
-    this.setState({fields: {emails: '', password: ''}})
+    this.setState({fields: {email: '', password: ''}})
   }
 
   render() {

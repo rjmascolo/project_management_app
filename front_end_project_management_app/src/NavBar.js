@@ -4,6 +4,8 @@ import { Button, Menu, Search } from 'semantic-ui-react'
 import { logOut } from './reducers/actions/actions'
 import {connect} from 'react-redux'
 
+import { withRouter } from 'react-router-dom'
+
 
 class NavBar extends Component {
 
@@ -13,7 +15,6 @@ class NavBar extends Component {
 
   render() {
     const { activeItem } = this.state
-    console.log(this.props)
     return (
       <Menu size='huge'>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />

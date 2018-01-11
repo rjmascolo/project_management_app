@@ -1,9 +1,9 @@
 import React, { Component } from 'react';
 import NavBar from './NavBar'
 import './App.css';
-import { BrowserRouter as Router, Route } from 'react-router-dom';
+import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 
-import { fetchUser } from './reducers/actions/actions'
+import { fetchUser, getCurrentUser } from './reducers/actions/actions'
 import {connect} from 'react-redux'
 
 import IndividualProject from './pages/individualProject'
@@ -18,18 +18,28 @@ class App extends Component {
 
     const token = localStorage.getItem('token');
     if (token){
-      this.props.fetchUser()
+      getCurrentUser()
+      .then( user => {
+        this.props.fetchUser(user.id)
+      })
     }
   }
 
   render() {
+    console.log(this.props)
     return (
       <div className="App">
         <NavBar />
         <Router>
           <div>
-            <Route path="/dashboard" component={Dashboard} />
-            <Route path="/project" component={IndividualProject} />
+            <Route path="/dashboard" render={() => {
+              const token = localStorage.getItem('token')
+              return token ? <Dashboard /> : <Redirect to='/login' />
+              }} />
+            <Route path="/project" render={() => {
+              const token = localStorage.getItem('token')
+              return token ? <IndividualProject /> : <Redirect to='/login' />
+              }} />
             <Route path="/login" render={ routerProps =>  <LogIn history={routerProps.history} />} />
             <Route path="/sign-up" component={SignUp} />
 
@@ -45,7 +55,7 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {fetchUser: () => dispatch(fetchUser())}
+  return {fetchUser: (id) => dispatch(fetchUser(id))}
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);
