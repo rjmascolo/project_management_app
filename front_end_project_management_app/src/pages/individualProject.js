@@ -21,19 +21,15 @@ class IndividualProject extends React.Component {
           <h1>{this.props.project? this.props.project.name : null}</h1>
           <p>{this.props.project? this.props.project.description : null}</p>
         </div>
-        <div id="user-list">
+        {/* <div id="user-list">
           <h1>Project Managers</h1>
           <List celled>
             {usersList}
           </List>
         </div>
-        <br/>
+        <br/> */}
         <div>
-
-          <RevisionsAccordian
-            projectId={this.props.id}
-            // revisions={this.props.project? this.props.project.revisions : null}
-          />
+          <RevisionsAccordian projectId={this.props.id} />
         </div>
         <h1>Deliverables</h1>
         <DeliverablesContainer />

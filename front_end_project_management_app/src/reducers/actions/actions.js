@@ -76,17 +76,35 @@ export const createRevision = (item) => {
   };
 }
 
-export const createComment = (comment) => {
+export const createComment = (comment, projectId) => {
   return (dispatch) => {
-    dispatch({ type: 'START_ADDING_REVISION' });
-    return fetch(`http://localhost:3000/revisions/`, {
+    dispatch({ type: 'START_ADDING_COMMENTS' });
+    return fetch(`http://localhost:3000/comments/`, {
       method:'POST',
       headers: headers,
       body:JSON.stringify(comment)
     })
       .then(response => response.json())
       .then(comment => {
-        dispatch({ type: 'ADD_COMMENT', comment } );
+        const commentNew = Object.assign( comment, { project_id: projectId })
+        dispatch({ type: 'ADD_COMMENT', commentNew } );
+      }
+    );
+  };
+}
+
+export const deleteComment = (commentId, revisionId, projectId) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_DELETEING_COMMENTS' });
+    return fetch(`http://localhost:3000/comments/${commentId}`, {
+      method:'DELETE',
+      headers: headers,
+      // body:JSON.stringify(commentId)
+    })
+      .then(response => response.json())
+      .then(comment => {
+        const deletedComment = Object.assign( {commentId: commentId}, {revisionId: revisionId}, {projectId: projectId } )
+        dispatch({ type: 'DELETE_COMMENT', deletedComment } );
       }
     );
   };

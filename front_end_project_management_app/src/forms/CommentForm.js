@@ -1,7 +1,7 @@
 import React from 'react'
-import { Input } from 'semantic-ui-react'
+// import { Form } from 'semantic-ui-react'
 
-import { createRevision } from '../reducers/actions/actions'
+import { createComment } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
 
 class CommentForm extends React.Component {
@@ -12,8 +12,15 @@ class CommentForm extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createRevision({description: this.state.description, revision_type: 'revision', project_id: this.props.projectId,})
-    this.setState({description: ''})
+    this.props.createComment(
+      {
+        content: this.state.comment,
+        user_id: this.props.userId,
+        revision_id: parseInt(this.props.revisionId)
+      },
+        this.props.projectId
+      )
+    this.setState({comment: ''})
   }
 
   handleChange = (e) => {
@@ -32,8 +39,13 @@ class CommentForm extends React.Component {
   }
 }
 
-function mapDispatchToProps(dispatch) {
-  // return {createRevision: (revision) => dispatch(createRevision(revision))}
+function mapStateToProps(state) {
+  return {userId: state.user.id}
 }
 
-export default connect( null, mapDispatchToProps)(CommentForm);
+function mapDispatchToProps(dispatch) {
+  return {createComment: (comment,projectId) => dispatch(createComment(comment, projectId))}
+}
+
+
+export default connect( mapStateToProps, mapDispatchToProps)(CommentForm);

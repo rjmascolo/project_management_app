@@ -4,6 +4,8 @@ import { Accordion, Icon, Modal, Button } from 'semantic-ui-react'
 import AddRevisionItem from '../forms/AddRevisionItem'
 import CreateRevision from '../forms/CreateRevision'
 import CommentForm from '../forms/CommentForm'
+import Comment from '../container_items/Comment'
+
 import {connect} from 'react-redux'
 
 class RevisionsAccordian extends Component {
@@ -52,9 +54,10 @@ class RevisionsAccordian extends Component {
             {revision.description}
           </p>
           <h3>Assets</h3>
-          {revision.revision_items.map( item => <p key={i} >{item.file}</p>)}
+          {revision.revision_items.map( item => <p key={`item${i}`} >{item.file}</p>)}
           <Button name={revision.id} onClick={this.show(revision.id)}>Enter Asset</Button>
-          <CommentForm />
+          {revision.comments.map( (comment, i) => <Comment key={i} comment={comment} projectId={this.props.projectId} />)}
+          <CommentForm revisionId={revision.id} projectId={this.props.projectId} />
         </Accordion.Content>
       </div>
       )

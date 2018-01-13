@@ -1,14 +1,16 @@
 import React from 'react'
 import { Item, Label } from 'semantic-ui-react'
+import { Link } from 'react-router-dom';
+
 
 class ProjectItem extends React.Component {
   render() {
     console.log(this.props)
   return (
       <Item>
-          <Item.Image size='small' src={this.props.project.image} />
+          <Link to={`/projects/${this.props.project.id}`}> <Item.Image size='small' src={this.props.project.image} /> </Link>
           <Item.Content>
-            <Item.Header as='a'>{this.props.project.name}</Item.Header>
+            <Item.Header>{this.props.project.name}</Item.Header>
             <Item.Description>{this.props.project.description}</Item.Description>
             <Item.Extra>
               <Label as='a'>{this.props.project.project_type}</Label>

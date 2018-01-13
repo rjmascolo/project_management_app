@@ -24,7 +24,7 @@ function userReducer(state = false, action) {
 function loggedinReducer(state = false, action) {
   switch (action.type) {
 
-     case "USER_LOGGED_IN":
+     case "FETCH_USER":
       return true;
 
     default:
@@ -71,6 +71,47 @@ function projectsReducer(state = [], action) {
         }
       })
       return addRevisionToProject
+    case "ADD_COMMENT":
+      const addNewComment = state.map( project => {
+        if (project.id === parseInt(action.commentNew.project_id)) {
+          project.revisions.map(revision => {
+            if(revision.id === parseInt(action.commentNew.revision_id)){
+              revision.comments.push(
+                {
+                  id: action.commentNew.id ,
+                  content: action.commentNew.content ,
+                  user_id: action.commentNew.user_id,
+                  revision_id: action.commentNew.revision_id
+                })
+              return revision
+            }else {
+              return revision
+            }
+          })
+          return project
+        } else {
+          return project
+        }
+      })
+      return addNewComment
+
+    case "DELETE_COMMENT":
+    const deleteComment = state.map( project => {
+      if (project.id === parseInt(action.deletedComment.projectId)) {
+        project.revisions.map(revision => {
+          if(revision.id === parseInt(action.deletedComment.revisionId)){
+            revision.comments = revision.comments.filter(comment => comment.id !== action.deletedComment.commentId)
+            return revision
+          } else {
+            return revision
+          }
+        })
+        return project
+      } else {
+        return project
+        }
+      })
+      return deleteComment;
 
     default:
       return state;
