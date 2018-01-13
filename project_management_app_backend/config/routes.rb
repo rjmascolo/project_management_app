@@ -3,7 +3,7 @@ Rails.application.routes.draw do
 
   resources :deliverables
   resources :comments
-  resources :revision_data
+  resources :revision_items
   resources :revisions
   resources :user_projects
   resources :users

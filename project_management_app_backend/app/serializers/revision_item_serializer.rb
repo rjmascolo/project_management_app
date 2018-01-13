@@ -1,3 +1,6 @@
 class RevisionItemSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :file, :item_type
+
+  # belongs_to :revision
+
 end

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Image as ImageComponent, Item, Label } from 'semantic-ui-react'
+import { Item, Label } from 'semantic-ui-react'
 
 class ProjectItem extends React.Component {
   render() {

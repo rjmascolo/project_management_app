@@ -1,8 +1,7 @@
 class ProjectSerializer < ActiveModel::Serializer
-  attributes :id, :name, :project_type, :description, :image, :revisions, :deliverables, :users
+  attributes :id, :name, :project_type, :description, :image, :get_users
 
-  has_many :revisions
   has_many :deliverables
-  has_many :users
+  has_many :revisions
 
 end

@@ -9,7 +9,7 @@ class Projects extends React.Component {
       return <ProjectItem project={project}/>
     }): null
     return (
-      
+
       <Item.Group>
         {projects}
       </Item.Group>
@@ -18,7 +18,7 @@ class Projects extends React.Component {
 }
 const mapStateToProps = (state) => {
   return {
-    projects: state.user.projects
+    projects: state.projects
   }
 }
 

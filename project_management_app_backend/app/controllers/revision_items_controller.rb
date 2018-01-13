@@ -1,4 +1,4 @@
-class RevisionItemController < ApplicationController
+class RevisionItemsController < ApplicationController
   before_action :set_revision_item, only: [:show, :update, :destroy]
 
   # GET /revision_item
@@ -16,7 +16,6 @@ class RevisionItemController < ApplicationController
   # POST /revision_item
   def create
     @revision_item = RevisionItem.new(revision_item_params)
-
     if @revision_item.save
       render json: @revision_item, status: :created, location: @revision_item
     else
@@ -46,6 +45,6 @@ class RevisionItemController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def revision_item_params
-      params.require(:revision_item).permit(:file, :revision_id)
+      params.require(:revision_item).permit(:file, :revision_id, :item_type)
     end
 end

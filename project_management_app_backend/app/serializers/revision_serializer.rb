@@ -1,3 +1,6 @@
 class RevisionSerializer < ActiveModel::Serializer
-  attributes :id
+  attributes :id, :description, :revision_type, :project_id
+
+  has_many :revision_items
+
 end

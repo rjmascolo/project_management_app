@@ -16,7 +16,6 @@ class RevisionsController < ApplicationController
   # POST /revisions
   def create
     @revision = Revision.new(revision_params)
-
     if @revision.save
       render json: @revision, status: :created, location: @revision
     else
@@ -46,6 +45,6 @@ class RevisionsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def revision_params
-      params.require(:revision).permit(:type, :description, :project_id)
+      params.require(:revision).permit(:revision_type, :description, :project_id)
     end
 end

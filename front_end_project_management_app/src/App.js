@@ -26,7 +26,6 @@ class App extends Component {
   }
 
   render() {
-    console.log(this.props)
     return (
       <div className="App">
         <Router>
@@ -36,10 +35,9 @@ class App extends Component {
               const token = localStorage.getItem('token')
               return token ? <Dashboard /> : <Redirect to='/login' />
               }} />
-            <Route path="/project" render={(routerProps) => {
+            <Route path="/projects/:id" render={(args) => {
               const token = localStorage.getItem('token')
-              debugger;
-              return token ? <IndividualProject /> : <Redirect to='/login'/>
+              return token ? <IndividualProject id={args.match.params.id} /> : <Redirect to='/login'/>
               }} />
             <Route path="/login" render={ routerProps =>  <LogIn history={routerProps.history} />} />
             <Route path="/sign-up" component={SignUp} />
