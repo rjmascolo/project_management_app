@@ -7,7 +7,7 @@ class Project < ApplicationRecord
   # belongs_to :campaign
 
   def get_users
-    self.users.map{ |person| person.slice(:first_name, :last_name, :position, :image)}
+    self.users.map{ |person| person.slice(:id, :first_name, :last_name, :position, :image)}
   end
 
 end

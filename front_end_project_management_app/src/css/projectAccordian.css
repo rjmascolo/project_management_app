@@ -35,10 +35,25 @@
   border-top: 1px solid rgba(34,36,38,.15);
 }
 
+#revision-description {
+  margin: 1em 0 1em 0;
+}
+
 #asset-container {
+  border-top: 1px solid rgba(34,36,38,.15);
+  border-bottom: 1px solid rgba(34,36,38,.15);
   display: flex;
   justify-content: space-between;
+  padding: 1em 0 1em 0;
 }
 #asset-header {
   text-align: left;
+}
+#comment-container{
+  margin: 1em 0 1em 0;
+}
+
+#single-comment{
+  display:flex;
+  justify-content: space-between;
 }

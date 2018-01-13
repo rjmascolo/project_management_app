@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item, Label, Icon } from 'semantic-ui-react'
+import { Item, Label, Icon, Image } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 import { deleteComment } from '../reducers/actions/actions'
@@ -16,14 +16,28 @@ class Comment extends React.Component {
     console.log("hello")
   }
 
+  findUser = () => {
+
+  }
+
   render() {
+    console.log(this.props)
   return (
-    <div>
-      <p>{this.props.comment.content}</p>
-      <Icon name="edit" onClick={this.handleEdit}/>
-      <Icon name="delete" onClick={this.handleDelete}/>
+    <div id="single-comment">
+        <Image avatar src={this.props.user.image} />
+        <p>{this.props.comment.content}</p>
+      <div>
+        <Icon name="edit" onClick={this.handleEdit} color="gray" />
+        <Icon name="delete" onClick={this.handleDelete} color='red'/>
+      </div>
     </div>
     )
+  }
+}
+
+function mapStateToProps(state, props) {
+  return {
+    user: state.projects ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users.find( user => user.id === props.comment.user_id) : null
   }
 }
 
@@ -31,4 +45,4 @@ function mapDispatchToProps(dispatch) {
   return {deleteComment: (commentId, revisionId, projectId) => dispatch(deleteComment(commentId, revisionId, projectId))}
 }
 
-export default connect( null, mapDispatchToProps)(Comment);
+export default connect( mapStateToProps, mapDispatchToProps)(Comment);

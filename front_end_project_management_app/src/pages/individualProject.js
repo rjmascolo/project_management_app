@@ -37,6 +37,7 @@ class IndividualProject extends React.Component {
 
           <div id="deliverables-div">
             <h3>Deliverables</h3>
+            <br/>
             <DeliverablesContainer />
           </div>
 
