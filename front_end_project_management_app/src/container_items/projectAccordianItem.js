@@ -31,7 +31,7 @@ const ProjectAccordianItem = (props) => {
       <div id="comment-container">
         {props.revision.comments.map( (comment, i) => <Comment key={i} comment={comment} projectId={props.projectId} />)}
       </div>
-      <CommentForm revisionId={props.revision.id} projectId={props.projectId} />
+        <CommentForm revisionId={props.revision.id} projectId={props.projectId} id=""/>
     </Accordion.Content>
   </div>
  )

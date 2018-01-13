@@ -1,7 +1,7 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import { Image, List } from 'semantic-ui-react'
+import { Image, List, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 import UserItem from '../container_items/UserItem'
 import RevisionsAccordian from '../containers/RevisionsAccordian'
@@ -12,9 +12,17 @@ import DeliverablesContainer from '../containers/DeliverablesContainer'
 class IndividualProject extends React.Component {
 
   render() {
-    const usersList = this.props.project? this.props.project.get_users.map( (user, i) => {
+    const usersList = this.props.project ? this.props.project.get_users.map( (user, i) => {
       return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} position={user.position} image={user.image} />;
-    }) : null
+    }) : (
+      <List.Item>
+        <Segment>
+          <Dimmer active inverted>
+            <Loader inverted>Loading</Loader>
+          </Dimmer>
+        </Segment>
+      </List.Item>
+    )
     return (
       <div>
         <div id="individual-page-header">
@@ -37,8 +45,7 @@ class IndividualProject extends React.Component {
 
           <div id="deliverables-div">
             <h3>Deliverables</h3>
-            <br/>
-            <DeliverablesContainer />
+            <DeliverablesContainer projectId={this.props.id}/>
           </div>
 
        </div>

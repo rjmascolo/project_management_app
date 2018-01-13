@@ -1,8 +1,9 @@
 import React from 'react'
-// import { Form } from 'semantic-ui-react'
+import { Button } from 'semantic-ui-react'
 
 import { createComment } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
+import '../css/CommentForm.css'
 
 class CommentForm extends React.Component {
   state ={
@@ -32,7 +33,7 @@ class CommentForm extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit}>
           <textarea name="comment" value={this.state.comment} onChange={this.handleChange} />
-          <input type="submit" value="Comment"/>
+          <Button type="submit">Comment</Button>
         </form>
       </div>
     )

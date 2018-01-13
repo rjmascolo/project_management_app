@@ -19,6 +19,5 @@
 
 #deliverables-div {
   margin: 1em 1em;
-  display: flex;
-  justify-content: space-between;
+  width: 20%;
 }

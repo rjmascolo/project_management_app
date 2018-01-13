@@ -1,28 +1,30 @@
 import React from 'react'
 import { Icon, Grid, Step } from 'semantic-ui-react'
+import '../css/DeliverableItem.css'
 
-const DeliverablesContainer = () => (
-  <Grid columns={1}>
-    <Grid.Column>
-      <Step.Group fluid vertical>
-        <Step completed>
-          <Icon name='truck' />
-          <Step.Content>
-            <Step.Title>2-3 Mock ups</Step.Title>
-            <Step.Description>xyz</Step.Description>
-          </Step.Content>
-        </Step>
+import {connect} from 'react-redux'
+import DeliverableItem from '../container_items/DeliverableItem'
 
-        <Step active>
-          <Icon name='dollar' />
-          <Step.Content>
-            <Step.Title>Billing</Step.Title>
-            <Step.Description>Enter billing information</Step.Description>
-          </Step.Content>
-        </Step>
-      </Step.Group>
-    </Grid.Column>
-  </Grid>
-)
+class DeliverablesContainer extends React.Component {
+  render() {
+    const deliverables = this.props.deliverables ? this.props.deliverables.map( (deliverable, i) => {
+      return <DeliverableItem key={i} deliverable={deliverable} />
+    } ): null
+    console.log(this.props)
+    return(
+      <div id="deliverable-container">
 
-export default DeliverablesContainer
+        {deliverables}
+        
+      </div>
+    )
+  }
+}
+
+function mapStateToProps(state, props) {
+  return {
+    deliverables: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).deliverables: null
+  }
+}
+
+export default connect(mapStateToProps)(DeliverablesContainer);
