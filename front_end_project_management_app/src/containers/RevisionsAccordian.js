@@ -1,12 +1,14 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, Modal, Button } from 'semantic-ui-react'
+import { Accordion, Icon, Modal, Button, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 import AddRevisionItem from '../forms/AddRevisionItem'
 import CreateRevision from '../forms/CreateRevision'
 import CommentForm from '../forms/CommentForm'
 import Comment from '../container_items/Comment'
+import ProjectAccordianItem from '../container_items/projectAccordianItem'
 
 import {connect} from 'react-redux'
+import '../css/projectAccordian.css'
 
 class RevisionsAccordian extends Component {
   state = {
@@ -25,7 +27,7 @@ class RevisionsAccordian extends Component {
     this.setState({ activeIndex: newIndex })
   }
 
-  show = size => (e) => {
+  show = (e) => {
     this.setState({
         revisionItemModal:
       {
@@ -42,30 +44,42 @@ class RevisionsAccordian extends Component {
 
   render() {
     const { activeIndex } = this.state
-    const revisions = this.props.revisions? this.props.revisions.map( (revision, i ) => {
+    const revisions = this.props.revisions? this.props.revisions.map( (revision, index ) => {
       return(
-        <div key={i}>
-        <Accordion.Title active={activeIndex === i} onClick={this.handleClick} index={i}>
-          <Icon name='dropdown' />
-          {revision.revision_type === "creative brief" ? "Creative Brief" : `Revision #${i}`}
-        </Accordion.Title>
-        <Accordion.Content active={activeIndex === i}>
-          <p>
-            {revision.description}
-          </p>
-          <h3>Assets</h3>
-          {revision.revision_items.map( item => <p key={`item${i}`} >{item.file}</p>)}
-          <Button name={revision.id} onClick={this.show(revision.id)}>Enter Asset</Button>
-          {revision.comments.map( (comment, i) => <Comment key={i} comment={comment} projectId={this.props.projectId} />)}
-          <CommentForm revisionId={revision.id} projectId={this.props.projectId} />
-        </Accordion.Content>
-      </div>
+        <ProjectAccordianItem
+          activeIndex={activeIndex}
+          index={index}
+          handleClick={this.handleClick}
+          revision={revision}
+          show={this.show}
+          close={this.close}
+          projectId={this.props.projectId}
+        />
       )
-    }): null
-    return (
+    }): (
       <div>
-        <Button onClick={this.showRevision}>Enter Asset</Button>
-        <Accordion styled>
+      <Accordion.Title active={true} id="revision-title">
+        <Segment>
+          <Dimmer active inverted>
+            <Loader inverted>Loading</Loader>
+          </Dimmer>
+        </Segment>
+      </Accordion.Title>
+      <Accordion.Content active={true} id="accordian-content">
+        <Segment>
+          <Dimmer active inverted>
+            <Loader inverted>Loading</Loader>
+          </Dimmer>
+        </Segment>
+      </Accordion.Content>
+    </div>
+    )
+    return (
+      <div id="accordion-container">
+        <div id="accordian-header">
+          <Button id="revision-button" onClick={this.showRevision}>New Revision</Button>
+        </div>
+        <Accordion styled id="accordian-seman">
           {revisions}
             <Modal open={this.state.revisionItemModal.open} onClose={this.close}>
                <Modal.Header>Enter In Documents</Modal.Header>

@@ -13,26 +13,34 @@ class IndividualProject extends React.Component {
 
   render() {
     const usersList = this.props.project? this.props.project.get_users.map( (user, i) => {
-      return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} postion={user.position} image={user.image} />;
+      return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} position={user.position} image={user.image} />;
     }) : null
     return (
       <div>
-        <div className="App">
+        <div id="individual-page-header">
           <h1>{this.props.project? this.props.project.name : null}</h1>
           <p>{this.props.project? this.props.project.description : null}</p>
         </div>
-        {/* <div id="user-list">
-          <h1>Project Managers</h1>
-          <List celled>
-            {usersList}
-          </List>
-        </div>
-        <br/> */}
-        <div>
-          <RevisionsAccordian projectId={this.props.id} />
-        </div>
-        <h1>Deliverables</h1>
-        <DeliverablesContainer />
+        <div id="individual-page-container">
+
+          <div id="user-list">
+            <h3>Project Managers</h3>
+            <List celled>
+              {usersList}
+            </List>
+          </div>
+
+          <div id="outer-project-accordian">
+            <h3>Project Content</h3>
+            <RevisionsAccordian projectId={this.props.id} />
+          </div>
+
+          <div id="deliverables-div">
+            <h3>Deliverables</h3>
+            <DeliverablesContainer />
+          </div>
+
+       </div>
       </div>
     );
   }
