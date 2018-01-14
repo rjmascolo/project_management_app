@@ -1,9 +1,10 @@
 import React from 'react'
-import { Item, Label, Icon, Image } from 'semantic-ui-react'
+import { Item, Label, Icon, Image, Button } from 'semantic-ui-react'
 import { Link } from 'react-router-dom';
 
 import { deleteComment } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
+import '../css/Comment.css'
 
 
 class Comment extends React.Component {
@@ -24,11 +25,22 @@ class Comment extends React.Component {
     console.log(this.props)
   return (
     <div id="single-comment">
-        <Image avatar src={this.props.user.image} />
-        <p>{this.props.comment.content}</p>
-      <div>
-        <Icon name="edit" onClick={this.handleEdit} color="gray" />
-        <Icon name="delete" onClick={this.handleDelete} color='red'/>
+      <div id="single-comment-header">
+          <div id="comment-username">
+            <Image avatar src={this.props.user.image} />
+            <p id="user-name-text">{this.props.user.first_name} {this.props.user.last_name}</p>
+          </div>
+        <div>
+            <Button icon onClick={this.handleEdit} compact>
+              <Icon name='edit' color="gray" />
+            </Button>
+            <Button icon onClick={this.handleDelete} color="red" compact circular negative>
+              <Icon name="delete" color='white'/>
+            </Button>
+        </div>
+      </div>
+      <div id="comment-div">
+        <p id="comment-paragraph">{this.props.comment.content}</p>
       </div>
     </div>
     )

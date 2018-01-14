@@ -25,7 +25,7 @@ const ProjectAccordianItem = (props) => {
       <div>
         <div id="asset-container">
           {props.revision.revision_items.map( (item, i) => <p key={`item${i}`} >{item.file}</p>)}
-          <Button name={props.revision.id} onClick={(e) => props.show(e)}>Enter Asset</Button>
+          <Button name={props.revision.id} onClick={(e) => props.show(e)} icon="add" circular color="teal" ></Button>
         </div>
       </div>
       <div id="comment-container">

@@ -23,7 +23,6 @@ class NavBar extends Component {
     return (
       <Menu size='huge'>
         <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
-        <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} />
 
         <Menu.Menu position='right'>
           <Menu.Item>
@@ -46,7 +45,10 @@ class NavBar extends Component {
 }
 
 function mapStateToProps(state) {
-  return {user: state.user}
+  return {
+    user: state.user,
+    projects: state.user.projects
+  }
 }
 
 function mapDispatchToProps(dispatch) {

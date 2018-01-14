@@ -77,7 +77,7 @@ class RevisionsAccordian extends Component {
     return (
       <div id="accordion-container">
         <div id="accordian-header">
-          <Button id="revision-button" onClick={this.showRevision}>New Revision</Button>
+          <Button id="revision-button" onClick={this.showRevision} >New Revision</Button>
         </div>
         <Accordion styled id="accordian-seman">
           {revisions}
