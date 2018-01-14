@@ -23,6 +23,7 @@
 #accordian-seman{
   border-top-right-radius: 0rem;
   border-top-left-radius: 0rem;
+  width:100%;
 }
 
 #revision-title{

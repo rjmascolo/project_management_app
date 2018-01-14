@@ -26,6 +26,7 @@ class IndividualProject extends React.Component {
     return (
       <div>
         <div id="individual-page-header">
+          
           <h1>{this.props.project? this.props.project.name : null}</h1>
           <p>{this.props.project? this.props.project.description : null}</p>
         </div>
