@@ -24,7 +24,7 @@ ActiveRecord::Schema.define(version: 20180110014819) do
   end
 
   create_table "comments", force: :cascade do |t|
-    t.text "content"
+    t.json "content"
     t.bigint "user_id"
     t.bigint "revision_id"
     t.datetime "created_at", null: false
@@ -66,7 +66,11 @@ ActiveRecord::Schema.define(version: 20180110014819) do
   end
 
   create_table "revision_items", force: :cascade do |t|
-    t.string "file"
+    t.string "file_upload_file_name"
+    t.string "file_upload_content_type"
+    t.integer "file_upload_file_size"
+    t.datetime "file_upload_updated_at"
+    t.string "file_name"
     t.string "item_type"
     t.bigint "revision_id"
     t.datetime "created_at", null: false

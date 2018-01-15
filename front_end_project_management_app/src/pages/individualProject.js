@@ -1,42 +1,55 @@
 import React from 'react'
 import {connect} from 'react-redux'
 
-import { Image, List, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Image, List, Segment, Dimmer, Loader, Label } from 'semantic-ui-react'
 
 import UserItem from '../container_items/UserItem'
+import UserList from '../containers/UserList'
 import RevisionsAccordian from '../containers/RevisionsAccordian'
 import '../css/individualProductPage.css'
+import '../css/IndividualProjectHeader.css'
 
 import DeliverablesContainer from '../containers/DeliverablesContainer'
 
 class IndividualProject extends React.Component {
 
   render() {
-    const usersList = this.props.project ? this.props.project.get_users.map( (user, i) => {
-      return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} position={user.position} image={user.image} />;
-    }) : (
-      <List.Item>
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted>Loading</Loader>
-          </Dimmer>
-        </Segment>
-      </List.Item>
-    )
+    console.log(this.props.project)
     return (
       <div>
-        <div id="individual-page-header">
-          
-          <h1>{this.props.project? this.props.project.name : null}</h1>
-          <p>{this.props.project? this.props.project.description : null}</p>
+        <div id="header">
+          <div id="header-content">
+            <Image
+              src={this.props.project ? this.props.project.image: null}
+              size='small'
+              rounded id="event-image"
+            />
+            <div id="title-description">
+              <h2 id="header-title">{this.props.project ? this.props.project.name : null }</h2>
+              <b><p>Description</p></b>
+              <p>{this.props.project ? this.props.project.description : null }</p>
+              <b><p>Campaign</p></b>
+              <p>Q1 Awareness Campaign</p>
+              <div id="header-companies-container" >
+                <div id="header-companies">
+                  <b><p>Agencies Involved</p></b>
+                  <p>Media Agency, Creative Agency </p>
+                </div>
+                <div>
+                  <b><p>Client</p></b>
+                  <p>Toyota Marketing</p>
+                </div>
+              </div>
+              <div id="label-div">
+                <Label as='a' color='grey' tag>{this.props.project ? this.props.project.project_type : null }</Label>
+              </div>
+            </div>
+          </div>
         </div>
-        <div id="individual-page-container">
+        <div id="individual-page-container-content">
 
           <div id="user-list">
-            <h3>Project Managers</h3>
-            <List celled>
-              {usersList}
-            </List>
+            <UserList projectId={this.props.id}/>
           </div>
 
           <div id="outer-project-accordian">
@@ -45,7 +58,6 @@ class IndividualProject extends React.Component {
           </div>
 
           <div id="deliverables-div">
-            <h3>Deliverables</h3>
             <DeliverablesContainer projectId={this.props.id}/>
           </div>
 

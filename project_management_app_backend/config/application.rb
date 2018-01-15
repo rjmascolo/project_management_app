@@ -28,6 +28,18 @@ module ProjectManagementAppBackend
     # Only loads a smaller set of middleware suitable for API only apps.
     # Middleware like session, flash, cookies can be added back manually.
     # Skip views, helpers and assets when generating a new resource.
+    # config.active_record.raise_in_transactional_callbacks = true
+
+    config.paperclip_defaults = {
+      :storage => :s3,
+      :s3_credentials => {
+        :bucket => ENV["s3_bucket"],
+        :access_key_id => ENV['aws_access_key_id'],
+        :secret_access_key => ENV["aws_secret_key"]
+      },
+      :s3_region => ENV['AWS_REGION']
+    }
+
     config.api_only = true
   end
 end

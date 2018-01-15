@@ -1,13 +1,15 @@
 import React from 'react'
-import { Icon, Grid, Step } from 'semantic-ui-react'
-import '../css/DeliverableItem.css'
+import { List, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import '../css/UserItem.css'
 
 import {connect} from 'react-redux'
-import DeliverableItem from '../container_items/DeliverableItem'
+
+import UserItem from '../container_items/UserItem'
+
 
 class UserList extends React.Component {
   render() {
-    const usersList = this.props.user ? this.props.users.map( (user, i) => {
+    const usersList = this.props.users ? this.props.users.map( (user, i) => {
       return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} position={user.position} image={user.image} />;
     }) : (
       <List.Item>
@@ -18,17 +20,22 @@ class UserList extends React.Component {
         </Segment>
       </List.Item>
     )
+    console.log(this.props)
     return(
-      <List celled>
-        {usersList}
-      </List>
+      <div id="user-container-outer">
+        <h3>Project Managers</h3>
+        <List celled id="user-container-border">
+          {usersList}
+        </List>
+      </div>
+    )
   }
 }
 
 function mapStateToProps(state, props) {
   return {
-    users: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).geta_users: null
+    users: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users: null
   }
 }
 
-export default connect(mapStateToProps)(List);
+export default connect(mapStateToProps)(UserList);

@@ -3,8 +3,10 @@ import { Accordion, Button, Item, Icon } from 'semantic-ui-react'
 
 import CommentForm from '../forms/CommentForm'
 import Comment from '../container_items/Comment'
+import AssetItem from '../container_items/AssetItem'
 
 const ProjectAccordianItem = (props) => {
+  console.log(props)
   return (
     <div>
     <Accordion.Title
@@ -24,8 +26,10 @@ const ProjectAccordianItem = (props) => {
 
       <div>
         <div id="asset-container">
-          {props.revision.revision_items.map( (item, i) => <p key={`item${i}`} >{item.file}</p>)}
-          <Button name={props.revision.id} onClick={(e) => props.show(e)} icon="add" circular color="teal" ></Button>
+        <div>
+          {props.revision.revision_items.map( (item, i) => <AssetItem item={item} />)}
+        </div>
+            <Icon id={props.revision.id} name="add" circular inverted color='teal' onClick={(e) => props.show(e)}/>
         </div>
       </div>
       <div id="comment-container">

@@ -179,7 +179,7 @@ def create_projects(projects, userArray)
     project[:deliverables].map{ |deliverable| Deliverable.create({ description: deliverable[:description], date: deliverable[:date], project: newProject})}
     project[:revisions].map{ |revision|
       newRevision = Revision.new({revision_type:revision[:revision_type], description: revision[:description], project: newProject})
-      revision[:revision_items].map{ |item| RevisionItem.create({file: item[:file], item_type: item[:item_type], revision: newRevision})}
+      # revision[:revision_items].map{ |item| RevisionItem.create({file: item[:file], item_type: item[:item_type], revision: newRevision})}
     }
   }
 end

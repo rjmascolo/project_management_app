@@ -10,12 +10,13 @@ class DeliverablesContainer extends React.Component {
     const deliverables = this.props.deliverables ? this.props.deliverables.map( (deliverable, i) => {
       return <DeliverableItem key={i} deliverable={deliverable} />
     } ): null
-    console.log(this.props)
     return(
-      <div id="deliverable-container">
+      <div id="deliverable-container-outer">
+        <h3>Deliverables</h3>
+        <div id="deliverable-container">
+          {deliverables}
 
-        {deliverables}
-        
+        </div>
       </div>
     )
   }

@@ -49,7 +49,7 @@ function projectsReducer(state = [], action) {
         if (project.id === action.item.project_id) {
           project.revisions.map( revision => {
             if(revision.id === action.item.revision_id) {
-              revision.revision_items.push(Object.assign({id: action.item.id}, {item_type: action.item.item_type} , {file: action.item.file} ))
+              revision.revision_items.push(Object.assign({id: action.item.id}, {item_type: action.item.item_type} , {file_url: action.item.file_url}, {file_name: action.item.file_name} ))
               return revision
             } else {
               return revision

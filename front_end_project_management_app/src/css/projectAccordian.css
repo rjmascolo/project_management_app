@@ -8,7 +8,7 @@
   border-top-right-radius: .28571429rem;
   border-top-left-radius: .28571429rem;
   box-shadow: 1px 1px 2px 1px rgba(34,36,38,.15);
-  background-color: #1D8A99;
+  background-color: #E26D5A;
 }
 
 #project-header {
@@ -50,6 +50,11 @@
 #asset-header {
   text-align: left;
 }
+
+#asset-links {
+  margin: 0 .3em;
+}
+
 #comment-container{
   margin: 1em 0 1em 0;
 }

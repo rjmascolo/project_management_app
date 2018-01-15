@@ -23,7 +23,6 @@ class CommentForm extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     var convertedData = convertToRaw(this.state.editorState.getCurrentContent())
-    debugger;
     this.props.createComment(
       {
         content: this.state.comment,
@@ -42,14 +41,13 @@ class CommentForm extends React.Component {
   onChange = (editorState) => this.setState({editorState});
 
   render() {
-    console.log(this.state)
     return(
       <div>
           <div id="comment-form-div">
             {/* <form onSubmit={this.handleSubmit}>
               <textarea name="comment" value={this.state.comment} onChange={this.handleChange} />
 
-              <Button type="submit">Submit</Button>
+              <Button type="submit" onClick={this.handleSubmit}>Submit</Button>
             </form> */}
             <Editor
               editorState={this.state.editorState}
@@ -66,7 +64,9 @@ class CommentForm extends React.Component {
               }}
             />
           </div>
-        <Button onClick={this.handleSubmit} >Submit</Button>
+          <div id="comment-button-div">
+            <Button onClick={this.handleSubmit} id="comment-submit-button" color="teal">Submit</Button>
+          </div>
       </div>
     )
   }

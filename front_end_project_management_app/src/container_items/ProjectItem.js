@@ -5,7 +5,7 @@ import { Link } from 'react-router-dom';
 
 class ProjectItem extends React.Component {
   render() {
-    console.log(this.props)
+
   return (
       <Item>
           <Link to={`/projects/${this.props.project.id}`}> <Item.Image size='small' src={this.props.project.image} /> </Link>

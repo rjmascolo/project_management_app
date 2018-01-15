@@ -32,7 +32,7 @@ class RevisionsAccordian extends Component {
         revisionItemModal:
       {
         open: true,
-        revisionId: e.target.name
+        revisionId: parseInt(e.target.id)
       }
     })
   }
@@ -85,7 +85,7 @@ class RevisionsAccordian extends Component {
                <Modal.Header>Enter In Documents</Modal.Header>
                <Modal.Content image>
                  <Modal.Description>
-                   <AddRevisionItem projectId={this.props.projectId} revisionId={this.state.revisionItemModal.revisionId}/>
+                   <AddRevisionItem closeItemModule={this.close} projectId={this.props.projectId} revisionId={this.state.revisionItemModal.revisionId}/>
                  </Modal.Description>
                </Modal.Content>
              </Modal>

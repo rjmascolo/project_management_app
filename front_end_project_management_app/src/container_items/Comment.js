@@ -31,12 +31,14 @@ class Comment extends React.Component {
             <p id="user-name-text">{this.props.user.first_name} {this.props.user.last_name}</p>
           </div>
         <div>
+          <Button.Group basic size='small'>
             <Button icon onClick={this.handleEdit} compact>
               <Icon name='edit' color="gray" />
             </Button>
             <Button icon onClick={this.handleDelete} color="red" compact circular negative>
               <Icon name="delete" color='white'/>
             </Button>
+          </Button.Group>
         </div>
       </div>
       <div id="comment-div">

@@ -1,0 +1,43 @@
+
+#header {
+  background: #E26D5A;
+  padding-top: .9em;
+  padding-bottom:1em;
+  box-shadow: 0px 3px #EAE3E3;
+}
+
+#header-content {
+  background: white;
+  margin: 0 auto;
+  border-radius: 15px 15px 15px 15px;
+  width: 50%;
+  box-shadow: 3px 5px #8E4439;
+}
+
+#title-description {
+  display:inline-block;
+  vertical-align: top;
+  text-align: left;
+  padding: 1em 0 0 1em;
+  width: 60%;
+}
+
+#header-companies-container {
+  display:flex;
+  justify-content: flex-start;
+}
+
+#label-div {
+  display:flex;
+  justify-content: flex-end;
+  margin: 1em 0;
+}
+
+#header-companies{
+  margin: 0 1em 0 0 ;
+}
+
+#event-image {
+  margin: 1em 4em 1em 0;
+  display: inline-block;
+}

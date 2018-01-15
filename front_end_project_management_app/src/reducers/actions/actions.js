@@ -3,7 +3,7 @@ import fetch from 'isomorphic-fetch';
 const token = localStorage.getItem('token')
 
 const headers = {
-  'Content-Type': 'application/json',
+    'Content-Type': 'application/json',
     Accepts: 'application/json',
     Authorization: token
 }
@@ -48,12 +48,11 @@ export const createRevisionAsset = (item, projectId) => {
     dispatch({ type: 'START_ADDING_REVISION_ITEM' });
     return fetch(`http://localhost:3000/revision_items/`, {
       method:'POST',
-      headers: headers,
-      body:JSON.stringify(item)
+      body: item
     })
       .then(response => response.json())
       .then(json => {
-        const itemNew = Object.assign( json, {project_id: projectId, revision_id: item.revision_id});
+        const itemNew = Object.assign( json, {project_id: projectId});
         dispatch({ type: 'ADD_REVISION_ITEM', item: itemNew } );
       }
     );

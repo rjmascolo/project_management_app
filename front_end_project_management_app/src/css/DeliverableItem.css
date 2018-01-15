@@ -1,6 +1,16 @@
+#deliverable-container-outer{
+  padding: 1em 1em;
+  background-color: white;
+  border-radius: .5em;
+  box-shadow: 5px 10px #888888;
+}
+
 #deliverable-container{
   border: 1px solid rgba(34,36,38,.15);
   border-radius: .28571429rem;
+  padding: 1em 1em;
+  background-color: white;
+  border-radius: .5em;
 }
 #deliverable-item-container {
   display: flex;
@@ -18,4 +28,7 @@
 #deliverable-description-container {
   width:70%;
   text-align: left;
+  padding: 1em 1em;
+  background-color: white;
+  border-radius: .5em;
 }
