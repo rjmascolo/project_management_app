@@ -15,8 +15,18 @@ class ProjectsController < ApplicationController
 
   # POST /projects
   def create
-    @project = Project.new(project_params)
+    project = params[:project]
+    @project = Project.new( {name: project[:projectName], description: project[:projectDescription], image: project[:projectImage], project_type: project[:projectType] })
     if @project.save
+      newRevision = Revision.new({ revision_type: "creative brief", description: project[:creativeDeliverables], project: @project })
+
+      newRevision.save
+
+      project[:deliverables].each{ |deliverable| Deliverable.create( {description: deliverable[:description], date: Date.parse(deliverable[:date]), project: @project}) }
+
+      project[:projectUsers].each{ |i| UserProject.create( {user_id: i , project: @project, project_type:"client" } )}
+
+
       render json: @project, status: :created, location: @project
     else
       render json: @project.errors, status: :unprocessable_entity

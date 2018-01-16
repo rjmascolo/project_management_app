@@ -1,11 +1,13 @@
 import React from 'react'
-import { Input, Button } from 'semantic-ui-react'
+import { Input, Button, Dropdown } from 'semantic-ui-react'
 
 import { createNewProject } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
 
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
+
+import { projectTypeData } from '../data/formData.js'
 
 import 'react-datepicker/dist/react-datepicker.css';
 
@@ -57,6 +59,14 @@ class CreateNewProject extends React.Component {
 
   }
 
+  handleDropDownChange = (data, e) => {
+    this.setState({[e.name]: e.value})
+  }
+
+  handleUserDropDownChange = (data, e) => {
+    this.setState({ projectUsers:  e.value })
+  }
+
   onClick = (e) => {
     let usersChecked = this.state.projectUsers
     if (usersChecked.find( user => user.id === parseInt(e.target.name))) {
@@ -88,9 +98,9 @@ class CreateNewProject extends React.Component {
   }
 
   render() {
+    console.log(this.state)
     return(
       <div>
-
         <div className="ui form">
           <div className="field">
             <label>Project Name</label>
@@ -105,20 +115,21 @@ class CreateNewProject extends React.Component {
             <input type="text" name="projectImage" onChange={this.handleChange} value={this.state.projectImage}/>
           </div>
           <div className="field">
-            <label>Project Type</label>
-            <input type="text" name="projectType" onChange={this.handleChange} value={this.state.projectType}/>
+            <Dropdown fluid selection
+              placeholder='Select Content Type'
+              name="projectType"
+              value={this.state.projectType}
+              onChange={this.handleDropDownChange}
+              options={projectTypeData} />
           </div>
           <h4>Users</h4>
-          <div className="inline field">
-            {this.props.users.map( (user, i) => {
-              return (
-                <div className="ui checkbox" key={i}>
-                  <input name= {user.id} type="checkbox" tabIndex="0" onChange={this.onClick} />
-                  <label>{user.first_name} {user.last_name}</label>
-                </div>
-              )
+          <Dropdown placeholder='Users' fluid multiple search selection
+            onChange={this.handleUserDropDownChange}
+            value={this.state.projectUsers}
+            options={this.props.users.map(user => {
+              return {key: user.id , value: user.id, text:`${user.first_name} ${user.last_name}`}
             })}
-          </div>
+          />
           <div>
             <h2>Creative Deliverables</h2>
             <div className="field">

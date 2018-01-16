@@ -61,6 +61,7 @@ export const createRevisionAsset = (item, projectId) => {
 
 export const createRevision = (item) => {
   return (dispatch) => {
+    debugger;
     dispatch({ type: 'START_ADDING_REVISION' });
     return fetch(`http://localhost:3000/revisions/`, {
       method:'POST',
@@ -111,24 +112,26 @@ export const deleteComment = (commentId, revisionId, projectId) => {
 
 export const createNewProject = (projectHash) => {
 
-  let projectNew = {
-    name: projectHash.projectName,
-    project_type: projectHash.projectType,
-    description: projectHash.projectDescription,
-    image: projectHash.projectImage,
-  }
+  // let project = {
+  //   name: projectHash.projectName,
+  //   project_type: projectHash.projectType,
+  //   description: projectHash.projectDescription,
+  //   image: projectHash.projectImage,
+  // }
+
+  let projectData = {project: projectHash}
   return (dispatch) => {
     dispatch({ type: 'START_ADDING_PROJECTS' });
     return fetch(`http://localhost:3000/projects/`, {
       method:'POST',
       headers: headers,
-      body:JSON.stringify(projectNew)
+      body:JSON.stringify(projectData)
     })
       .then(response => response.json())
       .then(project => {
         dispatch({ type: 'ADD_PROJECT', project } );
-        createRevision({description:projectHash.creativeDeliverables, revision_type:"creative brief"})
-        projectHash.projectUsers.forEach( user => createUserProject(user,project.id))
+        // createRevision({description: projectHash.creativeDeliverables, revision_type:"creative brief"})
+        // projectHash.projectUsers.forEach( user => createUserProject(user,project.id))
       }
     );
   };
