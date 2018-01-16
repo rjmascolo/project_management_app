@@ -28,6 +28,7 @@ class AddRevisionItem extends React.Component {
 
     this.setState({ file_upload: null, file_text:""})
     this.props.closeItemModule()
+    this.forceUpdate()
 
   }
 

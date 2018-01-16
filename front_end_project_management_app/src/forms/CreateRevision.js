@@ -15,6 +15,7 @@ class CreateRevision extends React.Component {
     this.props.createRevision({description: this.state.description, revision_type: 'revision', project_id: this.props.projectId,})
     this.setState({description: ''})
     this.props.closeRevision()
+    this.forceUpdate()
   }
 
   handleChange = (e) => {

@@ -32,6 +32,7 @@ class CommentForm extends React.Component {
         this.props.projectId
       )
     this.setState({editorState: EditorState.createEmpty()})
+    this.forceUpdate()
   }
 
   handleChange = (e) => {
