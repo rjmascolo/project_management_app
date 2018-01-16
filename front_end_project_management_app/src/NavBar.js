@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Button, Menu, Search } from 'semantic-ui-react'
+
 
 import { logOut } from './reducers/actions/actions'
 import {connect} from 'react-redux'
@@ -23,18 +23,18 @@ class NavBar extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <div class="ui huge menu">
+      <div className="ui huge menu">
 
-          <a class="active item">
+          <div className="active item">
             <NavLink to={`/dashboard`}>
             Home
             </NavLink>
-          </a>
-          <div class="right menu">
-            <div class="item">
+          </div>
+          <div className="right menu">
+            <div className="item">
                 {!this.props.user ?
-                  <div onClick={this.handleClick} class="ui primary button">Log In</div> :
-                  <div onClick={this.handleClick} class="ui button">Log Out</div> }
+                  <div onClick={this.handleClick} className="ui primary button">Log In</div> :
+                  <div onClick={this.handleClick} className="ui button">Log Out</div> }
             </div>
           </div>
         </div>

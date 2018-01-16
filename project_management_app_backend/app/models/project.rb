@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   has_many :revisions
   has_many :deliverables
 
+
   # belongs_to :campaign
 
   def get_users

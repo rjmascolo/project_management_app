@@ -108,3 +108,62 @@ export const deleteComment = (commentId, revisionId, projectId) => {
     );
   };
 }
+
+export const createNewProject = (projectHash) => {
+
+  let projectNew = {
+    name: projectHash.projectName,
+    project_type: projectHash.projectType,
+    description: projectHash.projectDescription,
+    image: projectHash.projectImage,
+  }
+  return (dispatch) => {
+    dispatch({ type: 'START_ADDING_PROJECTS' });
+    return fetch(`http://localhost:3000/projects/`, {
+      method:'POST',
+      headers: headers,
+      body:JSON.stringify(projectNew)
+    })
+      .then(response => response.json())
+      .then(project => {
+        dispatch({ type: 'ADD_PROJECT', project } );
+        createRevision({description:projectHash.creativeDeliverables, revision_type:"creative brief"})
+        projectHash.projectUsers.forEach( user => createUserProject(user,project.id))
+      }
+    );
+  };
+}
+
+export const createUserProject = (user, projectId) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_ADDING_USER_PROJECTS' });
+    return fetch(`http://localhost:3000/user_projects`, {
+      method:'POST',
+      headers: headers,
+      body:JSON.stringify({project_id: projectId, user_id: user.id, project_type:"client" })
+    })
+      .then(response => response.json())
+      .then(comment => {
+        const commentNew = Object.assign( comment, { project_id: projectId })
+        dispatch({ type: 'ADD_COMMENT', commentNew } );
+      }
+    );
+  };
+}
+
+export const createDeliverable = (deliverable, projectId) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_ADDING_DELIVERABLE' });
+    return fetch(`http://localhost:3000/deliverables/`, {
+      method:'POST',
+      headers: headers,
+      body:JSON.stringify(deliverable)
+    })
+      .then(response => response.json())
+      .then(comment => {
+        const commentNew = Object.assign( comment, { project_id: projectId })
+        dispatch({ type: 'ADD_COMMENT', commentNew } );
+      }
+    );
+  };
+}

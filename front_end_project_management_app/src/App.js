@@ -10,6 +10,7 @@ import IndividualProject from './pages/individualProject'
 import Dashboard from './pages/Dashboard'
 import LogIn from './pages/LogIn'
 import SignUp from './pages/SignUp'
+import CreateNewProject from './forms/CreateNewProject'
 
 
 class App extends Component {
@@ -39,6 +40,10 @@ class App extends Component {
               const token = localStorage.getItem('token')
               return token ? <IndividualProject id={args.match.params.id} /> : <Redirect to='/login'/>
               }} />
+              <Route path="/new-project" render={() => {
+                const token = localStorage.getItem('token')
+                return token ? <CreateNewProject /> : <Redirect to='/login' />
+                }} />
             <Route path="/login" render={ routerProps =>  <LogIn history={routerProps.history} />} />
             <Route path="/sign-up" component={SignUp} />
 

@@ -1,10 +1,9 @@
 import React, { Component } from 'react'
-import { Accordion, Icon, Modal, Button, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Accordion, Modal, Button, Segment, Dimmer, Loader } from 'semantic-ui-react'
 
 import AddRevisionItem from '../forms/AddRevisionItem'
 import CreateRevision from '../forms/CreateRevision'
-import CommentForm from '../forms/CommentForm'
-import Comment from '../container_items/Comment'
+
 import ProjectAccordianItem from '../container_items/projectAccordianItem'
 
 import {connect} from 'react-redux'
@@ -54,6 +53,7 @@ class RevisionsAccordian extends Component {
           show={this.show}
           close={this.close}
           projectId={this.props.projectId}
+          makeUpdate={this.forceUpdate}
         />
       )
     }): (

@@ -6,7 +6,6 @@ import Comment from '../container_items/Comment'
 import AssetItem from '../container_items/AssetItem'
 
 const ProjectAccordianItem = (props) => {
-  console.log(props)
   return (
     <div>
     <Accordion.Title
@@ -35,7 +34,7 @@ const ProjectAccordianItem = (props) => {
       <div id="comment-container">
         {props.revision.comments.map( (comment, i) => <Comment key={i} comment={comment} projectId={props.projectId} />)}
       </div>
-        <CommentForm revisionId={props.revision.id} projectId={props.projectId} id=""/>
+        <CommentForm revisionId={props.revision.id} projectId={props.projectId} id="" />
     </Accordion.Content>
   </div>
  )

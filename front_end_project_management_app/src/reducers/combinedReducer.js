@@ -36,7 +36,7 @@ function projectsReducer(state = [], action) {
   switch (action.type) {
 
     case "ADD_PROJECT":
-      return state;
+      return [ ... state, action.project];
 
     case "REMOVE_PROJECT":
       return state;

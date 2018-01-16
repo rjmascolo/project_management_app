@@ -1,5 +1,5 @@
 import React from 'react'
-import { Icon, Grid, Step } from 'semantic-ui-react'
+
 import '../css/DeliverableItem.css'
 
 import {connect} from 'react-redux'

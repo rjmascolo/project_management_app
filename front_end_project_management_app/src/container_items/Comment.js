@@ -1,6 +1,6 @@
 import React from 'react'
-import { Item, Label, Icon, Image, Button } from 'semantic-ui-react'
-import { Link } from 'react-router-dom';
+import { Icon, Image, Button } from 'semantic-ui-react'
+// import { Link } from 'react-router-dom';
 
 import { deleteComment } from '../reducers/actions/actions'
 import {connect} from 'react-redux'

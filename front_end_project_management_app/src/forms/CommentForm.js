@@ -32,7 +32,6 @@ class CommentForm extends React.Component {
         this.props.projectId
       )
     this.setState({editorState: EditorState.createEmpty()})
-    this.forceUpdate()
   }
 
   handleChange = (e) => {
@@ -45,11 +44,7 @@ class CommentForm extends React.Component {
     return(
       <div>
           <div id="comment-form-div">
-            {/* <form onSubmit={this.handleSubmit}>
-              <textarea name="comment" value={this.state.comment} onChange={this.handleChange} />
 
-              <Button type="submit" onClick={this.handleSubmit}>Submit</Button>
-            </form> */}
             <Editor
               editorState={this.state.editorState}
               wrapperClassName="demo-wrapper"

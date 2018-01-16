@@ -15,8 +15,8 @@ class UserProjectsController < ApplicationController
 
   # POST /user_projects
   def create
+    byebug
     @user_project = UserProject.new(user_project_params)
-
     if @user_project.save
       render json: @user_project, status: :created, location: @user_project
     else
