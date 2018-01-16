@@ -1,5 +1,5 @@
 import React from 'react'
-import { Item } from 'semantic-ui-react'
+import { Item, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import ProjectItem from '../container_items/ProjectItem'
 import {connect} from 'react-redux'
 
@@ -9,7 +9,6 @@ class Projects extends React.Component {
       return <ProjectItem project={project}/>
     }): null
     return (
-
       <Item.Group>
         {projects}
       </Item.Group>

@@ -10,3 +10,8 @@ textarea {
   display:flex;
   justify-content: flex-end;
 }
+
+.editer-content {
+  padding: .3em .6em;
+  min-height: 7em;
+}

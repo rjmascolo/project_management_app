@@ -4,6 +4,8 @@ import { Button, Menu, Search } from 'semantic-ui-react'
 import { logOut } from './reducers/actions/actions'
 import {connect} from 'react-redux'
 
+import { Link, NavLink } from 'react-router-dom';
+
 import { withRouter } from 'react-router-dom'
 
 
@@ -21,25 +23,21 @@ class NavBar extends Component {
   render() {
     const { activeItem } = this.state
     return (
-      <Menu size='huge'>
-        <Menu.Item name='home' active={activeItem === 'home'} onClick={this.handleItemClick} />
+      <div class="ui huge menu">
 
-        <Menu.Menu position='right'>
-          <Menu.Item>
-          <Search
-            // loading={isLoading}
-            // onResultSelect={this.handleResultSelect}
-            // onSearchChange={this.handleSearchChange}
-            // results={results}
-            // value={value}
-            // {...this.props}
-          />
-          </Menu.Item>
-          <Menu.Item>
-            {!this.props.user ? <Button primary href='/login'>Log In</Button> : <Button onClick={this.handleClick}>Log Out</Button>}
-          </Menu.Item>
-        </Menu.Menu>
-      </Menu>
+          <a class="active item">
+            <NavLink to={`/dashboard`}>
+            Home
+            </NavLink>
+          </a>
+          <div class="right menu">
+            <div class="item">
+                {!this.props.user ?
+                  <div onClick={this.handleClick} class="ui primary button">Log In</div> :
+                  <div onClick={this.handleClick} class="ui button">Log Out</div> }
+            </div>
+          </div>
+        </div>
     )
   }
 }

@@ -76,6 +76,7 @@ function projectsReducer(state = [], action) {
         if (project.id === parseInt(action.commentNew.project_id)) {
           project.revisions.map(revision => {
             if(revision.id === parseInt(action.commentNew.revision_id)){
+              debugger;
               revision.comments.push(
                 {
                   id: action.commentNew.id ,
@@ -93,6 +94,7 @@ function projectsReducer(state = [], action) {
           return project
         }
       })
+      debugger;
       return addNewComment
 
     case "DELETE_COMMENT":

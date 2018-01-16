@@ -5,3 +5,12 @@
 #calendar {
   height:400px;
 }
+#loading-div{
+  height:100%;
+  width: 100%;
+}
+
+#background-loading-image{
+  height:70%;
+  width: 100%;
+}

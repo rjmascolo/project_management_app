@@ -25,13 +25,13 @@ class CommentForm extends React.Component {
     var convertedData = convertToRaw(this.state.editorState.getCurrentContent())
     this.props.createComment(
       {
-        content: this.state.comment,
+        content: convertedData,
         user_id: this.props.userId,
         revision_id: parseInt(this.props.revisionId)
       },
         this.props.projectId
       )
-    this.setState({comment: ''})
+    this.setState({editorState: EditorState.createEmpty()})
   }
 
   handleChange = (e) => {
@@ -51,9 +51,9 @@ class CommentForm extends React.Component {
             </form> */}
             <Editor
               editorState={this.state.editorState}
-              wrapperClassName="wrapper-class"
-              editorClassName="demo-wrapper"
-              toolbarClassName="toolbar-class"
+              wrapperClassName="demo-wrapper"
+              editorClassName="editer-content"
+              // toolbarClassName="toolbar-class"
               onEditorStateChange={this.onChange}
               toolbar={{
                 options: ['inline', 'list','colorPicker', 'link', 'emoji', 'image'],

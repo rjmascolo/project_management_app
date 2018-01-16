@@ -6,6 +6,12 @@ import { deleteComment } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
 import '../css/Comment.css'
 
+// import { EditorState, Editor } from 'draft-js';
+
+import {stateToHTML} from 'draft-js-export-html';
+
+import { convertFromRaw } from 'draft-js';
+
 
 class Comment extends React.Component {
 
@@ -17,12 +23,12 @@ class Comment extends React.Component {
     console.log("hello")
   }
 
-  findUser = () => {
-
+  convertCommentFromJSONToText = (text) => {
+    var x = stateToHTML(convertFromRaw(JSON.parse(text)))
+    return x
   }
 
   render() {
-    console.log(this.props)
   return (
     <div id="single-comment">
       <div id="single-comment-header">
@@ -42,7 +48,7 @@ class Comment extends React.Component {
         </div>
       </div>
       <div id="comment-div">
-        <p id="comment-paragraph">{this.props.comment.content}</p>
+        <div dangerouslySetInnerHTML={{ __html: this.convertCommentFromJSONToText(this.props.comment.content)}}></div>
       </div>
     </div>
     )
