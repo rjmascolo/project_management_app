@@ -10,6 +10,7 @@ import moment from 'moment';
 import { projectTypeData } from '../data/formData.js'
 
 import 'react-datepicker/dist/react-datepicker.css';
+import '../css/CreateNewProject.css'
 
 class CreateNewProject extends React.Component {
   state ={
@@ -102,54 +103,73 @@ class CreateNewProject extends React.Component {
     return(
       <div>
         <div className="ui form">
-          <div className="field">
-            <label>Project Name</label>
-            <input type="text" name="projectName" onChange={this.handleChange} value={this.state.projectName}/>
+          <div id="create-project-data">
+          <div className="field" id="group-field">
+            <div className="field" id="flex-grow2">
+              <label>Project Name</label>
+              <input type="text" name="projectName" onChange={this.handleChange} value={this.state.projectName}/>
+            </div>
+            <div className="field"  id="flex-grow">
+              <Dropdown fluid selection
+                placeholder='Select Content Type'
+                name="projectType"
+                value={this.state.projectType}
+                onChange={this.handleDropDownChange}
+                options={projectTypeData} />
+            </div>
           </div>
           <div className="field">
             <label>Project Description</label>
             <input type="text" name="projectDescription" onChange={this.handleChange} value={this.state.projectDescription}/>
           </div>
           <div className="field">
-            <label>Image URL</label>
-            <input type="text" name="projectImage" onChange={this.handleChange} value={this.state.projectImage}/>
+            <label>Project Image</label>
+            <Input label='http://' placeholder='image-url.com' name="projectImage" onChange={this.handleChange} value={this.state.projectImage} />
           </div>
-          <div className="field">
-            <Dropdown fluid selection
-              placeholder='Select Content Type'
-              name="projectType"
-              value={this.state.projectType}
-              onChange={this.handleDropDownChange}
-              options={projectTypeData} />
+          <div id="add-users-project">
+            <Dropdown placeholder='Add Users' multiple search selection
+              id="add-users-project"
+              onChange={this.handleUserDropDownChange}
+              value={this.state.projectUsers}
+              options={this.props.users.map(user => {
+                return {key: user.id , value: user.id, text:`${user.first_name} ${user.last_name}`}
+              })}
+            />
           </div>
-          <h4>Users</h4>
-          <Dropdown placeholder='Users' fluid multiple search selection
-            onChange={this.handleUserDropDownChange}
-            value={this.state.projectUsers}
-            options={this.props.users.map(user => {
-              return {key: user.id , value: user.id, text:`${user.first_name} ${user.last_name}`}
-            })}
-          />
+        </div>
           <div>
-            <h2>Creative Deliverables</h2>
             <div className="field">
               <label>Creative Deliverable Overview</label>
-              <textarea rows="2" name="creativeDeliverables" onChange={this.handleChange} value={this.state.creativeDeliverables}></textarea>
+              <textarea rows="2" name="creativeDeliverables" onChange={this.handleChange} value={this.state.creativeDeliverables} id="text-area" ></textarea>
             </div>
-            <h4>Create Deliverables</h4>
-            {this.state.deliverables.map( (deliverable, i) => {
-              return (
-                <div className="field">
-                  <label>Creative Deleverable Description</label>
-                  <input type="text" name="projectDescription" onChange={(event) => this.handleDeliverableChange(event, i)} value={this.state.deliverables[i].description}/>
-                  <DatePicker id={`${i}`} selected={this.state.deliverables[i].date} onChange={(date) => this.datePickerChange(date, i)}/>
-                </div>
-              )
-            })}
-            <Button icon="add" circular onClick={this.addDeliverable} />
-            <h4>Enter File</h4>
-            <input name="file" type="file" onChange={this.handleFileChange} value={this.state.file_text}/>
-            <input type="submit" value="Submit" onClick={this.handleSubmit} />
+            <div>
+              <div id="create-project-deliverable-header">
+                <h4>Create Deliverables</h4>
+                <Button icon="add" circular onClick={this.addDeliverable} />
+              </div>
+              {this.state.deliverables.map( (deliverable, i) => {
+                return (
+                  <div className="field" id="deliverable-create-project-item">
+                    <div className="field" id="project-deliverable-description">
+                    <label>Creative Deliverable #{i+1} Description </label>
+                    <input
+                      type="text"
+                      name="projectDescription"
+                      onChange={(event) => this.handleDeliverableChange(event, i)}
+                      value={this.state.deliverables[i].description}
+                      placeholder="i.e. 3 mocks for Q1 banners"
+                    />
+                    </div>
+                    <div className="field" >
+                      <label>Date Due</label>
+                      <DatePicker id={`${i}`} selected={this.state.deliverables[i].date} onChange={(date) => this.datePickerChange(date, i)}/>
+                    </div>
+                  </div>
+                )
+              })}
+              <br/>
+              <Button onClick={this.handleSubmit} color="teal" floated="right" > Submit </Button>
+          </div>
           </div>
         </div>
 
