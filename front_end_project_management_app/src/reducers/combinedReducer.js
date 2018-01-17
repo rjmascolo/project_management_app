@@ -131,6 +131,23 @@ function projectsReducer(state = [], action) {
         }
       })
       return deleteComment;
+    case 'UPDATE_DELIVERABLE':
+      const updateDeliverable = state.map( project => {
+        if (project.id === parseInt(action.updatedDeliverable.projectId)) {
+          project.deliverables.map( deliverable => {
+            if(deliverable.id === parseInt(action.updatedDeliverable.id)){
+              deliverable = action.updatedDeliverable
+              return deliverable
+            } else {
+              return deliverable
+            }
+          })
+          return project
+        } else {
+          return project
+          }
+        })
+      return updateDeliverable;
 
     default:
       return state;

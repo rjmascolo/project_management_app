@@ -63,7 +63,6 @@ export const createRevisionAsset = (item, projectId) => {
 
 export const createRevision = (item) => {
   return (dispatch) => {
-    debugger;
     dispatch({ type: 'START_ADDING_REVISION' });
     return fetch(`${API_URL}revisions/`, {
       method:'POST',
@@ -151,6 +150,23 @@ export const deleteFile = ( itemId, projectId ) => {
       .then(item => {
         const deletedItem = Object.assign( item , {projectId: projectId} )
         dispatch({ type: 'DELETE_REVISION_ITEM', deletedItem } );
+      }
+    );
+  };
+}
+
+export const updateDeliverable = (deliverable, projectId) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_UPDATING_DELIVERABLE' });
+    return fetch(`${API_URL}deliverables/${deliverable.id}`, {
+      method:'PATCH',
+      headers: headers,
+      body:JSON.stringify({done: deliverable.done})
+    })
+      .then(response => response.json())
+      .then(deliverable => {
+        const updatedDeliverable = Object.assign( deliverable , {projectId: projectId} )
+        dispatch({ type: 'UPDATE_DELIVERABLE' , updatedDeliverable } );
       }
     );
   };

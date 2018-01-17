@@ -46,6 +46,6 @@ class DeliverablesController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def deliverable_params
-      params.require(:deliverable).permit(:description, :date, :project_id)
+      params.require(:deliverable).permit(:description, :date, :project_id, :done)
     end
 end

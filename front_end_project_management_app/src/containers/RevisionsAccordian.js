@@ -82,7 +82,7 @@ class RevisionsAccordian extends Component {
         </div>
         <Accordion styled id="accordian-seman">
           {revisions}
-            <Modal open={this.state.revisionItemModal.open} onClose={this.close}>
+            <Modal size="small" open={this.state.revisionItemModal.open} onClose={this.close}>
                <Modal.Header>Enter In Documents</Modal.Header>
                <Modal.Content image>
                  <Modal.Description>
@@ -90,7 +90,7 @@ class RevisionsAccordian extends Component {
                  </Modal.Description>
                </Modal.Content>
              </Modal>
-             <Modal open={this.state.revisionModal} onClose={this.closeRevision}>
+             <Modal open={this.state.revisionModal} size="small" onClose={this.closeRevision}>
                 <Modal.Header>Add New Revision</Modal.Header>
                 <Modal.Content image>
                   <Modal.Description>
