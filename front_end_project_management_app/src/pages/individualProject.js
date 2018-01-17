@@ -14,7 +14,6 @@ import DeliverablesContainer from '../containers/DeliverablesContainer'
 class IndividualProject extends React.Component {
 
   render() {
-    console.log(this.props.project)
     return (
       <div>
         <div id="header">

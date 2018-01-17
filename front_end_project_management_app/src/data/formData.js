@@ -7,7 +7,3 @@ export const projectTypeData =
     {text:"Email", value: "Email"},
     {text:"Television Spot", value: "Television Spot"}
   ]
-//     text: 'Jenny Hess',
-//     value: 'Jenny Hess',
-//     image: { avatar: true, src: '/assets/images/avatar/small/jenny.jpg' },
-//   },

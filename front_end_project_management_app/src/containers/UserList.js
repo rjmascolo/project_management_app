@@ -20,7 +20,6 @@ class UserList extends React.Component {
         </Segment>
       </List.Item>
     )
-    console.log(this.props)
     return(
       <div id="user-container-outer">
         <h3>Project Managers</h3>

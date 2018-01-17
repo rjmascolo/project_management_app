@@ -26,7 +26,7 @@ const ProjectAccordianItem = (props) => {
       <div>
         <div id="asset-container">
         <div>
-          {props.revision.revision_items.map( (item, i) => <AssetItem item={item} />)}
+          {props.revision.revision_items.map( (item, i) => <AssetItem key={i} item={item} projectId={props.projectId} />)}
         </div>
             <Icon id={props.revision.id} name="add" circular inverted color='teal' onClick={(e) => props.show(e)}/>
         </div>

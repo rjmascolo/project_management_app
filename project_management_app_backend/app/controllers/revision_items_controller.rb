@@ -36,6 +36,7 @@ class RevisionItemsController < ApplicationController
   # DELETE /revision_item/1
   def destroy
     @revision_item.destroy
+    render json: @revision_item
   end
 
   private

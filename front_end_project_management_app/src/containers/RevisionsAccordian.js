@@ -46,6 +46,7 @@ class RevisionsAccordian extends Component {
     const revisions = this.props.revisions? this.props.revisions.map( (revision, index ) => {
       return(
         <ProjectAccordianItem
+          key={index}
           activeIndex={activeIndex}
           index={index}
           handleClick={this.handleClick}

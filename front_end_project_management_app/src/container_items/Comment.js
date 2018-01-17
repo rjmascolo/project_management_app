@@ -20,7 +20,7 @@ class Comment extends React.Component {
   }
 
   handleEdit= () => {
-    console.log("hello")
+    
   }
 
   convertCommentFromJSONToText = (text) => {

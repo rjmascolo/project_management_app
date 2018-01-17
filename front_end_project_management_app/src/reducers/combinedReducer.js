@@ -61,6 +61,25 @@ function projectsReducer(state = [], action) {
         }
       })
       return withRevisionItem
+
+    case "DELETE_REVISION_ITEM":
+    const deleteRevisionItem = state.map( project => {
+      if (project.id === parseInt(action.deletedItem.projectId)) {
+        project.revisions.map(revision => {
+          if(revision.id === parseInt(action.deletedItem.revision_id)){
+            revision.revision_items = revision.revision_items.filter(item => item.id !== action.deletedItem.id)
+            return revision
+          } else {
+            return revision
+          }
+        })
+        return project
+      } else {
+        return project
+        }
+      })
+      return deleteRevisionItem;
+
     case "ADD_REVISION":
       const addRevisionToProject = state.map( project => {
         if (project.id === action.revision.project_id) {

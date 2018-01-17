@@ -13,7 +13,7 @@ class SignUp extends React.Component {
   }
 
   handleSubmit = (e) => {
-    console.log("nada")
+
   }
 
   render() {
