@@ -7,6 +7,8 @@ import CreateRevision from '../forms/CreateRevision'
 import ProjectAccordianItem from '../container_items/projectAccordianItem'
 
 import {connect} from 'react-redux'
+import { withRouter } from 'react-router'
+
 import '../css/projectAccordian.css'
 
 class RevisionsAccordian extends Component {
@@ -16,7 +18,14 @@ class RevisionsAccordian extends Component {
       open: false,
       revisionId: ''
     },
-    revisionModal: false
+    revisionModal: false,
+    reRender: false
+  }
+
+  triggerRerender = () => {
+    this.setState( prevState => {
+      return {reRender: !prevState.reRender}
+    })
   }
 
   handleClick = (e, titleProps) => {
@@ -24,6 +33,10 @@ class RevisionsAccordian extends Component {
     const { activeIndex } = this.state
     const newIndex = activeIndex === index ? -1 : index
     this.setState({ activeIndex: newIndex })
+  }
+
+  changeActiveIndex = (id) => {
+    this.setState({ activeIndex: id })
   }
 
   show = (e) => {
@@ -54,7 +67,6 @@ class RevisionsAccordian extends Component {
           show={this.show}
           close={this.close}
           projectId={this.props.projectId}
-          makeUpdate={this.forceUpdate}
         />
       )
     }): (
@@ -75,6 +87,7 @@ class RevisionsAccordian extends Component {
       </Accordion.Content>
     </div>
     )
+    console.log(this.state)
     return (
       <div id="accordion-container">
         <div id="accordian-header">
@@ -86,7 +99,12 @@ class RevisionsAccordian extends Component {
                <Modal.Header>Enter In Documents</Modal.Header>
                <Modal.Content image>
                  <Modal.Description>
-                   <AddRevisionItem closeItemModule={this.close} projectId={this.props.projectId} revisionId={this.state.revisionItemModal.revisionId}/>
+                   <AddRevisionItem
+                     closeItemModule={this.close}
+                     projectId={this.props.projectId}
+                     revisionId={this.state.revisionItemModal.revisionId}
+                     triggerRerender={this.triggerRerender}
+                   />
                  </Modal.Description>
                </Modal.Content>
              </Modal>
@@ -94,7 +112,11 @@ class RevisionsAccordian extends Component {
                 <Modal.Header>Add New Revision</Modal.Header>
                 <Modal.Content image>
                   <Modal.Description>
-                    <CreateRevision projectId={this.props.projectId} closeRevision={this.closeRevision}/>
+                    <CreateRevision
+                      projectId={this.props.projectId}
+                      closeRevision={this.closeRevision}
+                      triggerRerender={this.triggerRerender}
+                    />
                   </Modal.Description>
                 </Modal.Content>
               </Modal>
@@ -114,4 +136,4 @@ function mapStateToProps(state, props) {
 //   return {}
 // }
 
-export default connect(mapStateToProps)(RevisionsAccordian);
+export default withRouter(connect(mapStateToProps)(RevisionsAccordian));

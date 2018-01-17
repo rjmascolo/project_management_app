@@ -2,7 +2,8 @@ import React from 'react'
 import { Input, Button, Checkbox } from 'semantic-ui-react'
 
 import { createRevision, updateDeliverable } from '../reducers/actions/actions'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
+import { withRouter } from 'react-router'
 
 import '../css/RevisionCreateForm.css'
 
@@ -16,12 +17,15 @@ class CreateRevision extends React.Component {
 
   handleSubmit = (e) => {
     e.preventDefault()
-    this.props.createRevision({description: this.state.description, revision_type: 'revision', project_id: this.props.projectId,})
-    this.setState({description: ''})
-    let newDeliverable = this.props.deliverable
-    newDeliverable.done = true
-    this.props.updateDeliverable(newDeliverable, this.props.projectId)
-    this.props.closeRevision()
+    const state = this.state
+    this.props.createRevision({description: state.description, revision_type: 'revision', project_id: this.props.projectId,})
+    this.setState({description: '', forDeliverable: true})
+    if(state.forDeliverable) {
+      let newDeliverable = this.props.deliverable
+      newDeliverable.done = true
+      this.props.updateDeliverable(newDeliverable, this.props.projectId)
+    }
+      this.props.closeRevision()
   }
 
   handleChange = (e) => {
@@ -36,7 +40,7 @@ class CreateRevision extends React.Component {
   }
 
   render() {
-    console.log(this.state)
+    console.log(this.props)
     return(
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
@@ -60,7 +64,17 @@ class CreateRevision extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    deliverable: state.projects ? state.projects.find(project => project.id === parseInt(props.projectId)).deliverables.filter(deliverable => !deliverable.done)[0] : null
+    deliverable: state.projects ? (
+      state.projects.find(project => project.id === parseInt(props.projectId)).deliverables.filter(deliverable => !deliverable.done).sort( ( a, b) => {
+      	if (a.date < b.date) {
+      		return -1
+        }else if (a.date > b.date) {
+      	return 1
+          } else {
+      	return 0
+          }
+      })[0]
+    ) : null
   }
 }
 
@@ -71,4 +85,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect( mapStateToProps, mapDispatchToProps)(CreateRevision);
+export default withRouter(connect( mapStateToProps, mapDispatchToProps)(CreateRevision));

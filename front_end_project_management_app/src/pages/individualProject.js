@@ -9,9 +9,18 @@ import RevisionsAccordian from '../containers/RevisionsAccordian'
 import '../css/individualProductPage.css'
 import '../css/IndividualProjectHeader.css'
 
+import { withRouter } from 'react-router'
+
 import DeliverablesContainer from '../containers/DeliverablesContainer'
 
 class IndividualProject extends React.Component {
+  state = {
+    rerender: null
+  }
+
+  triggerRerender = () => {
+    this.setState({rerender: Math.random()})
+  }
 
   render() {
     return (
@@ -52,12 +61,11 @@ class IndividualProject extends React.Component {
           </div>
 
           <div id="outer-project-accordian">
-            <h3>Project Content</h3>
-            <RevisionsAccordian projectId={this.props.id} />
+            <RevisionsAccordian projectId={this.props.id} triggerRerender={this.triggerRerender}/>
           </div>
 
           <div id="deliverables-div">
-            <DeliverablesContainer projectId={this.props.id}/>
+            <DeliverablesContainer projectId={this.props.id} triggerRerender={this.triggerRerender}/>
           </div>
 
        </div>
@@ -78,4 +86,4 @@ function mapDispatchToProps(dispatch) {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(IndividualProject);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)(IndividualProject));

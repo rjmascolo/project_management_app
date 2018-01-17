@@ -2,6 +2,10 @@
 
 }
 
+#div-header{
+  font-family: 'Rubik', sans-serif;
+}
+
 #accordian-header {
   display:flex;
   justify-content: flex-end;

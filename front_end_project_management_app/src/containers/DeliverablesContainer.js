@@ -10,6 +10,7 @@ class DeliverablesContainer extends React.Component {
     const deliverables = this.props.deliverables ? this.props.deliverables.map( (deliverable, i) => {
       return <DeliverableItem key={i} deliverable={deliverable} />
     } ): null
+    console.log(this.props)
     return(
       <div id="deliverable-container-outer">
         <h3>Deliverables</h3>
@@ -24,7 +25,15 @@ class DeliverablesContainer extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    deliverables: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).deliverables: null
+    deliverables: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).deliverables.sort( ( a, b) => {
+      if (a.date < b.date) {
+        return -1
+      }else if (a.date > b.date) {
+      return 1
+        } else {
+      return 0
+        }
+    }): null
   }
 }
 
