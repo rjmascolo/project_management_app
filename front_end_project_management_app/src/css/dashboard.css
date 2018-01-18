@@ -1,10 +1,3 @@
-#projects-div {
-  width: 60%;
-  margin: 0 auto;
-}
-#calendar {
-  height:400px;
-}
 #loading-div{
   height:100%;
   width: 100%;
@@ -13,4 +6,36 @@
 #background-loading-image{
   height:70%;
   width: 100%;
+}
+
+#calendar {
+  background-color: #E26D5A;
+  box-shadow: 4px 4px #EAE3E3;
+  border-radius: .5em;
+  margin: 1em 1em;
+  padding: 3em 3em;
+}
+
+#calendar-inner-div {
+  background-color: white;
+  height:450px;
+  border-radius: .5em;
+  padding: 1em 1em;
+}
+
+#projects-div {
+  width: 60%;
+  margin: 0 auto;
+}
+
+#dashboard-projects {
+  margin: 2em 1em;
+  border-top: 1px solid rgba(34,36,38,.15);
+}
+
+#dashboard-projects-header {
+  padding: 1em 0 .5em 0;
+  display:flex;
+  justify-content: space-between;
+  border-bottom: 1px solid rgba(34,36,38,.15);
 }

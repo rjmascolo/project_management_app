@@ -3,30 +3,43 @@ import { Item, Button, Modal, Header } from 'semantic-ui-react'
 
 import ProjectItem from '../container_items/ProjectItem'
 import CreateNewProject from '../forms/CreateNewProject'
+import '../css/dashboard.css'
 
 import {connect} from 'react-redux'
 
 class Projects extends React.Component {
+
+  state = {
+    activeModal: false
+  }
+
+  show = () => this.setState({ activeModal: true})
+  close = () => this.setState({ activeModal: false })
+
   render() {
     const projects = this.props.projects ? this.props.projects.map( (project,i) => {
       return <ProjectItem key={i} project={project}/>
     }): null
     return (
       <div id="dashboard-projects">
-        <div>
+        <div id="dashboard-projects-header">
           <h1>Current Projects</h1>
-          <Modal trigger={<Button icon="add" circular />}>
-          <Modal.Header>Create A New Project</Modal.Header>
-          <Modal.Content image>
-            <Modal.Description>
-              <CreateNewProject />
-            </Modal.Description>
-          </Modal.Content>
-        </Modal>
+          <div>
+            <Button icon="add" circular onClick={this.show} />
+          </div>
         </div>
-        <Item.Group>
+        <Item.Group divided>
           {projects}
         </Item.Group>
+
+        <Modal open={this.state.activeModal} onClose={this.close} >
+        <Modal.Header>Create A New Project</Modal.Header>
+        <Modal.Content image>
+          <Modal.Description>
+            <CreateNewProject close={this.close} />
+          </Modal.Description>
+        </Modal.Content>
+        </Modal>
       </div>
 
     );
