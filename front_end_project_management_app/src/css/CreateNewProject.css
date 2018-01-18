@@ -1,13 +1,14 @@
 #group-field{
   display:flex;
   justify-content: space-between;
-  align-items: flex-end;
+  align-items: flex-start;
   margin-bottom: 0;
 }
 #flex-grow2 {
   width:62%;
 }
 #flex-grow {
+  padding-top: 1.55em;
   width: 35%;
   margin: 0 0 1em;
 }

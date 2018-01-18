@@ -130,7 +130,10 @@ export const createNewProject = (projectHash) => {
     })
       .then(response => response.json())
       .then(project => {
+        project.revisions[0]["revision_items"] = []
+        project.revisions[0]["comments"] = []
         dispatch({ type: 'ADD_PROJECT', project } );
+        return project
         // createRevision({description: projectHash.creativeDeliverables, revision_type:"creative brief"})
         // projectHash.projectUsers.forEach( user => createUserProject(user,project.id))
       }

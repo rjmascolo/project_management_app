@@ -34,7 +34,7 @@ class Projects extends React.Component {
 
         <Modal open={this.state.activeModal} onClose={this.close} >
         <Modal.Header>Create A New Project</Modal.Header>
-        <Modal.Content image>
+        <Modal.Content scrolling >
           <Modal.Description>
             <CreateNewProject close={this.close} />
           </Modal.Description>

@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Dropdown } from 'semantic-ui-react'
+import { Input, Button, Dropdown, Label } from 'semantic-ui-react'
 
 import { createNewProject } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
@@ -8,9 +8,12 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import { projectTypeData } from '../data/formData.js'
+import { createProjectFormValidation } from '../services/helpers.js'
 
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/CreateNewProject.css'
+
+import { withRouter } from 'react-router'
 
 class CreateNewProject extends React.Component {
   state ={
@@ -26,26 +29,22 @@ class CreateNewProject extends React.Component {
           date: moment()
         }
       ],
-      projectFile: null,
+      errors: {}
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
 
-    // let formData = new FormData();
-    // const stateHere = this.state
-    // let projectData = {name: stateHere.projectName, description: stateHere.projectDescription, image: stateHere.projectImage, project_type: stateHere.projectType}
-    // let revisionData = {revision_type:"creative brief", description:stateHere.creativeDeliverables}
-    //
-    // formData.set("project", projectData);
-    // formData.set("revision", revisionData);
-    // formData.append("revision_item", stateHere.projectFile);
-    // formData.set("user_projects", stateHere.projectUsers)
-    // formData.set("deliverables", stateHere.deliverables)
+    const state = this.state
+    const errors = createProjectFormValidation(state)
+    if (errors.keys === undefined) {
+      this.props.createNewProject(state).then(x => this.props.history.push(`/projects/${x.id}`))
 
-
-    this.props.createNewProject(this.state)
-    // this.setState({})
+      this.props.close()
+      // this.history.push('projects/')
+    } else {
+      this.setState({errors: errors})
+    }
 
   }
 
@@ -99,6 +98,8 @@ class CreateNewProject extends React.Component {
   }
 
   render() {
+    const errors = this.state.errors
+    console.log(this.props)
     return(
       <div>
         <div className="ui form">
@@ -107,6 +108,7 @@ class CreateNewProject extends React.Component {
             <div className="field" id="flex-grow2">
               <label>Project Name</label>
               <input type="text" name="projectName" onChange={this.handleChange} value={this.state.projectName}/>
+               {errors.projectName ? <Label basic color='red' pointing>{errors.projectName}</Label> : null}
             </div>
             <div className="field"  id="flex-grow">
               <Dropdown fluid selection
@@ -115,15 +117,18 @@ class CreateNewProject extends React.Component {
                 value={this.state.projectType}
                 onChange={this.handleDropDownChange}
                 options={projectTypeData} />
+                {errors.projectType ? <Label basic color='red' pointing>{errors.projectType}</Label> : null}
             </div>
           </div>
           <div className="field">
             <label>Project Description</label>
             <input type="text" name="projectDescription" onChange={this.handleChange} value={this.state.projectDescription}/>
+            {errors.projectDescription ? <Label basic color='red' pointing>{errors.projectDescription}</Label> : null}
           </div>
           <div className="field">
             <label>Project Image</label>
-            <Input label='http://' placeholder='image-url.com' name="projectImage" onChange={this.handleChange} value={this.state.projectImage} />
+            <Input label='Enter URL' placeholder='image-url.com' name="projectImage" onChange={this.handleChange} value={this.state.projectImage} />
+              {errors.projectImage ? <Label basic color='red' pointing>{errors.projectImage}</Label> : null}
           </div>
           <div id="add-users-project">
             <Dropdown placeholder='Add Users' multiple search selection
@@ -134,12 +139,14 @@ class CreateNewProject extends React.Component {
                 return {key: user.id , value: user.id, text:`${user.first_name} ${user.last_name}`}
               })}
             />
+              {errors.projectUsers ? <Label basic color='red' basic color='red' pointing>{errors.projectUsers}</Label> : null}
           </div>
         </div>
           <div>
             <div className="field">
               <label>Creative Deliverable Overview</label>
               <textarea rows="2" name="creativeDeliverables" onChange={this.handleChange} value={this.state.creativeDeliverables} id="text-area" ></textarea>
+              {errors.creativeDeliverables ? <Label basic color='red' pointing>{errors.creativeDeliverables}</Label> : null}
             </div>
             <div>
               <div id="create-project-deliverable-header">
@@ -158,6 +165,7 @@ class CreateNewProject extends React.Component {
                       value={this.state.deliverables[i].description}
                       placeholder="i.e. 3 mocks for Q1 banners"
                     />
+                      {errors[`deliverable-${i}`] ? <Label basic color='red' pointing>{errors.projectDescription}</Label> : null}
                     </div>
                     <div className="field" >
                       <label>Date Due</label>
@@ -187,4 +195,4 @@ function mapDispatchToProps(dispatch) {
   return {createNewProject: (project) => dispatch(createNewProject(project))}
 }
 
-export default connect( mapStateToProps, mapDispatchToProps)(CreateNewProject);
+export default withRouter(connect( mapStateToProps, mapDispatchToProps)(CreateNewProject));
