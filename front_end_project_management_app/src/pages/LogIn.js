@@ -38,7 +38,7 @@ class LogIn extends React.Component {
       <div id="login-form">
       <div className="ui middle aligned center aligned grid">
         <div className="column">
-          <h2 className="ui teal image header">
+          <h2 className="ui image header" id="login-header">
             <div className="content">
               Log-in to your account
             </div>
@@ -57,7 +57,7 @@ class LogIn extends React.Component {
                   <input type="password" name="password" placeholder="Password" value={this.state.fields.password} onChange={this.handleChange} />
                 </div>
               </div>
-              <input type="submit" className="ui fluid large teal submit button" value="Login" />
+              <input type="submit" id="login-button" className="ui fluid large submit button" value="Login" />
             </div>
 
             <div className="ui error message">

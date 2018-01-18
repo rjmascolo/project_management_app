@@ -16,9 +16,13 @@ export function fetchUser(id) {
     return fetch(`${API_URL}users/${id}`)
       .then(response => response.json())
       .then(user => {
+        if (user.status === 404 ) {
+          return user
+        } else {
         const newUser = Object.assign({id: user.id, first_name: user.first_name, last_name: user.last_name, position: user.position})
         const projects = user.projects;
-         return dispatch({ type: 'FETCH_USER', user: newUser, projects: projects })
+        return dispatch({ type: 'FETCH_USER', user: newUser, projects: projects })
+        }
        }
     );
   };
@@ -86,9 +90,9 @@ export const createComment = (comment, projectId) => {
       body:JSON.stringify(comment)
     })
       .then(response => response.json())
-      .then(comment => {
-        const commentNew = Object.assign( comment, { project_id: projectId })
-        dispatch({ type: 'ADD_COMMENT', commentNew } );
+      .then(commentRails => {
+        const comment = Object.assign( commentRails, { project_id: parseInt(projectId) })
+        dispatch({ type: 'ADD_COMMENT', comment } );
       }
     );
   };
@@ -103,9 +107,9 @@ export const deleteComment = (commentId, revisionId, projectId) => {
       // body:JSON.stringify(commentId)
     })
       .then(response => response.json())
-      .then(comment => {
-        const deletedComment = Object.assign( {commentId: commentId}, {revisionId: revisionId}, {projectId: projectId } )
-        dispatch({ type: 'DELETE_COMMENT', deletedComment } );
+      .then(commentRails => {
+        const comment = {id: parseInt(commentId), revision_id: parseInt(revisionId), project_id: parseInt(projectId) }
+        dispatch({ type: 'DELETE_COMMENT', comment } );
       }
     );
   };
@@ -150,9 +154,9 @@ export const deleteFile = ( itemId, projectId ) => {
       // body:JSON.stringify(commentId)
     })
       .then(response => response.json())
-      .then(item => {
-        const deletedItem = Object.assign( item , {projectId: projectId} )
-        dispatch({ type: 'DELETE_REVISION_ITEM', deletedItem } );
+      .then(freshItem => {
+        let item = Object.assign( freshItem , {project_id: parseInt(projectId)} )
+        dispatch({ type: 'DELETE_REVISION_ITEM', item } );
       }
     );
   };
@@ -167,9 +171,9 @@ export const updateDeliverable = (deliverable, projectId) => {
       body:JSON.stringify({done: deliverable.done})
     })
       .then(response => response.json())
-      .then(deliverable => {
-        const updatedDeliverable = Object.assign( deliverable , {projectId: projectId} )
-        dispatch({ type: 'UPDATE_DELIVERABLE' , updatedDeliverable } );
+      .then(deliverableRails => {
+        const deliverable = Object.assign( deliverableRails , {project_id: parseInt(projectId)} )
+        dispatch({ type: 'UPDATE_DELIVERABLE' , deliverable } );
       }
     );
   };

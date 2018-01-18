@@ -2,3 +2,13 @@
   width:35%;
   margin:0 auto;
 }
+
+#login-header {
+  color:#E26D5A
+
+}
+
+#login-button {
+  background-color: #E26D5A;
+  color: white;
+}

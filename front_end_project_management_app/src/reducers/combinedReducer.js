@@ -1,4 +1,5 @@
 import { combineReducers } from 'redux';
+import { revisionItemsReducer, commentsReducer, deliverablesReducer } from './HelperReducer.js'
 
 
 export const rootReducer = combineReducers({
@@ -44,112 +45,73 @@ function projectsReducer(state = [], action) {
     case "FETCH_USER":
       return action.projects
 
-    case "ADD_REVISION_ITEM":
-      let withRevisionItem = state.map(project => {
-        if (project.id === action.item.project_id) {
-          project.revisions.map( revision => {
-            if(revision.id === action.item.revision_id) {
-              revision.revision_items.push(Object.assign({id: action.item.id}, {item_type: action.item.item_type} , {file_url: action.item.file_url}, {file_name: action.item.file_name} ))
-              return revision
-            } else {
-              return revision
-            }
-          })
-          return project
-        } else {
-          return project
-        }
-      })
-      return withRevisionItem
-
-    case "DELETE_REVISION_ITEM":
-    const deleteRevisionItem = state.map( project => {
-      if (project.id === parseInt(action.deletedItem.projectId)) {
-        project.revisions.map(revision => {
-          if(revision.id === parseInt(action.deletedItem.revision_id)){
-            revision.revision_items = revision.revision_items.filter(item => item.id !== action.deletedItem.id)
-            return revision
-          } else {
-            return revision
-          }
-        })
-        return project
-      } else {
-        return project
-        }
-      })
-      return deleteRevisionItem;
-
     case "ADD_REVISION":
-      const addRevisionToProject = state.map( project => {
-        if (project.id === action.revision.project_id) {
-          project.revisions.push(action.revision)
-          return project
-        } else {
-          return project
-        }
-      })
-      return addRevisionToProject
+    case "ADD_REVISION_ITEM":
+    case "DELETE_REVISION_ITEM":
     case "ADD_COMMENT":
-      const addNewComment = state.map( project => {
-        if (project.id === parseInt(action.commentNew.project_id)) {
-          project.revisions.map(revision => {
-            if(revision.id === parseInt(action.commentNew.revision_id)){
-              revision.comments.push(
-                {
-                  id: action.commentNew.id ,
-                  content: action.commentNew.content ,
-                  user_id: action.commentNew.user_id,
-                  revision_id: action.commentNew.revision_id
-                })
-              return revision
-            }else {
-              return revision
-            }
-          })
-          return project
-        } else {
-          return project
-        }
-      })
-      return addNewComment
-
     case "DELETE_COMMENT":
-    const deleteComment = state.map( project => {
-      if (project.id === parseInt(action.deletedComment.projectId)) {
-        project.revisions.map(revision => {
-          if(revision.id === parseInt(action.deletedComment.revisionId)){
-            revision.comments = revision.comments.filter(comment => comment.id !== action.deletedComment.commentId)
-            return revision
-          } else {
-            return revision
-          }
-        })
-        return project
-      } else {
-        return project
-        }
-      })
-      return deleteComment;
     case 'UPDATE_DELIVERABLE':
-      const updateDeliverable = state.map( project => {
-        if (project.id === parseInt(action.updatedDeliverable.projectId)) {
-          project.deliverables.map( deliverable => {
-            if(deliverable.id === parseInt(action.updatedDeliverable.id)){
-              deliverable = action.updatedDeliverable
-              return deliverable
-            } else {
-              return deliverable
-            }
-          })
-          return project
-        } else {
-          return project
-          }
-        })
-      return updateDeliverable;
+      let projectIndex;
+      let newRevisions;
+      let newDeliverables;
+      if (action.revision){
+        projectIndex = state.findIndex(project => project.id === action.revision.project_id);
+        newRevisions = revisionsReducer(state[projectIndex].revisions, action);
+      } else if (action.item) {
+        projectIndex = state.findIndex(project => project.id === action.item.project_id);
+        newRevisions = revisionsReducer(state[projectIndex].revisions, action);
+      } else if (action.comment){
+        projectIndex = state.findIndex(project => project.id === action.comment.project_id);
+        newRevisions = revisionsReducer(state[projectIndex].revisions, action);
+      } else if (action.deliverable){
+        projectIndex = state.findIndex(project => project.id === action.deliverable.project_id);
+        newDeliverables = deliverablesReducer(state[projectIndex].deliverables, action);
+        return [
+            ...state.slice(0, projectIndex),
+            { ...state[projectIndex], deliverables: newDeliverables },
+            ...state.slice(projectIndex + 1)
+          ]
+      }
+      return [
+          ...state.slice(0, projectIndex),
+          { ...state[projectIndex], revisions: newRevisions },
+          ...state.slice(projectIndex + 1)
+        ]
 
     default:
       return state;
+  }
+}
+
+function revisionsReducer(state, action) {
+
+  switch (action.type) {
+
+  case "ADD_REVISION":
+    return [...state, action.revision]
+
+  case "ADD_REVISION_ITEM":
+  case "DELETE_REVISION_ITEM":
+  case "ADD_COMMENT":
+  case "DELETE_COMMENT":
+    let revisionIndex;
+    let newRevisionItems;
+    if (action.item){
+      revisionIndex = state.findIndex(revision => revision.id === action.item.revision_id);
+      newRevisionItems = revisionItemsReducer(state[revisionIndex].revision_items, action);
+      return [
+          ...state.slice(0, revisionIndex),
+          { ...state[revisionIndex], revision_items: newRevisionItems },
+          ...state.slice(revisionIndex + 1)
+        ]
+    } else if (action.comment) {
+      revisionIndex = state.findIndex(revision => revision.id === action.comment.revision_id);
+      newRevisionItems = commentsReducer(state[revisionIndex].comments, action);
+      return [
+          ...state.slice(0, revisionIndex),
+          { ...state[revisionIndex], comments: newRevisionItems },
+          ...state.slice(revisionIndex + 1)
+        ]
+    }
   }
 }

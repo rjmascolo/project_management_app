@@ -2,9 +2,9 @@ import React, { Component } from 'react';
 import NavBar from './NavBar'
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
-
+import { withRouter } from 'react-router'
 import { fetchUser, getCurrentUser } from './reducers/actions/actions'
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import IndividualProject from './pages/individualProject'
 import Dashboard from './pages/Dashboard'
@@ -21,7 +21,12 @@ class App extends Component {
     if (token){
       getCurrentUser()
       .then( user => {
+        if(user.error) {
+          localStorage.clear()
+          this.forceUpdate()
+        } else {
         this.props.fetchUser(user.id)
+        }
       })
     }
   }
@@ -32,6 +37,7 @@ class App extends Component {
         <Router>
           <div>
             <NavBar />
+            <Route path="/" exact render= {() => <Redirect to='/dashboard' /> } />
             <Route path="/dashboard" render={() => {
               const token = localStorage.getItem('token')
               return token ? <Dashboard /> : <Redirect to='/login' />
