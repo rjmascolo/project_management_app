@@ -30,11 +30,6 @@ class IndividualProject extends React.Component {
   close = () => this.setState({  modalOpen: false })
 
   render() {
-    const options = [
-      { key: 'edit-users', text: 'Edit Users', value: 'edit-users' },
-      { key: 'edit-deliverables', text: 'Edit Deliverables', value: 'edit-deliverables' },
-      { key: 'edit-project', text: 'Edit Project', value: 'edit-project' }
-    ]
     return (
       <div>
         <div id="header">
@@ -92,7 +87,7 @@ class IndividualProject extends React.Component {
          <Modal.Header>Edit Deliverables</Modal.Header>
          <Modal.Content>
            <Modal.Description>
-             <DeliverablesEditContainer projectId={this.props.projectId} />
+             <DeliverablesEditContainer projectId={this.props.id} />
            </Modal.Description>
          </Modal.Content>
        </Modal>

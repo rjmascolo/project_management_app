@@ -20,6 +20,7 @@ class DeliverablesEditContainer extends React.Component {
 }
 
 function mapStateToProps(state, props) {
+  
   return {
     deliverables: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).deliverables.sort( ( a, b) => {
       if (a.date < b.date) {
