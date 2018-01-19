@@ -45,6 +45,16 @@ function projectsReducer(state = [], action) {
     case "FETCH_USER":
       return action.projects
 
+    case "UPDATE_PROJECT_DETAILS":
+      projectIndex = state.findIndex(project => project.id === action.project.id);
+      let newProject = action.project;
+      // newProject.description = action.project.description
+      // newProject.name = action.project.name
+      // newProject.image = action.project.image
+      // newProject.project_type = action.project.project_type
+
+      return [...state.slice(0, projectIndex), newProject, ...state.slice(projectIndex + 1) ]
+
     case "UPDATE_PROJECT_USERS":
     case "ADD_REVISION":
     case "ADD_REVISION_ITEM":

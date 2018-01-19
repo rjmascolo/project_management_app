@@ -8,6 +8,7 @@ import UserList from '../containers/UserList'
 import RevisionsAccordian from '../containers/RevisionsAccordian'
 import DeliverablesEditContainer from '../containers/DeliverablesEditContainer'
 import EditUsersForm from '../forms/EditUsersForm'
+import EditProjectDetails from '../forms/EditProjectDetails'
 
 
 import '../css/individualProductPage.css'
@@ -43,14 +44,18 @@ class IndividualProject extends React.Component {
               rounded id="event-image"
             />
             <div id="title-description">
-              <Dropdown floating button className='icon' >
-                <Dropdown.Menu>
-                  <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
-                  <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
-                  <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("users")} />
-                </Dropdown.Menu>
-              </Dropdown>
-              <h2 id="header-title">{this.props.project ? this.props.project.name : null }</h2>
+              <div id="title-dropdown-flex">
+                <h2 id="header-title">{this.props.project ? this.props.project.name : null }</h2>
+                <div>
+                  <Dropdown floating button className='icon' icon='setting' >
+                    <Dropdown.Menu>
+                      <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
+                      <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
+                      <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("users")} />
+                    </Dropdown.Menu>
+                  </Dropdown>
+                </div>
+              </div>
               <b><p>Description</p></b>
               <p>{this.props.project ? this.props.project.description : null }</p>
               <b><p>Campaign</p></b>
@@ -90,8 +95,12 @@ class IndividualProject extends React.Component {
          <Modal.Header>{this.state.modalType === "deliverables" ? "Edit Deliverables" : this.state.modalType === "users" ? "Edit Users" : "Edit Project Details"}</Modal.Header>
          <Modal.Content>
            <Modal.Description>
-             {this.state.modalType === "deliverables" ?
-             <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ? <EditUsersForm projectId={this.props.id} close={this.close} /> : null}
+             {
+              this.state.modalType === "deliverables" ?
+             <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ?
+             <EditUsersForm projectId={this.props.id} close={this.close} /> :
+             <EditProjectDetails projectId={this.props.id} close={this.close} />
+            }
            </Modal.Description>
          </Modal.Content>
        </Modal>

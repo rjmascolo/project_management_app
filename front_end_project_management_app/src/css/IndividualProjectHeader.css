@@ -42,3 +42,7 @@
   margin: 1em 4em 1em 0;
   display: inline-block;
 }
+#title-dropdown-flex {
+  display:flex;
+  justify-content: space-between;;
+}

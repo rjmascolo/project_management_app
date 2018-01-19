@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    render json: @project
+    render json: @project, include: '**'
   end
 
   # POST /projects
@@ -44,8 +44,8 @@ class ProjectsController < ApplicationController
       }
       render json: @project.users.reject { |user| !params[:userIds].include?(user.id) }
     else
-      if @project.update
-        render json: @project
+      if @project.update(project_params)
+        render json: @project, include: '**'
       else
         render json: @project.errors, status: :unprocessable_entity
       end

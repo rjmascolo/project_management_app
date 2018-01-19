@@ -104,7 +104,6 @@ export const deleteComment = (commentId, revisionId, projectId) => {
     return fetch(`${API_URL}comments/${commentId}`, {
       method:'DELETE',
       headers: headers,
-      // body:JSON.stringify(commentId)
     })
       .then(response => response.json())
       .then(commentRails => {
@@ -116,13 +115,6 @@ export const deleteComment = (commentId, revisionId, projectId) => {
 }
 
 export const createNewProject = (projectHash) => {
-
-  // let project = {
-  //   name: projectHash.projectName,
-  //   project_type: projectHash.projectType,
-  //   description: projectHash.projectDescription,
-  //   image: projectHash.projectImage,
-  // }
 
   let projectData = {project: projectHash}
   return (dispatch) => {
@@ -138,8 +130,6 @@ export const createNewProject = (projectHash) => {
         project.revisions[0]["comments"] = []
         dispatch({ type: 'ADD_PROJECT', project } );
         return project
-        // createRevision({description: projectHash.creativeDeliverables, revision_type:"creative brief"})
-        // projectHash.projectUsers.forEach( user => createUserProject(user,project.id))
       }
     );
   };
@@ -197,6 +187,22 @@ export const updateUsers = (projectUsers) => {
       .then( usersRails => {
         const users = Object.assign( usersRails , {project_id: projectUsers.project_id} )
         dispatch({ type: 'UPDATE_PROJECT_USERS' , users });
+      }
+    );
+  };
+}
+
+export const updateProject = (project) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_UPDATING_DELIVERABLE' });
+    return fetch(`${API_URL}projects/${project.id}`, {
+      method:'PATCH',
+      headers: headers,
+      body:JSON.stringify( project )
+    })
+      .then(response => response.json())
+      .then( project => {
+        dispatch({ type: 'UPDATE_PROJECT_DETAILS' , project });
       }
     );
   };
