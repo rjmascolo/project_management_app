@@ -163,12 +163,18 @@ export const deleteFile = ( itemId, projectId ) => {
 }
 
 export const updateDeliverable = (deliverable, projectId) => {
+  let data;
+  if (!deliverable.description) {
+    data = {done: deliverable.done}
+  } else {
+    data = deliverable
+  }
   return (dispatch) => {
     dispatch({ type: 'START_UPDATING_DELIVERABLE' });
     return fetch(`${API_URL}deliverables/${deliverable.id}`, {
       method:'PATCH',
       headers: headers,
-      body:JSON.stringify({done: deliverable.done})
+      body:JSON.stringify( data )
     })
       .then(response => response.json())
       .then(deliverableRails => {

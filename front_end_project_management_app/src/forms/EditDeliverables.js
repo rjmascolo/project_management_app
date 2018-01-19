@@ -12,17 +12,24 @@ import '../css/RevisionCreateForm.css'
 
 
 class EditDeliverables extends React.Component {
-  state ={
-      description:'',
-      date: moment()
-  }
-
-  componentDidMount() {
-
+  state = {
+      id: this.props.deliverable.id,
+      description: this.props.deliverable.description,
+      date: moment(),
+      done: this.props.deliverable.done
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
+    let x = this.state
+    this.props.updateDeliverable(
+      {
+        id: x.id,
+        description: x.description,
+        date:x.date._d,
+        done: x.done
+      },
+        this.props.projectId)
     // this.props.close()
   }
 
@@ -30,19 +37,18 @@ class EditDeliverables extends React.Component {
     this.setState({[e.target.name]: e.target.value})
   }
 
-  datePickerChange = (date) => {
+  handleCheckboxClick = () => {
+    this.setState( prevState => {
+      return {done: !prevState.done }
+    })
+  }
+
+  datePickerChange = (date, event) => {
     this.setState({ date: date })
   }
 
-
-  handleCheckboxClick = () => {
-    this.setState( (prevState) => {
-        return {forDeliverable: !prevState.forDeliverable}
-    }
-    )
-  }
-
   render() {
+    console.log(this.state)
     return(
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
@@ -59,13 +65,25 @@ class EditDeliverables extends React.Component {
             </div>
             <div className="field" >
               <label>Date Due</label>
-              <DatePicker selected={this.state.date} onChange={(date) => this.datePickerChange(date)}/>
+              <DatePicker startDate={moment(this.props.deliverable.date)} selected={this.state.date} onSelect={(date, event) => this.datePickerChange(date, event)}/>
             </div>
+            <Checkbox
+              label={`Completed`}
+              onClick={this.handleCheckboxClick}
+              checked={this.state.done}
+            />
           </div>
+          <Button onClick={this.handleSubmit}>Save</Button>
         </form>
       </div>
     )
   }
 }
 
-export default EditDeliverables;
+function mapDispatchToProps(dispatch) {
+  return {
+    updateDeliverable: (deliverable, projectId) => dispatch(updateDeliverable(deliverable, projectId))
+  }
+}
+
+export default connect(null, mapDispatchToProps)(EditDeliverables);

@@ -6,13 +6,12 @@ import {connect} from 'react-redux'
 
 import EditDeliverables from '../forms/EditDeliverables'
 
+{/* <EditDeliverables deliverable={deliverable}/> */}
 
 class DeliverablesEditContainer extends React.Component {
   render() {
-    console.log(this.props)
-
     const deliverableTab = this.props.deliverables.map( (deliverable, i) => {
-      return  { menuItem: `Deliverable ${i}`, render: () => <Tab.Pane> <EditDeliverables deliverable={deliverable}/> </Tab.Pane> }
+      return  { menuItem: `Deliverable ${i+1}`, render: () => <Tab.Pane> <div key={i}><EditDeliverables deliverable={deliverable} projectId={this.props.projectId}/> </div></Tab.Pane> }
     })
     return (
       <Tab menu={{ fluid: true, vertical: true, tabular: 'right' }} panes={deliverableTab} />

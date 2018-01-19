@@ -4,7 +4,7 @@ import { Icon, Modal } from 'semantic-ui-react'
 
 import '../css/DeliverableItem.css'
 
-import {connect} from 'react-redux'
+import { connect } from 'react-redux'
 
 import DeliverablesEditContainer from './DeliverablesEditContainer'
 import DeliverableItem from '../container_items/DeliverableItem'
@@ -23,7 +23,6 @@ class DeliverablesContainer extends React.Component {
     const deliverables = this.props.deliverables ? this.props.deliverables.map( (deliverable, i) => {
       return <DeliverableItem key={i} deliverable={deliverable} />
     } ): null
-    console.log(this.props)
     return(
       <div id="deliverable-container-outer">
         <h3>Deliverables</h3>
