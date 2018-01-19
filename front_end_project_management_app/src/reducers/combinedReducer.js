@@ -1,5 +1,5 @@
 import { combineReducers } from 'redux';
-import { revisionItemsReducer, commentsReducer, deliverablesReducer } from './HelperReducer.js'
+import { revisionItemsReducer, commentsReducer, deliverablesReducer, usersReducer } from './HelperReducer.js'
 
 
 export const rootReducer = combineReducers({
@@ -45,6 +45,7 @@ function projectsReducer(state = [], action) {
     case "FETCH_USER":
       return action.projects
 
+    case "UPDATE_PROJECT_USERS":
     case "ADD_REVISION":
     case "ADD_REVISION_ITEM":
     case "DELETE_REVISION_ITEM":
@@ -69,6 +70,14 @@ function projectsReducer(state = [], action) {
         return [
             ...state.slice(0, projectIndex),
             { ...state[projectIndex], deliverables: newDeliverables },
+            ...state.slice(projectIndex + 1)
+          ]
+      } else if (action.users) {
+        projectIndex = state.findIndex(project => project.id === action.users.project_id);
+        let newUsers = usersReducer(state[projectIndex].get_users, action);
+        return [
+            ...state.slice(0, projectIndex),
+            { ...state[projectIndex], get_users: newUsers },
             ...state.slice(projectIndex + 1)
           ]
       }

@@ -35,10 +35,20 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    if @project.update(project_params)
-      render json: @project
+    if params[:updateType] == "edit users"
+      users = UserProject.all.where('project_id IN (?)', @project.id)
+      users.each{ |user|
+        if !params[:userIds].include?(user.user_id)
+          user.destroy
+        end
+      }
+      render json: @project.users.reject { |user| !params[:userIds].include?(user.id) }
     else
-      render json: @project.errors, status: :unprocessable_entity
+      if @project.update
+        render json: @project
+      else
+        render json: @project.errors, status: :unprocessable_entity
+      end
     end
   end
 

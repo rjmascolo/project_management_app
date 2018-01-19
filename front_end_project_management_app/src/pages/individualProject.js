@@ -7,6 +7,8 @@ import UserItem from '../container_items/UserItem'
 import UserList from '../containers/UserList'
 import RevisionsAccordian from '../containers/RevisionsAccordian'
 import DeliverablesEditContainer from '../containers/DeliverablesEditContainer'
+import EditUsersForm from '../forms/EditUsersForm'
+
 
 import '../css/individualProductPage.css'
 import '../css/IndividualProjectHeader.css'
@@ -30,6 +32,7 @@ class IndividualProject extends React.Component {
   close = () => this.setState({  modalOpen: false })
 
   render() {
+    console.log(this.state)
     return (
       <div>
         <div id="header">
@@ -43,8 +46,8 @@ class IndividualProject extends React.Component {
               <Dropdown floating button className='icon' >
                 <Dropdown.Menu>
                   <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
-                  <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverable")} />
-                  <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("user")} />
+                  <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
+                  <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("users")} />
                 </Dropdown.Menu>
               </Dropdown>
               <h2 id="header-title">{this.props.project ? this.props.project.name : null }</h2>
@@ -84,10 +87,11 @@ class IndividualProject extends React.Component {
 
        </div>
        <Modal open={this.state.modalOpen} onClose={this.close}>
-         <Modal.Header>Edit Deliverables</Modal.Header>
+         <Modal.Header>{this.state.modalType === "deliverables" ? "Edit Deliverables" : this.state.modalType === "users" ? "Edit Users" : "Edit Project Details"}</Modal.Header>
          <Modal.Content>
            <Modal.Description>
-             <DeliverablesEditContainer projectId={this.props.id} />
+             {this.state.modalType === "deliverables" ?
+             <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ? <EditUsersForm projectId={this.props.id} close={this.close} /> : null}
            </Modal.Description>
          </Modal.Content>
        </Modal>

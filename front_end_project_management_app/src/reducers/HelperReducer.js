@@ -31,3 +31,17 @@ export function deliverablesReducer(state, action) {
 
   }
 }
+
+export function usersReducer(state, action) {
+  switch(action.type) {
+
+    case 'UPDATE_PROJECT_USERS':
+      return action.users;
+    case 'UPDATE_DELIVERABLE':
+      const newDeliverables = state.map(deliverable => {
+        return deliverable.id === action.deliverable.id ? action.deliverable : deliverable
+      })
+      return newDeliverables;
+
+  }
+}

@@ -184,3 +184,20 @@ export const updateDeliverable = (deliverable, projectId) => {
     );
   };
 }
+
+export const updateUsers = (projectUsers) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_UPDATING_DELIVERABLE' });
+    return fetch(`${API_URL}projects/${projectUsers.project_id}`, {
+      method:'PATCH',
+      headers: headers,
+      body:JSON.stringify( projectUsers )
+    })
+      .then(response => response.json())
+      .then( usersRails => {
+        const users = Object.assign( usersRails , {project_id: projectUsers.project_id} )
+        dispatch({ type: 'UPDATE_PROJECT_USERS' , users });
+      }
+    );
+  };
+}
