@@ -7,7 +7,7 @@ class CreateUsers < ActiveRecord::Migration[5.1]
       t.string :last_name
       t.string :position
       t.string :image
-      # t.belongs_to :company
+      t.belongs_to :company
 
       t.timestamps
     end
