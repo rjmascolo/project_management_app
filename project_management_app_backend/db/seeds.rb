@@ -184,6 +184,9 @@ def create_projects(projects, userArray)
       # revision[:revision_items].map{ |item| RevisionItem.create({file: item[:file], item_type: item[:item_type], revision: newRevision})}
     }
   }
+  newUsers = []
+  5.times { newUsers.push(Faker::Company.profession)}
+  createUsers(newUsers, company)
 end
 
 def createUsers(userTitleArray, company)

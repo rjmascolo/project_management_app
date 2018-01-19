@@ -51,7 +51,7 @@ class EditDeliverables extends React.Component {
     return(
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
-          <div className="field" id="deliverable-create-project-item">
+          <div className="field" id="deliverable-edit-project-item">
             <div className="field" id="project-deliverable-description">
             <label>Creative Deliverable Description </label>
             <input
@@ -66,13 +66,15 @@ class EditDeliverables extends React.Component {
               <label>Date Due</label>
               <DatePicker startDate={moment(this.props.deliverable.date)} selected={this.state.date} onSelect={(date, event) => this.datePickerChange(date, event)}/>
             </div>
-            <Checkbox
-              label={`Completed`}
-              onClick={this.handleCheckboxClick}
-              checked={this.state.done}
-            />
-          </div>
-          <Button onClick={this.handleSubmit}>Save</Button>
+            </div>
+            <div>
+              <Checkbox
+                label={`Completed`}
+                onClick={this.handleCheckboxClick}
+                checked={this.state.done}
+              />
+            </div>
+          <Button onClick={this.handleSubmit} floated="right" color="teal">Save</Button>
         </form>
       </div>
     )

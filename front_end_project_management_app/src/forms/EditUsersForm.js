@@ -40,7 +40,7 @@ class EditUsersForm extends React.Component {
             })}
           />
         </div>
-        <Button onClick={this.submitUsers}>Submit</Button>
+        <Button id="edit-project-button" onClick={this.submitUsers} color="teal">Submit</Button>
       </div>
     )
   }

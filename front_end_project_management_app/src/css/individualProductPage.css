@@ -26,5 +26,20 @@
 #deliverables-div {
   margin: 1em 1em;
   width: 20%;
+}
+
+#edit-project-data {
+  display:flex;
+  justify-content: space-between;
+}
+
+#edit-project-button {
+  margin: .3em auto .8em auto;
+}
+
+#deliverable-edit-project-item {
+  display:flex;
+  justify-content: space-between;
+  margin-bottom: 0;
 
 }

@@ -17,7 +17,6 @@ class EditProjectDetails extends React.Component {
       projectDescription:this.props.project.description,
       projectType:this.props.project.project_type,
       projectImage: this.props.project.image
-
   }
 
 
@@ -50,7 +49,7 @@ class EditProjectDetails extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
           <div>
-            <div>
+            <div id="edit-project-data">
             <div className="field" id="flex-grow2">
               <label>Project Name</label>
               <input type="text" name="projectName" onChange={this.handleChange} value={this.state.projectName}/>
@@ -76,7 +75,7 @@ class EditProjectDetails extends React.Component {
             <Input label='Enter URL' placeholder='image-url.com' name="projectImage" onChange={this.handleChange} value={this.state.projectImage} />
               {/* {errors.projectImage ? <Label basic color='red' pointing>{errors.projectImage}</Label> : null} */}
           </div>
-          <Button onClick={this.handleSubmit} color="teal" floated="right" > Submit </Button>
+          <Button id="edit-project-button" onClick={this.handleSubmit} color="teal" floated="right" > Submit </Button>
           </div>
         </form>
       </div>

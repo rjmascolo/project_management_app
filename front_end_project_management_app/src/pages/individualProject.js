@@ -47,7 +47,7 @@ class IndividualProject extends React.Component {
               <div id="title-dropdown-flex">
                 <h2 id="header-title">{this.props.project ? this.props.project.name : null }</h2>
                 <div>
-                  <Dropdown floating button className='icon' icon='setting' >
+                  <Dropdown floating button className='icon' icon='setting' pointing="top right" >
                     <Dropdown.Menu>
                       <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
                       <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
