@@ -15,7 +15,7 @@ class Dashboard extends React.Component {
       <div id="projects-div">
         <h1>Your Dashboard</h1>
         <br/>
-        <Calendar />
+        {/* <Calendar /> */}
         <Projects />
       </div>
     ): (
