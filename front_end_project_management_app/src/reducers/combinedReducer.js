@@ -1,11 +1,12 @@
 import { combineReducers } from 'redux';
-import { revisionItemsReducer, commentsReducer, deliverablesReducer, usersReducer } from './HelperReducer.js'
+import { revisionItemsReducer, commentsReducer, deliverablesReducer, usersReducer, companiesReducer  } from './HelperReducer.js'
 
 
 export const rootReducer = combineReducers({
   loggedin: loggedinReducer,
   user: userReducer,
-  projects: projectsReducer
+  projects: projectsReducer,
+  company: companiesReducer
 });
 
 function userReducer(state = false, action) {
