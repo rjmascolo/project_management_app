@@ -8,4 +8,8 @@ class User < ApplicationRecord
   has_many :projects, through: :user_projects
   has_many :campaigns, through: :projects
 
+  def current_campaigns
+    self.projects.map{ |project| project.campaign }.uniq
+  end
+
 end

@@ -33,6 +33,7 @@ class IndividualProject extends React.Component {
   close = () => this.setState({  modalOpen: false })
 
   render() {
+    console.log(this.props)
     return (
       <div>
         <div id="header">
@@ -58,15 +59,23 @@ class IndividualProject extends React.Component {
               <b><p>Description</p></b>
               <p>{this.props.project ? this.props.project.description : null }</p>
               <b><p>Campaign</p></b>
-              <p>Q1 Awareness Campaign</p>
+              <p>{this.props.project ? this.props.project.campaign.name : null }</p>
               <div id="header-companies-container" >
                 <div id="header-companies">
                   <b><p>Agencies Involved</p></b>
-                  <p>Media Agency, Creative Agency </p>
+                  <p>{this.props.project ?
+                    this.props.project.campaign.agencies.map( agency =>  {
+                      return agency.description !== "client" ? `${agency.name} ` : null
+                    }
+                  ): null }</p>
                 </div>
                 <div>
                   <b><p>Client</p></b>
-                  <p>Toyota Marketing</p>
+                  <p>{this.props.project ?
+                    this.props.project.campaign.agencies.map( agency =>  {
+                      return agency.description === "client" ? `${agency.name} ` : null
+                    }
+                  ): null }</p>
                 </div>
               </div>
               <div id="label-div">

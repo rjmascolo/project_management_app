@@ -37,7 +37,7 @@ export function usersReducer(state, action) {
 
     case 'UPDATE_PROJECT_USERS':
       return action.users;
-      
+
     default:
       return state
   }
@@ -52,3 +52,13 @@ export function companiesReducer(state = [], action) {
       return state;
   }
 }
+//
+// export function campaignsReducer (state = [], action) {
+//   switch( action.type ) {
+//     case "FETCH_USER":
+//       return action.campaign
+//
+//     default:
+//       return state;
+//   }
+// }

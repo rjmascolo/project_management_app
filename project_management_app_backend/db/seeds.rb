@@ -177,15 +177,15 @@ projects =[
 def create_projects(projects, clientUsersArray, creativeUsersArray, mediaUsersArray)
 
   # create client positions
-  clientCompany = Company.create({name:"truth", description: "National campaign aimed at eliminating teen smoking in the United States."})
+  clientCompany = Company.create({name:"truth", description: "client"})
   ryan = User.create({email: "ryan@email.com", password: "123", first_name: "Ryan", last_name: "Mascolo", position:"Coordinator", image: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkiAAAAJDhiMWMxOTMzLTA3YzEtNGQyMS1iYzc3LWNjMjUwZDczY2I2YQ.jpg", company: clientCompany} )
   client_users = createUsers(clientUsersArray, clientCompany)
   client_users.unshift(ryan)
   # create creative agency positions
-  creativeCompany = Company.create({name:"72&Sunny", description: Faker::Hipster.paragraph })
+  creativeCompany = Company.create({name:"72&Sunny", description: "creative agency" })
   creative_users = createUsers(creativeUsersArray, creativeCompany)
   # create media agency users
-  mediaCompany = Company.create({name:"Assembly", description: Faker::Hipster.paragraph })
+  mediaCompany = Company.create({name:"Assembly", description: "media agency"})
   media_users = createUsers(mediaUsersArray, mediaCompany)
 
 

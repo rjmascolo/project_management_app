@@ -25,7 +25,7 @@ class App extends Component {
           localStorage.clear()
           this.forceUpdate()
         } else {
-        this.props.fetchUser(user.id).then( id => this.props.fetchCompanyData(id))
+        this.props.fetchUser(user.id)
         }
       })
     }

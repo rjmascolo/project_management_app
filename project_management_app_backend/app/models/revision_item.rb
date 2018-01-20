@@ -13,7 +13,6 @@ class RevisionItem < ApplicationRecord
 
   def file_url
     "http://s3.us-east-2.amazonaws.com/project-management-app-user-uploads-ryan-mascolo#{self.file_upload.path}"
-
   end
 
 
