@@ -15,16 +15,26 @@
 
 #comment-username {
   display: inline-flex;
+  align-items: center;
 }
 
 #user-name-text {
   margin: .4em .4em ;
   text-align:left;
   font-weight: bold;
+  font-size: 1.1em;
+}
+
+#timestamp-text {
+  margin: .4em .4em ;
+  text-align:left;
+  color: gray;
+  font-size: .8em;
 }
 
 #comment-div {
   margin: .6em .3em .9em .4em;
+  padding: .4em .6em;
   width:100%;
   min-height: 4em;
   text-align: left;

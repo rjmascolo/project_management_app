@@ -6,6 +6,8 @@ import { deleteComment } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
 import '../css/Comment.css'
 
+import moment from 'moment'
+
 // import { EditorState, Editor } from 'draft-js';
 
 import {stateToHTML} from 'draft-js-export-html';
@@ -20,7 +22,7 @@ class Comment extends React.Component {
   }
 
   handleEdit= () => {
-    
+
   }
 
   convertCommentFromJSONToText = (text) => {
@@ -29,22 +31,26 @@ class Comment extends React.Component {
   }
 
   render() {
+    console.log(this.props)
   return (
     <div id="single-comment">
       <div id="single-comment-header">
           <div id="comment-username">
-            <Image avatar src={this.props.user.image} />
-            <p id="user-name-text">{this.props.user.first_name} {this.props.user.last_name}</p>
+            <Image avatar src={this.props.comments_user.image} />
+            <p id="user-name-text">{this.props.comments_user.first_name} {this.props.comments_user.last_name}</p>
+            <p id="timestamp-text" > &#9702; {moment(this.props.comment.created_at).fromNow()}</p>
           </div>
         <div>
-          <Button.Group basic size='small'>
-            <Button icon onClick={this.handleEdit} compact>
-              <Icon name='edit' color="gray" />
-            </Button>
-            <Button icon onClick={this.handleDelete} color="red" compact circular negative>
-              <Icon name="delete" color='white'/>
-            </Button>
-          </Button.Group>
+          {this.props.current_user.id === this.props.comments_user.id ? (
+            <Button.Group basic size='small'>
+              <Button icon onClick={this.handleEdit} compact>
+                <Icon name='edit' color="grey" />
+              </Button>
+              <Button icon onClick={this.handleDelete} color="red" compact circular negative>
+                <Icon name="delete" color="red" />
+              </Button>
+            </Button.Group>
+          ) : null}
         </div>
       </div>
       <div id="comment-div">
@@ -57,7 +63,8 @@ class Comment extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    user: state.projects ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users.find( user => user.id === props.comment.user_id) : null
+    comments_user: state.projects ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users.find( user => user.id === props.comment.user_id) : null,
+    current_user: state.user ? state.user : null
   }
 }
 
