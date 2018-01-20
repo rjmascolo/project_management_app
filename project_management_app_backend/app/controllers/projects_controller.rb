@@ -42,7 +42,14 @@ class ProjectsController < ApplicationController
           user.destroy
         end
       }
-      render json: @project.users.reject { |user| !params[:userIds].include?(user.id) }
+      current_ids = @project.users.map{ |x| x.id }
+      params[:userIds].each{ |id|
+        if !current_ids.include?(id)
+          UserProject.create(project_type: "client", user_id: id, project_id: @project.id)
+        end
+      }
+      project_users = Project.find(@project.id).users
+      render json: project_users
     else
       if @project.update(project_params)
         render json: @project, include: '**'

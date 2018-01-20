@@ -37,12 +37,9 @@ export function usersReducer(state, action) {
 
     case 'UPDATE_PROJECT_USERS':
       return action.users;
-    case 'UPDATE_DELIVERABLE':
-      const newDeliverables = state.map(deliverable => {
-        return deliverable.id === action.deliverable.id ? action.deliverable : deliverable
-      })
-      return newDeliverables;
-
+      
+    default:
+      return state
   }
 }
 

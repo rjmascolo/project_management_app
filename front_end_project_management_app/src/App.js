@@ -26,7 +26,6 @@ class App extends Component {
           this.forceUpdate()
         } else {
         this.props.fetchUser(user.id).then( id => this.props.fetchCompanyData(id))
-        // this.props.fetchCompanyData()
         }
       })
     }

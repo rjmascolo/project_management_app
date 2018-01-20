@@ -10,7 +10,7 @@ import '../css/RevisionCreateForm.css'
 
 class EditUsersForm extends React.Component {
   state = {
-    projectUsers: this.props.users.map(user => user.id)
+    projectUsers: this.props.currentUsers.map(user => user.id)
   }
 
   submitUsers= (e) => {
@@ -48,8 +48,9 @@ class EditUsersForm extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    users: state.projects ? (
-      state.projects.find(project => project.id === parseInt(props.projectId)).get_users) : null
+    currentUsers: state.projects ? (
+      state.projects.find(project => project.id === parseInt(props.projectId)).get_users) : null,
+    users: state.company ? state.company.user_details : null
   }
 }
 

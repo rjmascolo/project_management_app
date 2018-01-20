@@ -186,7 +186,7 @@ class CreateNewProject extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    users: state.projects.length > 0 ? state.projects[0].get_users : null
+    users: state.company ? state.company.user_details : null
   }
 }
 
