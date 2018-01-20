@@ -15,8 +15,12 @@ UserProject.destroy_all
 User.destroy_all
 Project.destroy_all
 Company.destroy_all
+CompanyCampaign.destroy_all
+Campaign.destroy_all
 
-user_positions = ["Director of Digital", "Senior Copywriter", "Marketing Manager", "Marketing Strategist ", "Data Scientist", "UX Designer"]
+client_user_positions = ["Director of Digital", "Marketing Manager"]
+creative_agency_user_positions = ["Marketing Strategist ", "Data Scientist", "UX Designer", "Copywriter"]
+media_agency_user_positions = ["Digital Media Planner", "Integrated Media Manager", "Director of Media"]
 
 projects =[
 
@@ -170,14 +174,32 @@ projects =[
 #
 # UserProject.create({project_type: "client", user:ryan, project: q1_banner_ads})
 
-def create_projects(projects, userArray)
-  company = Company.create(name:"truth", description: "National campaign aimed at eliminating teen smoking in the United States.")
-  ryan = User.create({email: "ryan@email.com", password: "123", first_name: "Ryan", last_name: "Mascolo", position:"Coordinator", image: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkiAAAAJDhiMWMxOTMzLTA3YzEtNGQyMS1iYzc3LWNjMjUwZDczY2I2YQ.jpg", company: company} )
-  users = createUsers(userArray, company)
-  users.unshift(ryan)
+def create_projects(projects, clientUsersArray, creativeUsersArray, mediaUsersArray)
+
+  # create client positions
+  clientCompany = Company.create({name:"truth", description: "National campaign aimed at eliminating teen smoking in the United States."})
+  ryan = User.create({email: "ryan@email.com", password: "123", first_name: "Ryan", last_name: "Mascolo", position:"Coordinator", image: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkiAAAAJDhiMWMxOTMzLTA3YzEtNGQyMS1iYzc3LWNjMjUwZDczY2I2YQ.jpg", company: clientCompany} )
+  client_users = createUsers(clientUsersArray, clientCompany)
+  client_users.unshift(ryan)
+  # create creative agency positions
+  creativeCompany = Company.create({name:"72&Sunny", description: Faker::Hipster.paragraph })
+  creative_users = createUsers(creativeUsersArray, creativeCompany)
+  # create media agency users
+  mediaCompany = Company.create({name:"Assembly", description: Faker::Hipster.paragraph })
+  media_users = createUsers(mediaUsersArray, mediaCompany)
+
+
+  campaign = Campaign.create({name: "Q1 Awareness Campaign", description: Faker::Hipster.paragraph, launch_date: Date.new(2018,1,29), end_date: Date.new(2018,4,15) })
+  CompanyCampaign.create({ company: clientCompany, campaign: campaign, company_type:"client" })
+  CompanyCampaign.create({ company: creativeCompany, campaign: campaign, company_type:"creative" })
+  CompanyCampaign.create({ company: mediaCompany, campaign: campaign, company_type:"media" })
+
   projects.map{ |project|
-    newProject = Project.create({name: project[:name], description: project[:description], project_type: project[:project_type], image: project[:image]})
-    createUserProjects(users, newProject)
+    newProject = Project.create({name: project[:name], description: project[:description], project_type: project[:project_type], image: project[:image], campaign: campaign})
+    createUserProjects(client_users, newProject)
+    createUserProjects(creative_users, newProject)
+    createUserProjects(media_users, newProject)
+
     project[:deliverables].map{ |deliverable| Deliverable.create({ description: deliverable[:description], date: deliverable[:date], project: newProject})}
     project[:revisions].map{ |revision|
 
@@ -187,7 +209,7 @@ def create_projects(projects, userArray)
   }
   newUsers = []
   5.times { newUsers.push(Faker::Company.profession)}
-  createUsers(newUsers, company)
+  createUsers(newUsers, clientCompany)
 end
 
 def createUsers(userTitleArray, company)
@@ -198,7 +220,7 @@ def createUserProjects(users, project)
   users.map{ |user| UserProject.create({project_type: "client", user: user, project: project}) }
 end
 
-create_projects(projects, user_positions)
+create_projects(projects, client_user_positions, creative_agency_user_positions, media_agency_user_positions)
 
 # CreativeBrief to partners
 # Deliverable.create({description: "2-3 creative mocks for the Q1 awareness banners", date: Date.new(2018,2,3), project: q1_banner_ads })

@@ -18,7 +18,8 @@ ActiveRecord::Schema.define(version: 20180110014819) do
   create_table "campaigns", force: :cascade do |t|
     t.string "name"
     t.string "description"
-    t.date "date"
+    t.date "launch_date"
+    t.date "end_date"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
   end
@@ -41,9 +42,13 @@ ActiveRecord::Schema.define(version: 20180110014819) do
   end
 
   create_table "company_campaigns", force: :cascade do |t|
-    t.string "name"
+    t.string "company_type"
+    t.bigint "campaign_id"
+    t.bigint "company_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_company_campaigns_on_campaign_id"
+    t.index ["company_id"], name: "index_company_campaigns_on_company_id"
   end
 
   create_table "deliverables", force: :cascade do |t|
@@ -61,8 +66,11 @@ ActiveRecord::Schema.define(version: 20180110014819) do
     t.string "project_type"
     t.string "description"
     t.string "image"
+    t.boolean "completed", default: false
+    t.bigint "campaign_id"
     t.datetime "created_at", null: false
     t.datetime "updated_at", null: false
+    t.index ["campaign_id"], name: "index_projects_on_campaign_id"
   end
 
   create_table "revision_items", force: :cascade do |t|
@@ -112,7 +120,10 @@ ActiveRecord::Schema.define(version: 20180110014819) do
 
   add_foreign_key "comments", "revisions"
   add_foreign_key "comments", "users"
+  add_foreign_key "company_campaigns", "campaigns"
+  add_foreign_key "company_campaigns", "companies"
   add_foreign_key "deliverables", "projects"
+  add_foreign_key "projects", "campaigns"
   add_foreign_key "revision_items", "revisions"
   add_foreign_key "revisions", "projects"
   add_foreign_key "user_projects", "projects"
