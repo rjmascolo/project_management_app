@@ -17,7 +17,7 @@ class SearchBar extends Component {
   handleResultSelect = (e, { result }) => {
     const x = this.props.history.location.pathname.split("/")
     x[1] === "projects" ? this.props.history.push(`${result.id}`) : this.props.history.push(`projects/${result.id}`)
-    this.setState({ value: result.title })
+    this.setState({ value: '' })
   }
 
   handleSearchChange = (e, { value }) => {
