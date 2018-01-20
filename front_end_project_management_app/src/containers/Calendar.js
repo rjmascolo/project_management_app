@@ -27,7 +27,6 @@ class Calendar extends React.Component{
 
   render() {
   const events = this.props.deliverables? this.revisedEventData(this.props.deliverables) : null;
-  console.log(events)
   let allViews = Object.keys(BigCalendar.Views).map(k => BigCalendar.Views[k])
     return(
     <div id="calendar">

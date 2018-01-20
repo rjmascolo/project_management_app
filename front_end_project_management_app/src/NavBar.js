@@ -8,6 +8,7 @@ import { Link, NavLink } from 'react-router-dom';
 
 import { withRouter } from 'react-router-dom'
 
+import SearchBar from './forms/SearchBar'
 
 class NavBar extends Component {
 
@@ -31,6 +32,9 @@ class NavBar extends Component {
             </NavLink>
           </div>
           <div className="right menu">
+            <div className="item">
+                <SearchBar />
+            </div>
             <div className="item">
                 {!this.props.user ?
                   <div onClick={this.handleClick} className="ui primary button">Log In</div> :

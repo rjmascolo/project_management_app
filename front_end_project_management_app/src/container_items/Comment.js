@@ -31,7 +31,6 @@ class Comment extends React.Component {
   }
 
   render() {
-    console.log(this.props)
   return (
     <div id="single-comment">
       <div id="single-comment-header">

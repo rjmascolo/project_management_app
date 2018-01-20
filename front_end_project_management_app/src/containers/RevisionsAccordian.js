@@ -87,7 +87,6 @@ class RevisionsAccordian extends Component {
       </Accordion.Content>
     </div>
     )
-    console.log(this.state)
     return (
       <div id="accordion-container">
         <div id="accordian-header">

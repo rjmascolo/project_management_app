@@ -33,7 +33,6 @@ class IndividualProject extends React.Component {
   close = () => this.setState({  modalOpen: false })
 
   render() {
-    console.log(this.state)
     return (
       <div>
         <div id="header">
