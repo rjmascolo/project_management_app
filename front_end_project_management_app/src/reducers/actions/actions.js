@@ -19,9 +19,10 @@ export function fetchUser(id) {
         if (user.status === 404 ) {
           return user
         } else {
-        const newUser = Object.assign({id: user.id, first_name: user.first_name, last_name: user.last_name, position: user.position})
+        const newUser = Object.assign({id: user.id, first_name: user.first_name, last_name: user.last_name, position: user.position, company: user.company})
         const projects = user.projects;
-        return dispatch({ type: 'FETCH_USER', user: newUser, projects: projects })
+        dispatch({ type: 'FETCH_USER', user: newUser, projects: projects })
+        return newUser.company.id
         }
        }
     );
@@ -203,6 +204,18 @@ export const updateProject = (project) => {
       .then(response => response.json())
       .then( project => {
         dispatch({ type: 'UPDATE_PROJECT_DETAILS' , project });
+      }
+    );
+  };
+}
+
+export const fetchCompanyData = (id) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_UPDATING_DELIVERABLE' });
+    return fetch(`${API_URL}companies/${id}`)
+      .then(response => response.json())
+      .then( company => {
+        dispatch({ type: 'FETCH_COMPANY' , company });
       }
     );
   };

@@ -10,6 +10,7 @@ class CompaniesController < ApplicationController
 
   # GET /companies/1
   def show
+
     render json: @company
   end
 

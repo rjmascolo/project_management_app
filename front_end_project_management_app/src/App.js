@@ -3,7 +3,7 @@ import NavBar from './NavBar'
 import './App.css';
 import { BrowserRouter as Router, Route, Redirect } from 'react-router-dom';
 import { withRouter } from 'react-router'
-import { fetchUser, getCurrentUser } from './reducers/actions/actions'
+import { fetchUser, getCurrentUser, fetchCompanyData } from './reducers/actions/actions'
 import { connect } from 'react-redux'
 
 import IndividualProject from './pages/individualProject'
@@ -25,7 +25,7 @@ class App extends Component {
           localStorage.clear()
           this.forceUpdate()
         } else {
-        let x = this.props.fetchUser(user.id).then()
+        this.props.fetchUser(user.id).then( id => this.props.fetchCompanyData(id))
         // this.props.fetchCompanyData()
         }
       })
@@ -66,7 +66,10 @@ function mapStateToProps(state) {
 }
 
 function mapDispatchToProps(dispatch) {
-  return {fetchUser: (id) => dispatch(fetchUser(id))}
+  return {
+    fetchUser: (id) => dispatch(fetchUser(id)),
+    fetchCompanyData: (id) => dispatch(fetchCompanyData(id))
+  }
 }
 
 export default connect(mapStateToProps, mapDispatchToProps)(App);

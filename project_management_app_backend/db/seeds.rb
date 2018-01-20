@@ -14,6 +14,7 @@ Revision.destroy_all
 UserProject.destroy_all
 User.destroy_all
 Project.destroy_all
+Company.destroy_all
 
 user_positions = ["Director of Digital", "Senior Copywriter", "Marketing Manager", "Marketing Strategist ", "Data Scientist", "UX Designer"]
 

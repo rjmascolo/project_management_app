@@ -49,7 +49,7 @@ export function usersReducer(state, action) {
 export function companiesReducer(state = [], action) {
   switch( action.type ) {
     case "FETCH_COMPANY":
-      return state
+      return action.company
 
     default:
       return state;
