@@ -20,6 +20,7 @@ export function fetchUser(id) {
           return user
         } else {
         const newUser = Object.assign({id: user.id, first_name: user.first_name, last_name: user.last_name, position: user.position, company: user.company})
+        debugger;
         const projects = user.projects;
         dispatch({ type: 'FETCH_USER', user: newUser, projects: projects })
         return newUser.company.id

@@ -10,7 +10,7 @@ class ProjectsController < ApplicationController
 
   # GET /projects/1
   def show
-    render json: @project, include: '**'
+    render json: @project
   end
 
   # POST /projects
