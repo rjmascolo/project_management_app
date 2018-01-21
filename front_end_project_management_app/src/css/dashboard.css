@@ -31,10 +31,8 @@
 
 #dashboard-projects {
   margin: 2em 1em;
-  width: 60%;
+  width: 50%;
   border-top: 1px solid rgba(34,36,38,.15);
-  height: 50em;
-  overflow-y: scroll;
 }
 
 #dashboard-projects-header {
