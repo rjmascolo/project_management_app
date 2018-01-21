@@ -45,20 +45,20 @@ export function usersReducer(state, action) {
 
 export function companiesReducer(state = [], action) {
   switch( action.type ) {
-    case "FETCH_COMPANY":
+    case "FETCH_USER":
       return action.company
 
     default:
       return state;
   }
 }
-//
-// export function campaignsReducer (state = [], action) {
-//   switch( action.type ) {
-//     case "FETCH_USER":
-//       return action.campaign
-//
-//     default:
-//       return state;
-//   }
-// }
+
+export function campaignsReducer (state = [], action) {
+  switch( action.type ) {
+    case "FETCH_USER":
+      return action.campaigns
+
+    default:
+      return state;
+  }
+}

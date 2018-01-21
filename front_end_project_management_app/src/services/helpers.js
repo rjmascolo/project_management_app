@@ -25,3 +25,15 @@ export const createProjectFormValidation = (formData) => {
   })
   return errors
 }
+
+
+export const combineUsers = (allCompanyUsers, currentUsers) => {
+  const companyUserIds = allCompanyUsers.map(users => {return users.id});
+  const allUsers = allCompanyUsers;
+  currentUsers.forEach( user => {
+    if (!companyUserIds.includes(user.id)) {
+      allUsers.push(user);
+    }
+  })
+  return allUsers;
+}

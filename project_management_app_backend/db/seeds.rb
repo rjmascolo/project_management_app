@@ -14,8 +14,8 @@ Revision.destroy_all
 UserProject.destroy_all
 User.destroy_all
 Project.destroy_all
-Company.destroy_all
 CompanyCampaign.destroy_all
+Company.destroy_all
 Campaign.destroy_all
 
 client_user_positions = ["Director of Digital", "Marketing Manager"]
@@ -30,10 +30,10 @@ projects =[
               project_type: "Display Media",
               image: 'https://adsolutions.yp.com/sites/default/files/styles/medium/public/icon-we-build-banner-ads.png?itok=ca7eODhg',
               deliverables: [
-                {description: "2-3 creative mocks for the Q1 awareness banners", date: Date.new(2018,2,3)},
-                {description: "Refined mock up of one Q1 banner asset", date: Date.new(2018,2,7)},
+                {description: "2-3 creative mocks for the Q1 awareness banners", date: Date.new(2018,1,25)},
+                {description: "Refined mock up of one Q1 banner asset", date: Date.new(2018,2,1)},
                 {description: "First iteration of built out Q1 banners", date: Date.new(2018,2,13)},
-                {description: "Approval on final implementation of the Q1 awareness banner mocks", date: Date.new(2018,2,16)}
+                {description: "Approval on final implementation of the Q1 awareness banner mocks", date: Date.new(2018,2,26)}
               ],
               revisions: [
                 { revision_type:"creative brief",
@@ -50,9 +50,9 @@ projects =[
               project_type: "Custom Content",
               image: 'https://pbs.twimg.com/profile_images/875860982937014272/FFXrxPK0_400x400.jpg',
               deliverables: [
-                {description: "Brand guidelines and talking points for livestream", date: Date.new(2018,2,1)},
-                {description: "Set design mocks and gameplan for the flow in the livestream", date: Date.new(2018,2,3)},
-                {description: "Brand campaign files and assets sent to Publisher to create custom media assets", date: Date.new(2018,2,18)},
+                {description: "Brand guidelines and talking points for livestream", date: Date.new(2018,1,28)},
+                {description: "Set design mocks and gameplan for the flow in the livestream", date: Date.new(2018,2,5)},
+                {description: "Brand campaign files and assets sent to Publisher to create custom media assets", date: Date.new(2018,2,13)},
                 {description: "Approval on all assets", date: Date.new(2018,2,21)}
               ],
               revisions: [
@@ -71,10 +71,10 @@ projects =[
               project_type: "Display Media",
               image: 'https://www.youtube.com/yt/about/media/images/brand-resources/icons/YouTube_icon_full-color.svg',
               deliverables: [
-                {description: "2-3 creative mocks ", date: Date.new(2018,2,5)},
-                {description: "Refined mock up of the creative direction chosen", date: Date.new(2018,2,7)},
-                {description: "First iteration of built out create direction", date: Date.new(2018,2,18)},
-                {description: "Approval on final implementation", date: Date.new(2018,2,21)}
+                {description: "2-3 creative mocks ", date: Date.new(2018,2,1)},
+                {description: "Refined mock up of the creative direction chosen", date: Date.new(2018,2,9)},
+                {description: "First iteration of built out create direction", date: Date.new(2018,2,17)},
+                {description: "Approval on final implementation", date: Date.new(2018,2,24)}
               ],
               revisions: [
                 { revision_type:"creative brief",
@@ -92,10 +92,10 @@ projects =[
               project_type: "Custom Content",
               image: 'https://www.buzzfeed.com/static-assets/img/buzzfeed_arrow.e86a786d9e5e2250e1ed3e0ec95ba42d.png',
               deliverables: [
-                {description: "2 draft scripts and set design mocks", date: Date.new(2018,2,3)},
-                {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,7)},
-                {description: "1st creative iteration of videos", date: Date.new(2018,2,13)},
-                {description: "Final creative iteration of videos", date: Date.new(2018,2,16)}
+                {description: "2 draft scripts and set design mocks", date: Date.new(2018,1,30)},
+                {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,5)},
+                {description: "1st creative iteration of videos", date: Date.new(2018,2,11)},
+                {description: "Final creative iteration of videos", date: Date.new(2018,2,18)}
               ],
               revisions: [
                 { revision_type:"creative brief",
@@ -133,10 +133,10 @@ projects =[
               project_type: "Custom Content",
               image: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Collegehumor-logo.png',
               deliverables: [
-                {description: "2 draft scripts and set design mocks", date: Date.new(2018,2,3)},
-                {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,7)},
-                {description: "1st creative iteration of videos", date: Date.new(2018,2,13)},
-                {description: "Final creative iteration of videos", date: Date.new(2018,2,16)}
+                {description: "2 draft scripts and set design mocks", date: Date.new(2018,2,18)},
+                {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,26)},
+                {description: "1st creative iteration of videos", date: Date.new(2018,3,1)},
+                {description: "Final creative iteration of videos", date: Date.new(2018,3,4)}
               ],
               revisions: [
                 { revision_type:"creative brief",
@@ -153,10 +153,10 @@ projects =[
               project_type: "Custom Content",
               image: 'http://www.crainsnewyork.com/apps/pbcsi.dll/storyimage/CN/20161130/REAL_ESTATE/161139991/AR/0/Bustle.jpg',
               deliverables: [
-                {description: "3 drafts of custom articles", date: Date.new(2018,2,3)},
+                {description: "3 drafts of custom articles", date: Date.new(2018,2,2)},
                 {description: "3 custom social media posts", date: Date.new(2018,2,7)},
-                {description: "Final custom articles", date: Date.new(2018,2,13)},
-                {description: "Final custom social media posts", date: Date.new(2018,2,16)}
+                {description: "Final custom articles", date: Date.new(2018,2,17)},
+                {description: "Final custom social media posts", date: Date.new(2018,2,28)}
               ],
               revisions: [
                 { revision_type: "creative brief",
@@ -177,15 +177,15 @@ projects =[
 def create_projects(projects, clientUsersArray, creativeUsersArray, mediaUsersArray)
 
   # create client positions
-  clientCompany = Company.create({name:"truth", description: "client"})
+  clientCompany = Company.create({name:"Elivi's", description: "client", image:"https://assets.hongkiat.com/uploads/logo-parodies/levis_elvis.jpg"})
   ryan = User.create({email: "ryan@email.com", password: "123", first_name: "Ryan", last_name: "Mascolo", position:"Coordinator", image: "https://media.licdn.com/mpr/mpr/shrinknp_200_200/AAEAAQAAAAAAAAkiAAAAJDhiMWMxOTMzLTA3YzEtNGQyMS1iYzc3LWNjMjUwZDczY2I2YQ.jpg", company: clientCompany} )
   client_users = createUsers(clientUsersArray, clientCompany)
   client_users.unshift(ryan)
   # create creative agency positions
-  creativeCompany = Company.create({name:"72&Sunny", description: "creative agency" })
+  creativeCompany = Company.create({name:"Agua", description: "creative agency", image:"http://logofaves.com/wp-content/uploads/2009/01/aqua_r.jpg?9cf02b"})
   creative_users = createUsers(creativeUsersArray, creativeCompany)
   # create media agency users
-  mediaCompany = Company.create({name:"Assembly", description: "media agency"})
+  mediaCompany = Company.create({name:"CSJ-MB", description: "media agency", image:"https://stocklogos.com/sites/default/files/scdp-logo.jpg"})
   media_users = createUsers(mediaUsersArray, mediaCompany)
 
 

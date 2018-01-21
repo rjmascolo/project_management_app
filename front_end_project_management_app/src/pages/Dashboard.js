@@ -3,7 +3,7 @@ import Projects from '../containers/Projects'
 import '../css/dashboard.css'
 import Calendar from '../containers/Calendar'
 import { Item, Segment, Dimmer, Loader } from 'semantic-ui-react'
-
+import DeliverablesUpcoming from '../containers/DeliverablesUpcoming'
 
 import {connect} from 'react-redux'
 
@@ -16,6 +16,7 @@ class Dashboard extends React.Component {
         <h1>Your Dashboard</h1>
         <br/>
         {/* <Calendar /> */}
+        <DeliverablesUpcoming />
         <Projects />
       </div>
     ): (

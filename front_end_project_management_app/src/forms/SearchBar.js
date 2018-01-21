@@ -38,7 +38,6 @@ class SearchBar extends Component {
 
   render() {
     const { isLoading, value, results } = this.state
-    console.log(this.props)
     return (
       <Grid>
         <Grid.Column width={8}>

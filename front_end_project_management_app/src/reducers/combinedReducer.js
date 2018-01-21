@@ -7,7 +7,7 @@ export const rootReducer = combineReducers({
   user: userReducer,
   projects: projectsReducer,
   company: companiesReducer,
-  // campaign: campaignsReducer
+  campaigns: campaignsReducer
 });
 
 function userReducer(state = false, action) {

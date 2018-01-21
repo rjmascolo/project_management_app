@@ -65,7 +65,7 @@ class IndividualProject extends React.Component {
                   <b><p>Agencies Involved</p></b>
                   <p>{this.props.project ?
                     this.props.project.campaign.agencies.map( agency =>  {
-                      return agency.description !== "client" ? `${agency.name} ` : null
+                      return agency.description !== "client" ? <div><Image avatar src={agency.image} /> {agency.name} </div> : null
                     }
                   ): null }</p>
                 </div>
@@ -73,7 +73,7 @@ class IndividualProject extends React.Component {
                   <b><p>Client</p></b>
                   <p>{this.props.project ?
                     this.props.project.campaign.agencies.map( agency =>  {
-                      return agency.description === "client" ? `${agency.name} ` : null
+                      return agency.description === "client" ? <div><Image avatar src={agency.image} /> {agency.name} </div> : null
                     }
                   ): null }</p>
                 </div>

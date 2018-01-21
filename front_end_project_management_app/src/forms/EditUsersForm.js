@@ -4,6 +4,8 @@ import { Dropdown, Button } from 'semantic-ui-react'
 import { updateUsers } from '../reducers/actions/actions'
 import { connect } from 'react-redux'
 
+import { combineUsers } from '../services/helpers.js'
+
 
 import '../css/RevisionCreateForm.css'
 
@@ -47,10 +49,12 @@ class EditUsersForm extends React.Component {
 }
 
 function mapStateToProps(state, props) {
+
+  let x = state.projects ? (state.projects.find(project => project.id === parseInt(props.projectId)).get_users) : null
+
   return {
-    currentUsers: state.projects ? (
-      state.projects.find(project => project.id === parseInt(props.projectId)).get_users) : null,
-    users: state.company ? state.company.user_details : null
+    currentUsers: x ,
+    users: state.company ? combineUsers(state.company.user_details, x) : null
   }
 }
 
