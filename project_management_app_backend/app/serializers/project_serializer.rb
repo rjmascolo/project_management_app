@@ -4,5 +4,6 @@ class ProjectSerializer < ActiveModel::Serializer
   has_many :deliverables
   has_many :revisions
   belongs_to :campaign
+  has_many :notifications
 
 end

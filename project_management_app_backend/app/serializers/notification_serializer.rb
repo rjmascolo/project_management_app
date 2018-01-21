@@ -1,3 +1,3 @@
 class NotificationSerializer < ActiveModel::Serializer
-  attributes :id, :belongs_to, :belongs_to, :notification_type
+  attributes :id, :user_id, :project_id, :notification_type, :created_at
 end
