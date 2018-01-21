@@ -17,7 +17,9 @@ class CommentsController < ApplicationController
   def create
     @comment = Comment.new(content: params[:content].to_json, user_id: params[:user_id], revision_id: params[:revision_id])
     if @comment.save
-      render json: @comment, status: :created, location: @comment
+      newHash = {comment: @comment}
+      newHash[:notification] = Notification.create({project_id: params[:project_id], user_id: params[:user_id], notification_type: "comment"})
+      render json: newHash, status: :created, location: @comment
     else
       render json: @comment.errors, status: :unprocessable_entity
     end

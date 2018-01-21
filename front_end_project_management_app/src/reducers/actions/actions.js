@@ -85,12 +85,13 @@ export const createRevision = (item) => {
 }
 
 export const createComment = (comment, projectId) => {
+  let commentWithProjectId = {...comment, project_id: projectId }
   return (dispatch) => {
     dispatch({ type: 'START_ADDING_COMMENTS' });
     return fetch(`${API_URL}comments/`, {
       method:'POST',
       headers: headers,
-      body:JSON.stringify(comment)
+      body:JSON.stringify( commentWithProjectId )
     })
       .then(response => response.json())
       .then(commentRails => {

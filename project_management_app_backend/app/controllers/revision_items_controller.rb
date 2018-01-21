@@ -18,7 +18,9 @@ class RevisionItemsController < ApplicationController
     @revision_item = RevisionItem.new(revision_item_params)
 
     if @revision_item.save
-      render json: @revision_item, status: :created, location: @revision_item
+      newHash = {item: @revision_item}
+      newHash[:notification] = Notification.create({project_id: params["revision_item"][:project_id], user_id: params["revision_item"][:user_id], notification_type: "revision-item"})
+      render json: newHash, status: :created, location: @revision_item
     else
       render json: @revision_item.errors, status: :unprocessable_entity
     end

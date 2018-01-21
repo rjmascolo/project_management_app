@@ -72,13 +72,14 @@ function projectsReducer(state = [], action) {
         projectIndex = state.findIndex(project => project.id === action.revision.revision.project_id);
         newRevisions = revisionsReducer(state[projectIndex].revisions, action);
         newNotifications = notificationsReducer(state[projectIndex].notifications, action)
-        debugger;
       } else if (action.item) {
         projectIndex = state.findIndex(project => project.id === action.item.project_id);
         newRevisions = revisionsReducer(state[projectIndex].revisions, action);
+        newNotifications = notificationsReducer(state[projectIndex].notifications, action)
       } else if (action.comment){
         projectIndex = state.findIndex(project => project.id === action.comment.project_id);
         newRevisions = revisionsReducer(state[projectIndex].revisions, action);
+        newNotifications = notificationsReducer(state[projectIndex].notifications, action)
       } else if (action.deliverable){
         projectIndex = state.findIndex(project => project.id === action.deliverable.project_id);
         newDeliverables = deliverablesReducer(state[projectIndex].deliverables, action);
@@ -122,7 +123,7 @@ function revisionsReducer(state, action) {
     let revisionIndex;
     let newRevisionItems;
     if (action.item){
-      revisionIndex = state.findIndex(revision => revision.id === action.item.revision_id);
+      revisionIndex = state.findIndex(revision => revision.id === action.item.item.revision_id);
       newRevisionItems = revisionItemsReducer(state[revisionIndex].revision_items, action);
       return [
           ...state.slice(0, revisionIndex),
@@ -130,7 +131,7 @@ function revisionsReducer(state, action) {
           ...state.slice(revisionIndex + 1)
         ]
     } else if (action.comment) {
-      revisionIndex = state.findIndex(revision => revision.id === action.comment.revision_id);
+      revisionIndex = state.findIndex(revision => revision.id === action.comment.comment.revision_id);
       newRevisionItems = commentsReducer(state[revisionIndex].comments, action);
       return [
           ...state.slice(0, revisionIndex),

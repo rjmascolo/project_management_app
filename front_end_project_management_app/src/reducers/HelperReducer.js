@@ -2,7 +2,7 @@ export function revisionItemsReducer(state,action) {
   switch(action.type) {
 
     case "ADD_REVISION_ITEM":
-      return [...state, action.item];
+      return [...state, action.item.item];
     case "DELETE_REVISION_ITEM":
       return state.filter(item => item.id !== action.item.id);
   }
@@ -12,7 +12,7 @@ export function commentsReducer(state,action) {
   switch(action.type) {
 
     case "ADD_COMMENT":
-      return [...state, action.comment];
+      return [...state, action.comment.comment];
     case "DELETE_COMMENT":
       return state.filter(comment => comment.id !== action.comment.id);
   }
@@ -65,7 +65,10 @@ export function notificationsReducer (state = [], action) {
   switch( action.type ) {
     case "ADD_REVISION":
       return [...state, action.revision.notification]
-
+    case "ADD_COMMENT":
+      return [...state, action.comment.notification]
+    case "ADD_REVISION_ITEM":
+      return [...state, action.item.notification]
     default:
       return state;
   }

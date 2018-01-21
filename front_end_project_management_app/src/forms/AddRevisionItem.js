@@ -23,6 +23,8 @@ class AddRevisionItem extends React.Component {
     formData.append("revision_item[item_type]", item);
     formData.append("revision_item[revision_id]", this.props.revisionId)
     formData.append("revision_item[file_name]", file.name)
+    formData.append("revision_item[user_id]", this.props.user.id)
+    formData.append("revision_item[project_id]", parseInt(this.props.projectId))
 
     this.props.createRevisionAsset(formData, parseInt(this.props.projectId))
 
@@ -72,8 +74,14 @@ class AddRevisionItem extends React.Component {
   }
 }
 
+function mapStateToProps(state, props) {
+  return {
+    user: state.user ? state.user : null
+  }
+}
+
 function mapDispatchToProps(dispatch) {
   return {createRevisionAsset: (item, projectId) => dispatch(createRevisionAsset(item, projectId))}
 }
 
-export default connect( null, mapDispatchToProps)(AddRevisionItem);
+export default connect( mapStateToProps, mapDispatchToProps)(AddRevisionItem);
