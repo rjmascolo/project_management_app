@@ -14,6 +14,7 @@ class DeliverablesUpcoming extends React.Component {
     const deliverables = this.props.deliverables.map( (deliverable, i) => {
       return <DeliverableUpcomingItem key={i} deliverable={deliverable} />
     })
+    console.log(this.props)
     return(
       <div id="upcoming-deliverable-container-outer">
         <h3>Upcoming Deliverables</h3>
@@ -43,7 +44,7 @@ function mapStateToProps(state, props) {
         } else {
       return 0
         }
-    }) : []
+    }).slice(0,4) : []
   }
 }
 

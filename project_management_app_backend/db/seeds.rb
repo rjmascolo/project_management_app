@@ -9,6 +9,7 @@ require 'faker'
 
 Deliverable.destroy_all
 RevisionItem.destroy_all
+Notification.destroy_all
 Comment.destroy_all
 Revision.destroy_all
 UserProject.destroy_all
@@ -17,6 +18,7 @@ Project.destroy_all
 CompanyCampaign.destroy_all
 Company.destroy_all
 Campaign.destroy_all
+
 
 client_user_positions = ["Director of Digital", "Marketing Manager"]
 creative_agency_user_positions = ["Marketing Strategist ", "Data Scientist", "UX Designer", "Copywriter"]

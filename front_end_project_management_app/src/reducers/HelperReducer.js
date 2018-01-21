@@ -21,8 +21,6 @@ export function commentsReducer(state,action) {
 export function deliverablesReducer(state, action) {
   switch(action.type) {
 
-    case "ADD_REVISION":
-      return ;
     case 'UPDATE_DELIVERABLE':
       const newDeliverables = state.map(deliverable => {
         return deliverable.id === action.deliverable.id ? action.deliverable : deliverable
@@ -57,6 +55,16 @@ export function campaignsReducer (state = [], action) {
   switch( action.type ) {
     case "FETCH_USER":
       return action.campaigns
+
+    default:
+      return state;
+  }
+}
+
+export function notificationsReducer (state = [], action) {
+  switch( action.type ) {
+    case "ADD_REVISION":
+      return [...state, action.revision.notification]
 
     default:
       return state;

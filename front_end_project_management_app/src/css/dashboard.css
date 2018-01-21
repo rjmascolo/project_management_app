@@ -19,7 +19,7 @@
 
 #upcoming-deliverable-container {
   height: 50em;
-  overflow-y: scroll;
+  /* overflow-y: scroll; */
 }
 
 #upcoming-deliverable-item-container {

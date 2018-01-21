@@ -18,7 +18,7 @@ class CreateRevision extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     const state = this.state
-    this.props.createRevision({description: state.description, revision_type: 'revision', project_id: this.props.projectId,})
+    this.props.createRevision({description: state.description, revision_type: 'revision', project_id: this.props.projectId, user: this.props.user})
     this.setState({description: '', forDeliverable: true})
     if(state.forDeliverable) {
       let newDeliverable = this.props.deliverable
@@ -63,6 +63,7 @@ class CreateRevision extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
+    user: state.user ? state.user : null ,
     deliverable: state.projects ? (
       state.projects.find(project => project.id === parseInt(props.projectId)).deliverables.filter(deliverable => !deliverable.done).sort( ( a, b) => {
       	if (a.date < b.date) {

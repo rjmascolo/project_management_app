@@ -17,7 +17,9 @@ class RevisionsController < ApplicationController
   def create
     @revision = Revision.new(revision_params)
     if @revision.save
-      render json: @revision, status: :created, location: @revision
+      newHash = {revision: @revision}
+      newHash[:notification] = Notification.create({project: @revision.project, user_id: params[:user][:id],notification_type: "revision"})
+      render json: newHash, status: :created, location: @revision
     else
       render json: @revision.errors, status: :unprocessable_entity
     end
