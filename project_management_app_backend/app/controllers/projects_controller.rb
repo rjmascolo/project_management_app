@@ -16,7 +16,7 @@ class ProjectsController < ApplicationController
   # POST /projects
   def create
     project = params[:project]
-    @project = Project.new( {name: project[:projectName], description: project[:projectDescription], image: project[:projectImage], project_type: project[:projectType] })
+    @project = Project.new( {name: project[:projectName], description: project[:projectDescription], image: project[:projectImage], project_type: project[:projectType], campaign_id: project[:projectCampaign] })
     if @project.save
       newRevision = Revision.new({ revision_type: "creative brief", description: project[:creativeDeliverables], project: @project })
 
@@ -26,6 +26,7 @@ class ProjectsController < ApplicationController
 
       project[:projectUsers].each{ |i| UserProject.create( {user_id: i , project: @project, project_type:"client" } )}
 
+      Notification.create({project: @project, user_id: params[:user_id], notification_type: "project"})
 
       render json: @project, status: :created, location: @project
     else

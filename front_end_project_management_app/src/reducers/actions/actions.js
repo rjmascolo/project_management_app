@@ -118,9 +118,9 @@ export const deleteComment = (commentId, revisionId, projectId) => {
   };
 }
 
-export const createNewProject = (projectHash) => {
+export const createNewProject = (projectHash, userId) => {
 
-  let projectData = {project: projectHash}
+  let projectData = {project: projectHash, user_id: userId}
   return (dispatch) => {
     dispatch({ type: 'START_ADDING_PROJECTS' });
     return fetch(`${API_URL}projects/`, {

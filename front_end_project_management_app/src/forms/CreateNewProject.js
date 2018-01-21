@@ -8,10 +8,12 @@ import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
 import { projectTypeData } from '../data/formData.js'
-import { createProjectFormValidation } from '../services/helpers.js'
+import { createProjectFormValidation, combineUsers } from '../services/helpers.js'
+
 
 import 'react-datepicker/dist/react-datepicker.css';
 import '../css/CreateNewProject.css'
+
 
 import { withRouter } from 'react-router'
 
@@ -39,10 +41,9 @@ class CreateNewProject extends React.Component {
     const state = this.state
     const errors = createProjectFormValidation(state)
     if (errors.keys === undefined) {
-      this.props.createNewProject(state).then(x => this.props.history.push(`/projects/${x.id}`))
+      this.props.createNewProject(state, this.props.current_user).then(x => this.props.history.push(`/projects/${x.id}`))
 
       this.props.close()
-      // this.history.push('projects/')
     } else {
       this.setState({errors: errors})
     }
@@ -195,14 +196,19 @@ class CreateNewProject extends React.Component {
 }
 
 function mapStateToProps(state, props) {
+
+
+  let users = state.company ? combineUsers(state.projects.find(project => project.id === 1 ).get_users, state.company.user_details) : []
+
   return {
-    users: state.company ? state.company.user_details : [],
-    campaigns: state.campaigns ? state.campaigns : []
+    users: users ,
+    campaigns: state.campaigns ? state.campaigns : [],
+    current_user: state.user? state.user.id : ''
   }
 }
 
 function mapDispatchToProps(dispatch) {
-  return {createNewProject: (project) => dispatch(createNewProject(project))}
+  return {createNewProject: (project, userId) => dispatch(createNewProject(project, userId))}
 }
 
 export default withRouter(connect( mapStateToProps, mapDispatchToProps)(CreateNewProject));
