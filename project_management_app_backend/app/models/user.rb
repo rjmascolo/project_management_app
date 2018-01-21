@@ -7,6 +7,7 @@ class User < ApplicationRecord
   has_many :user_projects
   has_many :projects, through: :user_projects
   has_many :campaigns, through: :projects
+  has_many :notifications
 
   def current_campaigns
     self.projects.map{ |project| project.campaign }.uniq

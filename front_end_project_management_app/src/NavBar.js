@@ -9,6 +9,7 @@ import { Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 
 import SearchBar from './forms/SearchBar'
+import { Icon } from 'semantic-ui-react'
 
 class NavBar extends Component {
 
@@ -34,6 +35,9 @@ class NavBar extends Component {
           <div className="right menu">
             <div className="item">
                 <SearchBar />
+            </div>
+            <div className="item">
+              <Icon name='setting' size='large' />
             </div>
             <div className="item">
                 {!this.props.user ?
