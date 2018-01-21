@@ -21,6 +21,7 @@ class CreateNewProject extends React.Component {
       projectDescription: '',
       projectImage: '',
       projectType:'',
+      projectCampaign: '',
       creativeDeliverables: '',
       projectUsers:[],
       deliverables:[
@@ -129,16 +130,25 @@ class CreateNewProject extends React.Component {
             <Input label='Enter URL' placeholder='image-url.com' name="projectImage" onChange={this.handleChange} value={this.state.projectImage} />
               {errors.projectImage ? <Label basic color='red' pointing>{errors.projectImage}</Label> : null}
           </div>
-          <div id="add-users-project">
-            <Dropdown placeholder='Add Users' multiple search selection
-              id="add-users-project"
-              onChange={this.handleUserDropDownChange}
-              value={this.state.projectUsers}
-              options={this.props.users.map(user => {
-                return {key: user.id , value: user.id, text:`${user.first_name} ${user.last_name}`}
-              })}
-            />
-              {errors.projectUsers ? <Label basic color='red' basic color='red' pointing>{errors.projectUsers}</Label> : null}
+          <div id="group-field" >
+            <div id="add-users-project">
+              <Dropdown placeholder='Add Users' multiple search selection
+                id="add-users-project"
+                onChange={this.handleUserDropDownChange}
+                value={this.state.projectUsers}
+                options={this.props.users.map(user => {
+                  return {key: user.id , value: user.id, text:`${user.first_name} ${user.last_name}`}
+                })}
+              />
+                {errors.projectUsers ? <Label basic color='red' basic color='red' pointing>{errors.projectUsers}</Label> : null}
+            </div>
+            <Dropdown fluid selection
+              placeholder='Select Campaign'
+              name="projectCampaign"
+              value={this.state.projectCampaign}
+              onChange={this.handleDropDownChange}
+              options={this.props.campaigns.map(campaign => Object.assign({text: campaign.name}, {value: campaign.id})) } />
+              {errors.projectType ? <Label basic color='red' pointing>{errors.projectCampaign}</Label> : null}
           </div>
         </div>
           <div>
@@ -186,7 +196,8 @@ class CreateNewProject extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    users: state.company ? state.company.user_details : null
+    users: state.company ? state.company.user_details : [],
+    campaigns: state.campaigns ? state.campaigns : []
   }
 }
 

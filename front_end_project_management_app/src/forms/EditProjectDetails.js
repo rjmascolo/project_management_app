@@ -17,6 +17,7 @@ class EditProjectDetails extends React.Component {
       projectDescription:this.props.project.description,
       projectType:this.props.project.project_type,
       projectImage: this.props.project.image
+
   }
 
 

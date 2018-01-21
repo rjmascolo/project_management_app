@@ -13,8 +13,9 @@
   margin: 0 0 1em;
 }
 #add-users-project{
-  width: 60em;
-
+  max-width: 40em;
+  min-width: 40em;
+  margin-right: 1em;
 }
 
 #create-project-data{
