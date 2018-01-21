@@ -25,6 +25,10 @@
   margin: auto
 }
 
+#upcoming {
+  border-right: 1px solid rgba(34,36,38,.15);
+}
+
 
 #deliverable-description-container {
   width:70%;

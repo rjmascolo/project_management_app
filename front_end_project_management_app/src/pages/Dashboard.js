@@ -4,6 +4,7 @@ import '../css/dashboard.css'
 import Calendar from '../containers/Calendar'
 import { Item, Segment, Dimmer, Loader } from 'semantic-ui-react'
 import DeliverablesUpcoming from '../containers/DeliverablesUpcoming'
+import RecentActivityDashboard from '../containers/RecentActivityDashboard'
 
 import {connect} from 'react-redux'
 
@@ -15,9 +16,11 @@ class Dashboard extends React.Component {
       <div id="projects-div">
         <h1>Your Dashboard</h1>
         <br/>
-        {/* <Calendar /> */}
-        <DeliverablesUpcoming />
-        <Projects />
+        <div id="dashboard-flex-box">
+          <DeliverablesUpcoming />
+          <Projects />
+          <RecentActivityDashboard />
+        </div>
       </div>
     ): (
         <Segment>

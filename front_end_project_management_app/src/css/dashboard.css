@@ -8,29 +8,33 @@
   width: 100%;
 }
 
-#calendar {
-  background-color: #E26D5A;
-  box-shadow: 4px 4px #EAE3E3;
-  border-radius: .5em;
-  margin: 1em 1em;
-  padding: 3em 3em;
+#dashboard-flex-box {
+  display: flex;
+  justify-content: space-around;
 }
 
-#calendar-inner-div {
-  background-color: white;
-  height:450px;
-  border-radius: .5em;
-  padding: 1em 1em;
+#upcoming-deliverable-container-outer {
+  width:20%;
 }
 
-#projects-div {
-  width: 60%;
-  margin: 0 auto;
+#upcoming-deliverable-container {
+  height: 50em;
+  overflow-y: scroll;
+}
+
+#upcoming-deliverable-item-container {
+  display: flex;
+  justify-content: space-around;
+  border-bottom: 1px solid rgba(34,36,38,.15);
+  padding: .5em 0;
 }
 
 #dashboard-projects {
   margin: 2em 1em;
+  width: 60%;
   border-top: 1px solid rgba(34,36,38,.15);
+  height: 50em;
+  overflow-y: scroll;
 }
 
 #dashboard-projects-header {
@@ -38,4 +42,8 @@
   display:flex;
   justify-content: space-between;
   border-bottom: 1px solid rgba(34,36,38,.15);
+}
+
+#upcoming {
+  border-right: 1px solid rgba(34,36,38,.15);
 }

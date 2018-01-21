@@ -6,20 +6,19 @@ import '../css/DeliverableItem.css'
 
 import { connect } from 'react-redux'
 
-import DeliverableItem from '../container_items/DeliverableItem'
+import DeliverableUpcomingItem from '../container_items/DeliverableUpcomingItem'
 
 class DeliverablesUpcoming extends React.Component {
 
   render() {
-    // const deliverables = this.props.deliverables ? this.props.deliverables.map( (deliverable, i) => {
-    //   return <DeliverableItem key={i} deliverable={deliverable} />
-    // } ): null
-    console.log(this.props)
+    const deliverables = this.props.deliverables.map( (deliverable, i) => {
+      return <DeliverableUpcomingItem key={i} deliverable={deliverable} />
+    })
     return(
-      <div id="deliverable-container-outer">
-        <h3>Deliverables</h3>
-        <div id="deliverable-container">
-          {/* {deliverables} */}
+      <div id="upcoming-deliverable-container-outer">
+        <h3>Upcoming Deliverables</h3>
+        <div id="upcoming-deliverable-container">
+          {deliverables}
         </div>
       </div>
     )
@@ -44,7 +43,7 @@ function mapStateToProps(state, props) {
         } else {
       return 0
         }
-    }) : null
+    }) : []
   }
 }
 
