@@ -4,6 +4,7 @@ class Project < ApplicationRecord
   has_many :users, through: :user_projects
   has_many :revisions
   has_many :deliverables
+  has_many :notifications
 
 
   # belongs_to :campaign

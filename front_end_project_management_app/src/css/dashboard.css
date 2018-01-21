@@ -42,6 +42,79 @@
   border-bottom: 1px solid rgba(34,36,38,.15);
 }
 
-#upcoming {
+#upcoming-deliverable-date-container{
+  width: 25%;
+  padding: .5em 0;
+  margin: auto 0 ;
   border-right: 1px solid rgba(34,36,38,.15);
+}
+
+#upcoming-deliverable-description-container{
+  width: 70%;
+  text-align: left;
+  /* padding: .3em .3em; */
+  background-color: white;
+  border-radius: .5em;
+}
+
+#upcoming-deliverable-header {
+  display:flex;
+  align-items: center;
+}
+
+.deliverable-title {
+  font-size: 1em;
+  margin-top: 0;
+}
+#upcoming-deliverable-date {
+  font-style: italic;
+  padding: .3em 0 0 0;
+}
+
+#deliveralbe-description-copy {
+  font-size: .9em;
+  padding-left: .5em;
+}
+
+time.icon
+{
+  font-size: .5em; /* change icon size */
+  display: block;
+  position: relative;
+  width: 80%;
+  height: 80%;
+  background-color: #fff;
+  border-radius: 0.6em;
+  box-shadow: 0 1px 0 #bdbdbd;
+  overflow: hidden;
+}
+
+time.icon *
+{
+  display: block;
+  width: 100%;
+  font-size: 1.5em;
+  font-weight: bold;
+  font-style: normal;
+  text-align: center;
+}
+
+time.icon strong
+{
+  position: absolute;
+  top: 0;
+  padding: 0.1em 0;
+  color: #fff;
+  background-color: #E26D5A;
+  border-top-right-radius: .6em;
+  border-top-left-radius: .6em;
+}
+
+time.icon span
+{
+  font-size: 3.8em;
+  letter-spacing: -0.05em;
+  padding-top: 0.25em;
+  color: #2f2f2f;
+  border-radius: .1em
 }
