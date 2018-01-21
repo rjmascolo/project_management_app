@@ -113,8 +113,7 @@ function revisionsReducer(state, action) {
   switch (action.type) {
 
   case "ADD_REVISION":
-    debugger;
-    return [...state, action.revision.revision]
+    return [...state, {...action.revision.revision, comments:[], revision_items:[]}]
 
   case "ADD_REVISION_ITEM":
   case "DELETE_REVISION_ITEM":

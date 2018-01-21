@@ -18,6 +18,9 @@ export const createProjectFormValidation = (formData) => {
   if (formData.projectUsers.length < 1) {
     errors["projectUsers"] = "Needs to include users";
   }
+  if (formData.projectCampaign === '') {
+    errors["projectCampaign"] = "Needs to include a campaign";
+  }
   formData.deliverables.map( (deliverable, i) => {
     if( deliverable.description === '' ) {
       errors[`deliverable-${i}`] = "Needs to include a description";

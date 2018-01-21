@@ -198,7 +198,7 @@ class CreateNewProject extends React.Component {
 function mapStateToProps(state, props) {
 
 
-  let users = state.company ? combineUsers(state.projects.find(project => project.id === 1 ).get_users, state.company.user_details) : []
+  let users = state.company ? combineUsers(state.projects[0].get_users, state.company.user_details) : []
 
   return {
     users: users ,

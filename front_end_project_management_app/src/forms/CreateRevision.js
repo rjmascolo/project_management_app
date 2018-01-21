@@ -20,7 +20,7 @@ class CreateRevision extends React.Component {
     const state = this.state
     this.props.createRevision({description: state.description, revision_type: 'revision', project_id: this.props.projectId, user: this.props.user})
     this.setState({description: '', forDeliverable: true})
-    if(state.forDeliverable) {
+    if(this.props.deliverable) {
       let newDeliverable = this.props.deliverable
       newDeliverable.done = true
       this.props.updateDeliverable(newDeliverable, this.props.projectId)
@@ -49,7 +49,7 @@ class CreateRevision extends React.Component {
           </div>
           <div id="create-revision-submit-div">
             <div>
-            <Checkbox label={`This Revision is for Deliverable ${this.props.deliverable.description}.`} onClick={this.handleCheckboxClick} defaultChecked />
+            {this.props.deliverable ? <Checkbox label={`This Revision is for Deliverable ${this.props.deliverable.description}.`} onClick={this.handleCheckboxClick} defaultChecked /> : null}
             </div>
             <div id="button-div">
               <Button type="submit" color="teal" floated="right" >Create New</Button>
@@ -74,7 +74,7 @@ function mapStateToProps(state, props) {
       	return 0
           }
       })[0]
-    ) : null
+    ) : []
   }
 }
 

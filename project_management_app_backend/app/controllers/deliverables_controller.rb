@@ -27,7 +27,8 @@ class DeliverablesController < ApplicationController
   # PATCH/PUT /deliverables/1
   def update
     if @deliverable.update(deliverable_params)
-      render json: @deliverable
+
+        render json: @deliverable
     else
       render json: @deliverable.errors, status: :unprocessable_entity
     end
