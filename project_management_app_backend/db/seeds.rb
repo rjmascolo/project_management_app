@@ -184,10 +184,10 @@ def create_projects(projects, clientUsersArray, creativeUsersArray, mediaUsersAr
   client_users = createUsers(clientUsersArray, clientCompany)
   client_users.unshift(ryan)
   # create creative agency positions
-  creativeCompany = Company.create({name:"Agua", description: "creative agency", image:"http://logofaves.com/wp-content/uploads/2009/01/aqua_r.jpg?9cf02b"})
+  creativeCompany = Company.create({name:"SCDP", description: "creative agency", image:"https://stocklogos.com/sites/default/files/scdp-logo.jpg"})
   creative_users = createUsers(creativeUsersArray, creativeCompany)
   # create media agency users
-  mediaCompany = Company.create({name:"CSJ-MB", description: "media agency", image:"https://stocklogos.com/sites/default/files/scdp-logo.jpg"})
+  mediaCompany = Company.create({name:"UM Worldwide", description: "media agency", image:"https://www.google.com/search?q=fake+logos+brands&rlz=1C5CHFA_enUS694US694&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj3vryJ9uvYAhUS4VMKHSzPDMgQ_AUICigB&biw=1427&bih=781#imgrc=GCYHkKpr1qlidM:"})
   media_users = createUsers(mediaUsersArray, mediaCompany)
 
 

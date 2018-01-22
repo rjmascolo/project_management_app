@@ -12,7 +12,7 @@ import EditUsersForm from '../forms/EditUsersForm'
 import EditProjectDetails from '../forms/EditProjectDetails'
 import CompletedProject from '../forms/CompletedProject'
 
-import ProjectHeader from '../container_items/ProjectHeader'
+import IndivProjectHeader from '../container_items/IndivProjectHeader'
 
 
 import '../css/individualProductPage.css'
@@ -23,25 +23,25 @@ import { withRouter } from 'react-router'
 import DeliverablesContainer from '../containers/DeliverablesContainer'
 
 class IndividualProject extends React.Component {
-  state = {
-    modalType: null,
-    modalOpen: false
-  }
-
-  modalTrigger = (type) => {
-    this.setState({ modalType: type, modalOpen: true })
-  }
-
-  show = () => this.setState({ modalOpen: true })
-
-  close = () => this.setState({  modalOpen: false })
+  // state = {
+  //   modalType: null,
+  //   modalOpen: false
+  // }
+  //
+  // modalTrigger = (type) => {
+  //   this.setState({ modalType: type, modalOpen: true })
+  // }
+  //
+  // show = () => this.setState({ modalOpen: true })
+  //
+  // close = () => this.setState({  modalOpen: false })
 
   render() {
-    console.log(this.props)
+
     return (
       <div>
 
-        {/* <ProjectHeader projectId={this.props.projectId } /> */}
+        <IndivProjectHeader projectId={this.props.id } />
         {/* <div id="header">
           <div id="header-content">
             <Image
@@ -92,10 +92,6 @@ class IndividualProject extends React.Component {
           </div>
         </div> */}
         <div id="individual-page-container-content">
-
-          <div id="user-list">
-            <UserList projectId={this.props.id}/>
-          </div>
 
           <div id="outer-project-accordian">
             <RevisionsAccordian projectId={this.props.id}/>

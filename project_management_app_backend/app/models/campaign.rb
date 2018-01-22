@@ -4,7 +4,7 @@ class Campaign < ApplicationRecord
   has_many :companies, through: :company_campaigns
 
   def agencies
-    self.companies.map{ |company| company.slice(:name, :description, :image)}
+    self.companies.map{ |company| company.slice(:name, :description, :image, :id)}
   end
 
 end

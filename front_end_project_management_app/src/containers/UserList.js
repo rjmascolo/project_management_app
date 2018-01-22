@@ -11,18 +11,9 @@ class UserList extends React.Component {
   render() {
     const usersList = this.props.users ? this.props.users.map( (user, i) => {
       return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} position={user.position} image={user.image} />;
-    }) : (
-      <List.Item>
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted>Loading</Loader>
-          </Dimmer>
-        </Segment>
-      </List.Item>
-    )
+    }) : null
     return(
-      <div id="user-container-outer">
-        <h3>Project Managers</h3>
+      <div id="users-container">
         <List celled id="user-container-border">
           {usersList}
         </List>
@@ -33,7 +24,7 @@ class UserList extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    users: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users: null
+    // users: state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users: null
   }
 }
 

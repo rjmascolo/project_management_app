@@ -1,0 +1,128 @@
+import React from 'react'
+
+import {connect} from 'react-redux'
+
+import { Image, Icon, List, Label, Dropdown, Modal, Accordion } from 'semantic-ui-react'
+
+import DeliverablesEditContainer from '../containers/DeliverablesEditContainer'
+
+import ProjectHeaderUserInfo from '../containers/ProjectHeaderUserInfo'
+
+import { CompanyImage } from '../container_items/CompanyImage'
+
+import EditUsersForm from '../forms/EditUsersForm'
+import EditProjectDetails from '../forms/EditProjectDetails'
+import CompletedProject from '../forms/CompletedProject'
+
+import '../css/individualProductPage.css'
+import '../css/IndividualProjectHeader.css'
+
+class IndivProjectHeader extends React.Component {
+
+  state = {
+    modalType: null,
+    modalOpen: false,
+    accordionOpen: true
+  }
+
+  modalTrigger = (type) => {
+    this.setState({ modalType: type, modalOpen: true })
+  }
+
+  show = () => this.setState({ modalOpen: true })
+
+  close = () => this.setState({  modalOpen: false })
+
+  handleClick = () => this.setState( prevState => {
+    return {accordionOpen: !prevState.accordionOpen}
+  })
+
+  render(){
+    return(
+      <div id="header">
+        <div id="header-content">
+          <div id="flex-between">
+            <div id="title-description-image">
+              <img id="project-image" src={this.props.project ? this.props.project.image: null} />
+              <div>
+                <p>{this.props.project ? this.props.project.campaign.name : null }</p>
+                <h2 id="header-title">{this.props.project ? this.props.project.name : null }</h2>
+              </div>
+              <div id="label-div">
+                <div>
+                  <Label as='a' color='grey' tag>{this.props.project ? this.props.project.project_type : null }</Label>
+                </div>
+              </div>
+            </div>
+            <div>
+              <b><p>Agencies</p></b>
+              <p>{this.props.project ?
+                this.props.project.campaign.agencies.map( agency =>  {
+                  return agency.description !== "client" ? <CompanyImage company={agency}/> : null
+                }
+              ): null }</p>
+            </div>
+            <div>
+              <b><p>Client</p></b>
+                <p>{this.props.project ?
+                this.props.project.campaign.agencies.map( agency =>  {
+                  return agency.description === "client" ? <CompanyImage company={agency}/> : null
+                }
+                ): null }</p>
+            </div>
+            <div>
+              <Dropdown floating button className='icon' icon='setting' pointing="top right" >
+                <Dropdown.Menu>
+                  <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
+                  <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
+                  <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("users")} />
+                </Dropdown.Menu>
+              </Dropdown>
+            </div>
+          </div>
+          <Accordion>
+            <Accordion.Title active={this.state.accordionOpen} onClick={this.handleClick}>
+              <Icon name='dropdown' />
+              More Details
+            </Accordion.Title>
+            <Accordion.Content active={this.state.accordionOpen}>
+              <div id="project-details">
+                <div>
+                  <b><p>Description</p></b>
+                  <p>{this.props.project ? this.props.project.description : null }</p>
+                </div>
+                <ProjectHeaderUserInfo projectId={this.props.projectId}/>
+              </div>
+            </Accordion.Content>
+          </Accordion>
+        <Modal open={this.state.modalOpen} onClose={this.close}>
+          <Modal.Header>
+            {this.state.modalType === "deliverables" ? "Edit Deliverables" :
+            this.state.modalType === "users" ? "Edit Users" :
+            this.state.modalType === "project" ? "Edit Project Details" : "Project Complete" }
+          </Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              {
+               this.state.modalType === "deliverables" ?
+              <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ?
+              <EditUsersForm projectId={this.props.id} close={this.close} /> : this.state.modalType === "project" ?
+              <EditProjectDetails projectId={this.props.id} close={this.close} /> :
+              <CompletedProject projectId={this.props.id} close={this.close} />
+             }
+            </Modal.Description>
+          </Modal.Content>
+        </Modal>
+      </div>
+    </div>
+    )
+  }
+}
+
+function mapStateToProps(state, props) {
+  return {
+    project: state.projects ? state.projects.find(project => project.id === parseInt(props.projectId)) : null
+  }
+}
+
+export default connect(mapStateToProps)(IndivProjectHeader);
