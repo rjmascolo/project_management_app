@@ -46,7 +46,7 @@
   width: 25%;
   padding: .5em 0;
   margin: auto 0 ;
-  border-right: 1px solid rgba(34,36,38,.15);
+  /* border-right: 1px solid rgba(34,36,38,.15); */
 }
 
 #upcoming-deliverable-description-container{
@@ -74,6 +74,35 @@
 #deliveralbe-description-copy {
   font-size: .9em;
   padding-left: .5em;
+}
+
+#notification-feed {
+  height:30em;
+  overflow-y: scroll;
+  background-color: white;
+  /* box-shadow: 5px 10px #888888; */
+}
+
+#recent-activity-container-outer {
+  width: 20%;
+  height: 34.5em;
+  padding: 1em .5em;
+  margin-bottom:2em;
+  overflow:hidden;
+  border-radius: .5em;
+  box-shadow: 5px 10px #888888;
+  background-color: #E26D5A
+}
+#notification-header {
+  color: white
+}
+
+#notification-text {
+  font-weight: 400;
+}
+
+#notification-item {
+  border-bottom: 1px solid rgba(34,36,38,.15)
 }
 
 time.icon

@@ -13,9 +13,11 @@ class RecentActivityDashboard extends React.Component {
   render() {
     const feedItems = this.props.notifications.map( notification => <RecentActivityFeedItem notification={notification}/> )
     return(
-      <div id="upcoming-deliverable-container-outer">
-        <h3>Recent Activity</h3>
-        <Feed>
+      <div id="recent-activity-container-outer">
+        <div id="notification-header">
+          <h3>Recent Activity</h3>
+        </div>
+        <Feed id="notification-feed">
           {feedItems}
         </Feed>
       </div>
@@ -28,12 +30,22 @@ function mapStateToProps(state, props) {
   state.projects ? state.projects.forEach(project => {
     let users = project.get_users;
     return project.notifications.forEach( notification => {
-      let user = users.find(user => user.id === notification.user_id)
-      notifications.push({...notification, project: project, user: user})
+      if( notification.user_id !== state.user.id) {
+        let user = users.find(user => user.id === notification.user_id)
+        notifications.push({...notification, project: project, user: user})
+      }
     })
   }) : null
   return {
-    notifications: notifications
+    notifications: notifications.sort( ( a, b) => {
+      if (a.created_at > b.created_at) {
+        return -1
+      }else if (a.created_at < b.created_at) {
+        return 1
+      } else {
+        return 0
+        }
+    })
   }
 }
 

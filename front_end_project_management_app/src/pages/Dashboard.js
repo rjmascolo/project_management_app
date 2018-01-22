@@ -33,7 +33,15 @@ class Dashboard extends React.Component {
 
     return (
       <div>
-        {loadedOrNot}
+        <div id="projects-div">
+          <h1>Your Dashboard</h1>
+          <br/>
+          <div id="dashboard-flex-box">
+            <DeliverablesUpcoming />
+            <Projects />
+            <RecentActivityDashboard />
+          </div>
+        </div>
       </div>
     );
   }

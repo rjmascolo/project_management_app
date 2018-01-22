@@ -6,6 +6,8 @@ import { withRouter } from 'react-router'
 
 import {connect} from 'react-redux'
 
+import { restrictCharToLength } from '../services/helpers.js'
+
 
 class SearchBar extends Component {
   componentWillMount() {
@@ -61,7 +63,8 @@ function mapStateToProps(state, props) {
     source: state.projects ? state.projects.map( project => {
       return {
         title: project.name,
-        description: project.description,
+        // description: project.campaign.name,
+        description: restrictCharToLength(project.description, 30),
         image: project.image,
         id: project.id
       }

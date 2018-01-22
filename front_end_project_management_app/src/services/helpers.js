@@ -40,3 +40,15 @@ export const combineUsers = (allCompanyUsers, currentUsers) => {
   })
   return allUsers;
 }
+
+export const restrictCharToLength = (string, charLength) => {
+  let x = string.split(' ')
+  let length = 0
+  let wordCount = 0
+  while ( length < charLength ) {
+    length += (x[wordCount].length + 1)
+    wordCount++
+  }
+
+  return x.slice(0,wordCount+1).join(' ') + "\u2026"
+}

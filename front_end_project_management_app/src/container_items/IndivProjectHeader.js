@@ -22,7 +22,7 @@ class IndivProjectHeader extends React.Component {
   state = {
     modalType: null,
     modalOpen: false,
-    accordionOpen: true
+    accordionOpen: false
   }
 
   modalTrigger = (type) => {
@@ -54,7 +54,7 @@ class IndivProjectHeader extends React.Component {
                 </div>
               </div>
             </div>
-            <div>
+            <div id="company-div">
               <b><p>Agencies</p></b>
               <p>{this.props.project ?
                 this.props.project.campaign.agencies.map( agency =>  {
@@ -62,7 +62,7 @@ class IndivProjectHeader extends React.Component {
                 }
               ): null }</p>
             </div>
-            <div>
+            <div id="company-div">
               <b><p>Client</p></b>
                 <p>{this.props.project ?
                 this.props.project.campaign.agencies.map( agency =>  {
@@ -105,10 +105,10 @@ class IndivProjectHeader extends React.Component {
             <Modal.Description>
               {
                this.state.modalType === "deliverables" ?
-              <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ?
-              <EditUsersForm projectId={this.props.id} close={this.close} /> : this.state.modalType === "project" ?
-              <EditProjectDetails projectId={this.props.id} close={this.close} /> :
-              <CompletedProject projectId={this.props.id} close={this.close} />
+              <DeliverablesEditContainer projectId={this.props.projectId} /> : this.state.modalType === "users" ?
+              <EditUsersForm projectId={this.props.projectId} close={this.close} /> : this.state.modalType === "project" ?
+              <EditProjectDetails projectId={this.props.projectId} close={this.close} /> :
+              <CompletedProject projectId={this.props.projectId} close={this.close} />
              }
             </Modal.Description>
           </Modal.Content>
