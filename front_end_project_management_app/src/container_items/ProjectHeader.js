@@ -4,7 +4,28 @@ import {connect} from 'react-redux'
 
 import { Image, Icon, List, Segment, Dimmer, Loader, Label, Dropdown, Modal } from 'semantic-ui-react'
 
-class ProjectHeader export React.Component {
+import DeliverablesEditContainer from '../containers/DeliverablesEditContainer'
+import EditUsersForm from '../forms/EditUsersForm'
+import EditProjectDetails from '../forms/EditProjectDetails'
+import CompletedProject from '../forms/CompletedProject'
+
+import '../css/individualProductPage.css'
+import '../css/IndividualProjectHeader.css'
+
+class ProjectHeader extends React.Component {
+
+  state = {
+    modalType: null,
+    modalOpen: false
+  }
+
+  modalTrigger = (type) => {
+    this.setState({ modalType: type, modalOpen: true })
+  }
+
+  show = () => this.setState({ modalOpen: true })
+
+  close = () => this.setState({  modalOpen: false })
 
   render(){
     return(
@@ -55,7 +76,33 @@ class ProjectHeader export React.Component {
             </div>
           </div>
         </div>
+        <Modal open={this.state.modalOpen} onClose={this.close}>
+          <Modal.Header>
+            {this.state.modalType === "deliverables" ? "Edit Deliverables" :
+            this.state.modalType === "users" ? "Edit Users" :
+            this.state.modalType === "project" ? "Edit Project Details" : "Project Complete" }
+          </Modal.Header>
+          <Modal.Content>
+            <Modal.Description>
+              {
+               this.state.modalType === "deliverables" ?
+              <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ?
+              <EditUsersForm projectId={this.props.id} close={this.close} /> : this.state.modalType === "project" ?
+              <EditProjectDetails projectId={this.props.id} close={this.close} /> :
+              <CompletedProject projectId={this.props.id} close={this.close} />
+             }
+            </Modal.Description>
+          </Modal.Content>
+        </Modal>
       </div>
     )
   }
 }
+
+function mapStateToProps(state, props) {
+  return {
+    project: state.projects ? state.projects.find(project => project.id === parseInt(props.id)) : null
+  }
+}
+
+export default connect(mapStateToProps)(ProjectHeader);

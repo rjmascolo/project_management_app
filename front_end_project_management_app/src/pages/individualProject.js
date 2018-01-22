@@ -6,10 +6,13 @@ import { Image, Icon, List, Segment, Dimmer, Loader, Label, Dropdown, Modal } fr
 import UserItem from '../container_items/UserItem'
 import UserList from '../containers/UserList'
 import RevisionsAccordian from '../containers/RevisionsAccordian'
+
 import DeliverablesEditContainer from '../containers/DeliverablesEditContainer'
 import EditUsersForm from '../forms/EditUsersForm'
 import EditProjectDetails from '../forms/EditProjectDetails'
 import CompletedProject from '../forms/CompletedProject'
+
+import ProjectHeader from '../container_items/ProjectHeader'
 
 
 import '../css/individualProductPage.css'
@@ -37,7 +40,9 @@ class IndividualProject extends React.Component {
     console.log(this.props)
     return (
       <div>
-        <div id="header">
+
+        {/* <ProjectHeader projectId={this.props.projectId } /> */}
+        {/* <div id="header">
           <div id="header-content">
             <Image
               src={this.props.project ? this.props.project.image: null}
@@ -85,7 +90,7 @@ class IndividualProject extends React.Component {
               </div>
             </div>
           </div>
-        </div>
+        </div> */}
         <div id="individual-page-container-content">
 
           <div id="user-list">
@@ -101,7 +106,7 @@ class IndividualProject extends React.Component {
           </div>
 
        </div>
-       <Modal open={this.state.modalOpen} onClose={this.close}>
+       {/* <Modal open={this.state.modalOpen} onClose={this.close}>
          <Modal.Header>
            {this.state.modalType === "deliverables" ? "Edit Deliverables" :
            this.state.modalType === "users" ? "Edit Users" :
@@ -118,7 +123,7 @@ class IndividualProject extends React.Component {
             }
            </Modal.Description>
          </Modal.Content>
-       </Modal>
+       </Modal> */}
       </div>
     );
   }
