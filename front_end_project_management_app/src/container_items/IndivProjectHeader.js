@@ -87,8 +87,8 @@ class IndivProjectHeader extends React.Component {
             </Accordion.Title>
             <Accordion.Content active={this.state.accordionOpen}>
               <div id="project-details">
-                <div>
-                  <b><p>Description</p></b>
+                <div id="project-description">
+                  <h4>Project Description</h4>
                   <p>{this.props.project ? this.props.project.description : null }</p>
                 </div>
                 <ProjectHeaderUserInfo projectId={this.props.projectId}/>

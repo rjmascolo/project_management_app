@@ -28,7 +28,7 @@ projects =[
 
             {
               name: "Q1 Awareness Campaign Banners",
-              description: "Banner advertisements for our Q1 campaign.",
+              description: Faker::Hipster.paragraph,
               project_type: "Display Media",
               image: 'https://adsolutions.yp.com/sites/default/files/styles/medium/public/icon-we-build-banner-ads.png?itok=ca7eODhg',
               deliverables: [
@@ -48,7 +48,7 @@ projects =[
             },
             {
               name: "Twitch Native Content",
-              description: "Custom livestream with Twitch influencers and custom media assets",
+              description: Faker::Hipster.paragraph,
               project_type: "Custom Content",
               image: 'https://pbs.twimg.com/profile_images/875860982937014272/FFXrxPK0_400x400.jpg',
               deliverables: [
@@ -69,7 +69,7 @@ projects =[
             },
             {
               name: "YouTube Masthead",
-              description: "10 second promotional video to appear on the YouTube homepage",
+              description: Faker::Hipster.paragraph,
               project_type: "Display Media",
               image: 'https://www.youtube.com/yt/about/media/images/brand-resources/icons/YouTube_icon_full-color.svg',
               deliverables: [
@@ -90,7 +90,7 @@ projects =[
             },
             {
               name: "Buzzfeed Custom Videos",
-              description: "2 custom content videos produced by Buzzfeed's editoral team",
+              description: Faker::Hipster.paragraph,
               project_type: "Custom Content",
               image: 'https://www.buzzfeed.com/static-assets/img/buzzfeed_arrow.e86a786d9e5e2250e1ed3e0ec95ba42d.png',
               deliverables: [
@@ -110,7 +110,7 @@ projects =[
             },
             {
               name: "Spotify Audio Spots",
-              description: "2 audio spots produced by Spotify's audio team",
+              description: Faker::Hipster.paragraph,
               project_type: "Display Media",
               image: 'https://pbs.twimg.com/profile_images/805119801660239872/_FtLaP8j.jpg',
               deliverables: [
@@ -131,7 +131,7 @@ projects =[
             },
             {
               name: "College Humor Custom Video",
-              description: "Custom video created by College Humor's editorial team with assets",
+              description: Faker::Hipster.paragraph,
               project_type: "Custom Content",
               image: 'http://2.media.collegehumor.cvcdn.com/40/31/fcae18a56d6fa5a826b10b0a003e539d.png',
               deliverables: [
@@ -151,7 +151,7 @@ projects =[
             },
             {
               name: "Bustle Custom Content",
-              description: "3 custom articles and 3 social media posts ",
+              description: Faker::Hipster.paragraph,
               project_type: "Custom Content",
               image: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14433161_1436024763077752_3211430454327518092_n.png?oh=1f1033645aa8dc061b5d786e1a6ee756&oe=5B23A4B0',
               deliverables: [
@@ -187,7 +187,7 @@ def create_projects(projects, clientUsersArray, creativeUsersArray, mediaUsersAr
   creativeCompany = Company.create({name:"SCDP", description: "creative agency", image:"https://stocklogos.com/sites/default/files/scdp-logo.jpg"})
   creative_users = createUsers(creativeUsersArray, creativeCompany)
   # create media agency users
-  mediaCompany = Company.create({name:"UM Worldwide", description: "media agency", image:"https://www.google.com/search?q=fake+logos+brands&rlz=1C5CHFA_enUS694US694&source=lnms&tbm=isch&sa=X&ved=0ahUKEwj3vryJ9uvYAhUS4VMKHSzPDMgQ_AUICigB&biw=1427&bih=781#imgrc=GCYHkKpr1qlidM:"})
+  mediaCompany = Company.create({name:"UM Worldwide", description: "media agency", image:"https://dmexco.de/Conference/images/logos/logo_1500398512.jpg"})
   media_users = createUsers(mediaUsersArray, mediaCompany)
 
 

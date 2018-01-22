@@ -12,7 +12,10 @@ class ProjectHeaderUserInfo extends React.Component {
       return { menuItem: company.name, render: () => <Tab.Pane attached={false}> <UserList users={company.users} /> </Tab.Pane> }
     })
     return (
-      <Tab menu={{ secondary: true, pointing: true }} panes={companyTabs} />
+      <div id="users-outer-container">
+        <h4>Project Users</h4>
+        <Tab menu={{ secondary: true, pointing: true }} panes={companyTabs} />
+      </div>
     )
   }
 }

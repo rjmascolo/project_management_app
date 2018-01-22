@@ -2,7 +2,7 @@
 #header {
   /* background: #E26D5A; */
   /* padding-top: .9em; */
-  padding-bottom:1em;
+  /* padding-bottom:1em; */
   box-shadow: 0px 3px #EAE3E3;
 }
 
@@ -38,8 +38,10 @@
 
 #project-details {
   display:flex;
-  justify-content: space-around;
-  margin: 1em 1em;
+  justify-content: safe center;
+  background: #F9F9F9;
+  border-top: .2em solid #DBDBDB;
+  padding: .8em 0 .8em 0;
 }
 
 #header-companies-container {
@@ -96,9 +98,22 @@
   justify-content:flex-start;
   align-items: center;
 }
+#users-outer-container {
+  margin: 0 0 0 3em;
+}
+#users-outer-container h4 {
+  margin: 0
+}
 
 #users-container {
   width: 18em;
+}
+
+#project-description {
+  width: 40%;
+}
+#project-description p {
+  text-align: left;
 }
 
 p {
