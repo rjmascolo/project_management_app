@@ -16,9 +16,11 @@ class DeliverablesUpcoming extends React.Component {
     })
     return(
       <div id="upcoming-deliverable-container-outer">
+        <div id="upcoming-deliverable-container-inner">
         <h3>Upcoming Deliverables</h3>
         <div id="upcoming-deliverable-container">
           {deliverables}
+        </div>
         </div>
       </div>
     )

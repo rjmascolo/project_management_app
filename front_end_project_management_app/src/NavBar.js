@@ -9,11 +9,19 @@ import { Link, NavLink } from 'react-router-dom';
 import { withRouter } from 'react-router-dom'
 
 import SearchBar from './forms/SearchBar'
-import { Icon } from 'semantic-ui-react'
+import CreateNewProject from './forms/CreateNewProject'
+
+import { Icon, Dropdown, Modal } from 'semantic-ui-react'
+import './css/dashboard.css'
 
 class NavBar extends Component {
 
-  state = { activeItem: 'home' }
+  state = {
+    modalType: null,
+    modalOpen: false,
+    accordionOpen: false,
+    activeItem: 'home'
+  }
 
   handleItemClick = (e, { name }) => this.setState({ activeItem: name })
 
@@ -22,10 +30,19 @@ class NavBar extends Component {
     this.props.logOut()
   }
 
+  modalTrigger = (type) => {
+    this.setState({ modalType: type, modalOpen: true })
+  }
+
+  show = () => this.setState({ modalOpen: true })
+
+  close = () => this.setState({  modalOpen: false })
+
+
   render() {
     const { activeItem } = this.state
     return (
-      <div className="ui huge menu">
+      <div className="ui huge menu" id="navbar-shadow" >
 
           <div className="active item">
             <NavLink to={`/dashboard`}>
@@ -37,7 +54,13 @@ class NavBar extends Component {
                 <SearchBar />
             </div>
             <div className="item">
-              <Icon name='setting' size='large' />
+              <Dropdown floating icon='setting' >
+                <Dropdown.Menu>
+                  <Dropdown.Item text='Create Project' onClick={() => this.modalTrigger("project")} />
+                  <Dropdown.Item text='Create New Campaign' onClick={() => this.modalTrigger("deliverables")} />
+                  <Dropdown.Item text='Add Users' onClick={() => this.modalTrigger("users")} />
+                </Dropdown.Menu>
+              </Dropdown>
             </div>
             <div className="item">
                 {!this.props.user ?
@@ -45,6 +68,25 @@ class NavBar extends Component {
                   <div onClick={this.handleClick} className="ui button">Log Out</div> }
             </div>
           </div>
+          <Modal open={this.state.modalOpen} onClose={this.close}>
+            <Modal.Header>
+              {this.state.modalType === "deliverables" ? "Edit Deliverables" :
+              this.state.modalType === "users" ? "Edit Users" :
+              this.state.modalType === "project" ? "Create A New Project" : "Project Complete" }
+            </Modal.Header>
+            <Modal.Content>
+              <Modal.Description>
+                <CreateNewProject close={this.close} />
+                {/* {
+                 this.state.modalType === "deliverables" ?
+                <DeliverablesEditContainer projectId={this.props.projectId} /> : this.state.modalType === "users" ?
+                <EditUsersForm projectId={this.props.projectId} close={this.close} /> : this.state.modalType === "project" ?
+                <EditProjectDetails projectId={this.props.projectId} close={this.close} /> :
+                <CompletedProject projectId={this.props.projectId} close={this.close} />
+               } */}
+              </Modal.Description>
+            </Modal.Content>
+          </Modal>
         </div>
     )
   }

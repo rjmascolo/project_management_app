@@ -24,22 +24,10 @@ class Projects extends React.Component {
       <div id="dashboard-projects">
         <div id="dashboard-projects-header">
           <h1>Current Projects</h1>
-          <div>
-            <Button icon="add" circular onClick={this.show} />
-          </div>
         </div>
         <Item.Group divided>
           {projects}
         </Item.Group>
-
-        <Modal open={this.state.activeModal} onClose={this.close} >
-        <Modal.Header>Create A New Project</Modal.Header>
-        <Modal.Content scrolling >
-          <Modal.Description>
-            <CreateNewProject close={this.close} />
-          </Modal.Description>
-        </Modal.Content>
-        </Modal>
       </div>
 
     );
