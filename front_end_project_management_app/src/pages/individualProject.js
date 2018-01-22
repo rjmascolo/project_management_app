@@ -9,6 +9,7 @@ import RevisionsAccordian from '../containers/RevisionsAccordian'
 import DeliverablesEditContainer from '../containers/DeliverablesEditContainer'
 import EditUsersForm from '../forms/EditUsersForm'
 import EditProjectDetails from '../forms/EditProjectDetails'
+import CompletedProject from '../forms/CompletedProject'
 
 
 import '../css/individualProductPage.css'
@@ -52,6 +53,7 @@ class IndividualProject extends React.Component {
                       <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
                       <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
                       <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("users")} />
+                      <Dropdown.Item text='Project Complete' onClick={() => this.modalTrigger("completed project")} />
                     </Dropdown.Menu>
                   </Dropdown>
                 </div>
@@ -100,14 +102,19 @@ class IndividualProject extends React.Component {
 
        </div>
        <Modal open={this.state.modalOpen} onClose={this.close}>
-         <Modal.Header>{this.state.modalType === "deliverables" ? "Edit Deliverables" : this.state.modalType === "users" ? "Edit Users" : "Edit Project Details"}</Modal.Header>
+         <Modal.Header>
+           {this.state.modalType === "deliverables" ? "Edit Deliverables" :
+           this.state.modalType === "users" ? "Edit Users" :
+           this.state.modalType === "project" ? "Edit Project Details" : "Project Complete" }
+         </Modal.Header>
          <Modal.Content>
            <Modal.Description>
              {
               this.state.modalType === "deliverables" ?
              <DeliverablesEditContainer projectId={this.props.id} /> : this.state.modalType === "users" ?
-             <EditUsersForm projectId={this.props.id} close={this.close} /> :
-             <EditProjectDetails projectId={this.props.id} close={this.close} />
+             <EditUsersForm projectId={this.props.id} close={this.close} /> : this.state.modalType === "project" ?
+             <EditProjectDetails projectId={this.props.id} close={this.close} /> :
+             <CompletedProject projectId={this.props.id} close={this.close} />
             }
            </Modal.Description>
          </Modal.Content>

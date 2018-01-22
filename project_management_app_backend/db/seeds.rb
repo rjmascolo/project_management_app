@@ -133,7 +133,7 @@ projects =[
               name: "College Humor Custom Video",
               description: "Custom video created by College Humor's editorial team with assets",
               project_type: "Custom Content",
-              image: 'https://upload.wikimedia.org/wikipedia/commons/5/52/Collegehumor-logo.png',
+              image: 'http://2.media.collegehumor.cvcdn.com/40/31/fcae18a56d6fa5a826b10b0a003e539d.png',
               deliverables: [
                 {description: "2 draft scripts and set design mocks", date: Date.new(2018,2,18)},
                 {description: "Scripts in final form for shooting and approved set design mocks", date: Date.new(2018,2,26)},
@@ -153,7 +153,7 @@ projects =[
               name: "Bustle Custom Content",
               description: "3 custom articles and 3 social media posts ",
               project_type: "Custom Content",
-              image: 'http://www.crainsnewyork.com/apps/pbcsi.dll/storyimage/CN/20161130/REAL_ESTATE/161139991/AR/0/Bustle.jpg',
+              image: 'https://scontent-lga3-1.xx.fbcdn.net/v/t1.0-9/14433161_1436024763077752_3211430454327518092_n.png?oh=1f1033645aa8dc061b5d786e1a6ee756&oe=5B23A4B0',
               deliverables: [
                 {description: "3 drafts of custom articles", date: Date.new(2018,2,2)},
                 {description: "3 custom social media posts", date: Date.new(2018,2,7)},
