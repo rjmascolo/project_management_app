@@ -27,7 +27,6 @@ function mapStateToProps(state, props) {
   companies.forEach( company => {
     company.users = []
     users.forEach( user =>  {
-      debugger;
       if ( user.company_id === company.id ) {
         company.users.push(user);
       }

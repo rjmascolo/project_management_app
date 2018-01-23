@@ -106,6 +106,7 @@
   height:30em;
   overflow-y: scroll;
   background-color: white;
+  border-radius: .3em;
   /* box-shadow: 5px 10px #888888; */
 }
 

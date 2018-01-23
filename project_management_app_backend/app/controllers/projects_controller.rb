@@ -49,7 +49,7 @@ class ProjectsController < ApplicationController
           UserProject.create(project_type: "client", user_id: id, project_id: @project.id)
         end
       }
-      project_users = Project.find(@project.id).users
+      project_users = Project.find(@project.id).get_users
       render json: project_users
     else
       if @project.update(project_params)

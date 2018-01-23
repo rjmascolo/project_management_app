@@ -50,25 +50,29 @@ class IndivProjectHeader extends React.Component {
               </div>
               <div id="label-div">
                 <div>
-                  <Label as='a' color='grey' tag>{this.props.project ? this.props.project.project_type : null }</Label>
+                  <Label size="small" as='a' color='grey' tag>{this.props.project ? this.props.project.project_type : null }</Label>
                 </div>
               </div>
             </div>
             <div id="company-div">
+              <div id="company-div-inner">
               <b><p>Agencies</p></b>
-              <p>{this.props.project ?
-                this.props.project.campaign.agencies.map( agency =>  {
-                  return agency.description !== "client" ? <CompanyImage company={agency}/> : null
-                }
-              ): null }</p>
+                <p>{this.props.project ?
+                  this.props.project.campaign.agencies.map( agency =>  {
+                    return agency.description !== "client" ? <CompanyImage company={agency}/> : null
+                  }
+                ): null }</p>
+              </div>
             </div>
             <div id="company-div">
-              <b><p>Client</p></b>
-                <p>{this.props.project ?
-                this.props.project.campaign.agencies.map( agency =>  {
-                  return agency.description === "client" ? <CompanyImage company={agency}/> : null
-                }
-                ): null }</p>
+              <div id="company-div-inner" >
+                <b><p>Client</p></b>
+                  <p>{this.props.project ?
+                  this.props.project.campaign.agencies.map( agency =>  {
+                    return agency.description === "client" ? <CompanyImage company={agency}/> : null
+                  }
+                  ): null }</p>
+                </div>
             </div>
             <div>
               <Dropdown floating button className='icon' icon='setting' pointing="top right" >
@@ -81,9 +85,11 @@ class IndivProjectHeader extends React.Component {
             </div>
           </div>
           <Accordion>
-            <Accordion.Title active={this.state.accordionOpen} onClick={this.handleClick}>
-              <Icon name='dropdown' />
-              More Details
+            <Accordion.Title active={this.state.accordionOpen}>
+              <p onClick={this.handleClick} id="header-dropdown">
+                More Details
+                <Icon name='dropdown' />
+              </p>
             </Accordion.Title>
             <Accordion.Content active={this.state.accordionOpen}>
               <div id="project-details">
