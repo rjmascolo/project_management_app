@@ -55,7 +55,8 @@ export function campaignsReducer (state = [], action) {
   switch( action.type ) {
     case "FETCH_USER":
       return action.campaigns
-
+    case "CREATE_CAMPAIGN":
+      return [...state, action.campaign]
     default:
       return state;
   }

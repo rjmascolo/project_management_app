@@ -18,6 +18,10 @@ class CampaignsController < ApplicationController
     @campaign = Campaign.new(campaign_params)
 
     if @campaign.save
+
+      CompanyCampaign.create({campaign: @campaign, company_id:params[:current_company], company_type: "client" })
+      params[:campaignCompanies].each{ |id| CompanyCampaign.create({campaign: @campaign, company_id: id, company_type: "creative" }) }
+
       render json: @campaign, status: :created, location: @campaign
     else
       render json: @campaign.errors, status: :unprocessable_entity
@@ -46,6 +50,6 @@ class CampaignsController < ApplicationController
 
     # Only allow a trusted parameter "white list" through.
     def campaign_params
-      params.require(:campaign).permit(:name, :description, :date)
+      params.require(:campaign).permit(:name, :description, :launch_date, :end_date)
     end
 end

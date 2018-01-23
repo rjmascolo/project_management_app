@@ -223,3 +223,18 @@ export const fetchCompanyData = (id) => {
     );
   };
 }
+
+export const createCampaign = (data) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_UPDATING_DELIVERABLE' });
+    return fetch(`${API_URL}campaigns/`, {
+      method:'POST',
+      headers: headers,
+      body:JSON.stringify(data)
+    }).then(response => response.json())
+      .then( campaign => {
+        dispatch({ type: 'CREATE_CAMPAIGN' , campaign: campaign });
+      }
+    );
+  };
+}

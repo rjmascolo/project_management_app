@@ -101,6 +101,7 @@ class CreateNewProject extends React.Component {
 
   render() {
     const errors = this.state.errors
+    console.log(this.props)
     return(
       <div>
         <div className="ui form">

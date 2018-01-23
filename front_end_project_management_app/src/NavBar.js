@@ -10,6 +10,7 @@ import { withRouter } from 'react-router-dom'
 
 import SearchBar from './forms/SearchBar'
 import CreateNewProject from './forms/CreateNewProject'
+import CreateCampaign from './forms/CreateCampaign'
 
 import { Icon, Dropdown, Modal } from 'semantic-ui-react'
 import './css/dashboard.css'
@@ -17,7 +18,7 @@ import './css/dashboard.css'
 class NavBar extends Component {
 
   state = {
-    modalType: null,
+    modalType: 'campaign',
     modalOpen: false,
     accordionOpen: false,
     activeItem: 'home'
@@ -57,7 +58,7 @@ class NavBar extends Component {
               <Dropdown floating icon='setting' >
                 <Dropdown.Menu>
                   <Dropdown.Item text='Create Project' onClick={() => this.modalTrigger("project")} />
-                  <Dropdown.Item text='Create New Campaign' onClick={() => this.modalTrigger("deliverables")} />
+                  <Dropdown.Item text='Create New Campaign' onClick={() => this.modalTrigger("campaign")} />
                   <Dropdown.Item text='Add Users' onClick={() => this.modalTrigger("users")} />
                 </Dropdown.Menu>
               </Dropdown>
@@ -76,14 +77,11 @@ class NavBar extends Component {
             </Modal.Header>
             <Modal.Content>
               <Modal.Description>
-                <CreateNewProject close={this.close} />
-                {/* {
-                 this.state.modalType === "deliverables" ?
-                <DeliverablesEditContainer projectId={this.props.projectId} /> : this.state.modalType === "users" ?
-                <EditUsersForm projectId={this.props.projectId} close={this.close} /> : this.state.modalType === "project" ?
-                <EditProjectDetails projectId={this.props.projectId} close={this.close} /> :
-                <CompletedProject projectId={this.props.projectId} close={this.close} />
-               } */}
+                {
+                 this.state.modalType === "campaign" ?
+                <CreateCampaign close={this.close} /> : this.state.modalType === "project" ?
+                <CreateNewProject close={this.close} /> : null
+               }
               </Modal.Description>
             </Modal.Content>
           </Modal>
