@@ -14,11 +14,19 @@
   margin: 1em 1em;
 }
 
-#outer-project-accordian {
-  width: 55%;
-  margin: 1em 1em;
-  background: white;
+#revision-tabs {
+  background-color: white;
   padding: 1em 1em;
+  border-bottom-right-radius: .5em;
+  border-bottom-left-radius: .5em;
+  box-shadow: 5px 10px #888888;
+  /* width: 55%; */
+}
+
+#outer-project-accordian {
+  width: 60%;
+  margin: 1em 1em 4em 1em;
+  background: white;
   border-radius: .5em;
   box-shadow: 5px 10px #888888;
 }

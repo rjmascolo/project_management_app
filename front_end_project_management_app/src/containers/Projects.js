@@ -25,7 +25,7 @@ class Projects extends React.Component {
         <div id="dashboard-projects-header">
           <h1>Current Projects</h1>
         </div>
-        <Item.Group divided>
+        <Item.Group divided id="no-margin">
           {projects}
         </Item.Group>
       </div>

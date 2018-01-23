@@ -52,3 +52,16 @@ export const restrictCharToLength = (string, charLength) => {
 
   return x.slice(0,wordCount+1).join(' ') + "\u2026"
 }
+
+
+export const sortDeliverableByData = (array) => {
+  return array.sort( ( a, b) => {
+    if (a.date < b.date) {
+      return -1;
+    } else if (a.date > b.date) {
+      return 1;
+    } else {
+      return 0;
+    }
+  })
+}

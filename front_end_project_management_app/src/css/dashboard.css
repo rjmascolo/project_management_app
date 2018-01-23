@@ -61,6 +61,11 @@
   box-shadow: 5px 10px #888888;
 }
 
+#no-margin {
+  margin:0;
+  padding: .5em 0 .5em 0;
+}
+
 #dashboard-projects-header {
   padding: 1em 0 .5em 0;
   /* display:flex; */
@@ -130,6 +135,53 @@
 
 #notification-item {
   border-bottom: 1px solid rgba(34,36,38,.15)
+}
+
+#dashboard-project-image {
+  height: 3em;
+  width: 3em;
+  margin: 0 1.5em 0 0;
+}
+
+#dashboard-title-description-image {
+  display: flex;
+  justify-content: flex-start;
+  vertical-align: top;
+  text-align: left;
+  padding: .5em 0 0 .5em;
+  align-items: center;
+  /* width: 60%; */
+}
+
+#dashboard-title-description-image p {
+  font-size: .8em;
+  margin: 0;
+}
+
+#dashboard-title-description-image h2 {
+  font-size: 1.2em;
+}
+
+#dashboard-label-div-project {
+  padding-top: .5em
+}
+
+#dashboard-content {
+
+}
+
+#space-between {
+  display: flex;
+  justify-content: space-between;
+}
+
+#due-next {
+  display: flex;
+  justify-content:flex-end;
+}
+#due-next-details {
+  text-align: left;
+  padding-left: .3em
 }
 
 time.icon

@@ -1,5 +1,5 @@
 import React, { Component } from 'react'
-import { Accordion, Modal, Button, Segment, Dimmer, Loader } from 'semantic-ui-react'
+import { Accordion, Modal, Button, Segment, Dimmer, Loader, Tab } from 'semantic-ui-react'
 
 import AddRevisionItem from '../forms/AddRevisionItem'
 import CreateRevision from '../forms/CreateRevision'
@@ -56,44 +56,33 @@ class RevisionsAccordian extends Component {
 
   render() {
     const { activeIndex } = this.state
+
     const revisions = this.props.revisions? this.props.revisions.map( (revision, index ) => {
       return(
-        <ProjectAccordianItem
-          key={index}
-          activeIndex={activeIndex}
-          index={index}
-          handleClick={this.handleClick}
-          revision={revision}
-          show={this.show}
-          close={this.close}
-          projectId={this.props.projectId}
-        />
+      { menuItem: revision.revision_type === "creative brief" ? "Creative Brief" : `Revision #${index}`,
+        render: () => <Tab.Pane attached={false}>
+          <ProjectAccordianItem
+            key={index}
+            activeIndex={activeIndex}
+            index={index}
+            handleClick={this.handleClick}
+            revision={revision}
+            show={this.show}
+            close={this.close}
+            projectId={this.props.projectId}
+          />
+        </Tab.Pane> }
       )
-    }): (
-      <div>
-      <Accordion.Title active={true} id="revision-title">
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted>Loading</Loader>
-          </Dimmer>
-        </Segment>
-      </Accordion.Title>
-      <Accordion.Content active={true} id="accordian-content">
-        <Segment>
-          <Dimmer active inverted>
-            <Loader inverted>Loading</Loader>
-          </Dimmer>
-        </Segment>
-      </Accordion.Content>
-    </div>
-    )
+    }): (null)
     return (
       <div id="accordion-container">
         <div id="accordian-header">
           <Button id="revision-button" onClick={this.showRevision} >New Revision</Button>
         </div>
-        <Accordion styled id="accordian-seman">
-          {revisions}
+
+        {/* <Accordion styled id="accordian-seman"> */}
+          <Tab menu={{ secondary: true, pointing: true }} panes={revisions} id="revision-tabs" />
+
             <Modal size="small" open={this.state.revisionItemModal.open} onClose={this.close}>
                <Modal.Header>Enter In Documents</Modal.Header>
                <Modal.Content image>
@@ -119,7 +108,7 @@ class RevisionsAccordian extends Component {
                   </Modal.Description>
                 </Modal.Content>
               </Modal>
-        </Accordion>
+        {/* </Accordion> */}
       </div>
     )
   }
