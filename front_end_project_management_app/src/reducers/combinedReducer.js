@@ -114,11 +114,17 @@ function revisionsReducer(state, action) {
 
   case "ADD_REVISION":
     return [...state, {...action.revision.revision, comments:[], revision_items:[]}]
-
+  case "DELETE_COMMENT":
+    revisionIndex = state.findIndex(revision => revision.id === action.comment.revision_id);
+    newRevisionItems = commentsReducer(state[revisionIndex].comments, action);
+    return [
+        ...state.slice(0, revisionIndex),
+        { ...state[revisionIndex], comments: newRevisionItems },
+        ...state.slice(revisionIndex + 1)
+      ]
   case "ADD_REVISION_ITEM":
   case "DELETE_REVISION_ITEM":
   case "ADD_COMMENT":
-  case "DELETE_COMMENT":
     let revisionIndex;
     let newRevisionItems;
     if (action.item){
