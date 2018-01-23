@@ -22,12 +22,12 @@ class ProjectHeaderUserInfo extends React.Component {
 
 function mapStateToProps(state, props) {
   let data =  state.projects.length > 0 ? state.projects.find(project => project.id === parseInt(props.projectId)) : []
-
   let companies =  state.projects.length > 0 ? data.campaign.agencies : []
   let users = state.projects.length > 0 ? data.get_users : []
   companies.forEach( company => {
     company.users = []
     users.forEach( user =>  {
+      debugger;
       if ( user.company_id === company.id ) {
         company.users.push(user);
       }

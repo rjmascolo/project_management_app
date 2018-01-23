@@ -12,6 +12,7 @@ class UserList extends React.Component {
     const usersList = this.props.users ? this.props.users.map( (user, i) => {
       return <UserItem key={i} name={`${user.first_name} ${user.last_name}`} position={user.position} image={user.image} />;
     }) : null
+    console.log(this.props.user)
     return(
       <div id="users-container">
         <List celled id="user-container-border">

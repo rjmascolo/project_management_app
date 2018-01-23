@@ -5,7 +5,7 @@ import moment from 'moment';
 
 class DelieverableItem extends React.Component{
   fixDate = (date) => {
-    return moment(date).format("MMM Do")
+    return moment(date).format("MMM D").split(" ")
   }
   dateFromNow = (date) => {
     return moment(date).fromNow()
@@ -24,6 +24,7 @@ class DelieverableItem extends React.Component{
   }
 
   render() {
+    const date = this.fixDate(this.props.deliverable.date);
     return(
       <div id="deliverable-item-container">
           {this.props.deliverable.done ? (
@@ -32,16 +33,15 @@ class DelieverableItem extends React.Component{
             </div>
           ) : (
             <div id="icon-container">
-              <Icon name='calendar' size="big" color={this.calendarColor(this.props.deliverable.date)} circular inverted/>
-              <br/>
-              {/* <i>{this.dateFromNow(this.props.deliverable.date)}</i> */}
+              <time datetime="2014-09-20" class="icon">
+                <em>Saturday</em>
+                <strong>{date[0]}</strong>
+                <span>{date[1]}</span>
+              </time>
             </div>
           )}
         <div id="deliverable-description-container">
           {this.props.deliverable.description}
-          <div id="delivery-date-info">
-            <i>Due {this.fixDate(this.props.deliverable.date)}</i>
-          </div>
         </div>
       </div>
     )

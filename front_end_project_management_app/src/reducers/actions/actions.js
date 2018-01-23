@@ -52,6 +52,16 @@ export const getCurrentUser = () => {
     headers: headers } ).then(res => res.json())
 }
 
+export const createUser = (data) => {
+  return (dispatch) => {
+    return fetch(`${API_URL}users`, {
+      method: 'POST',
+      headers: headers,
+      body: JSON.stringify(data)
+    }).then(res => res.json())
+  }
+}
+
 export const createRevisionAsset = (item, projectId) => {
   return (dispatch) => {
     dispatch({ type: 'START_ADDING_REVISION_ITEM' });
