@@ -116,7 +116,17 @@ class RevisionsAccordian extends Component {
 
 function mapStateToProps(state, props) {
   return {
-    revisions: state.projects.length > 0 ? (state.projects.find(project => project.id === parseInt(props.projectId)).revisions ) : null
+    revisions: state.projects.length > 0 ?
+    (state.projects.find(project => project.id === parseInt(props.projectId)).revisions.sort((a, b) => {
+      if (a.created_at < b.created_at) {
+        return -1
+      }else if (a.created_at > b.created_at) {
+      return 1
+        } else {
+      return 0
+        }
+    }) )
+    : null
   }
 }
 

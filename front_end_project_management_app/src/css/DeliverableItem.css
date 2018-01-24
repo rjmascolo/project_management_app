@@ -12,12 +12,13 @@
   background-color: white;
   border-radius: .5em;
 }
+
 #deliverable-item-container {
   display: flex;
   justify-content: space-around;
   border-bottom: 1px solid rgba(34,36,38,.15);
-  padding: .5em 0;
 }
+#deliverable-item-container:last-child { border-bottom: none; }
 
 #icon-container {
   width: 30%;
@@ -31,7 +32,7 @@
 #deliverable-description-container {
   width:70%;
   text-align: left;
-  padding: 1em 1em;
+  padding: .7em .7em;
   background-color: white;
   border-radius: .5em;
 }

@@ -17,10 +17,8 @@ class RecentActivityDashboard extends React.Component {
         <div id="notification-header">
           <h3>Recent Activity</h3>
         </div>
-        <Feed id="notification-feed">
           {feedItems.length > 0 ? <Feed id="notification-feed"> {feedItems} </Feed>  :
           <div id="notification-feed"><p>There has been no recent activity</p></div>}
-        </Feed>
       </div>
     )
   }

@@ -35,6 +35,7 @@ class LogIn extends React.Component {
 
   render() {
     return (
+      <div id="fill-page">
       <div id="login-form">
       <div className="ui middle aligned center aligned grid">
         <div className="column">
@@ -70,6 +71,7 @@ class LogIn extends React.Component {
             New to us? <a href="/sign-up">Sign Up</a>
           </div>
         </div>
+      </div>
       </div>
       </div>
     )

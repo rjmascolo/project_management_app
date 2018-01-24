@@ -44,7 +44,7 @@ class NavBar extends Component {
 
 
             <div class="item">
-              <NavLink to={`/dashboard`}><Icon name="home" size="large" color="teal"/></NavLink>
+              <NavLink to={`/dashboard`}><Icon name="home" size="large" id="home-nav-link" /></NavLink>
             </div>
             {/* <Menu.Item name='messages' active={activeItem === 'messages'} onClick={this.handleItemClick} /> */}
 
@@ -62,7 +62,7 @@ class NavBar extends Component {
 
               <Menu.Item>
                 {!this.props.user ?
-                  <div onClick={this.handleClick} className="ui primary button teal">Log In</div> :
+                  <div onClick={this.handleClick} className="ui primary button" id="login-button">Log In</div> :
                   <div onClick={this.handleClick} className="ui button">Log Out</div> }
               </Menu.Item>
             </Menu.Menu>

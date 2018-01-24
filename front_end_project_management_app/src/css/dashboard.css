@@ -15,6 +15,10 @@
   padding: 1em 0 0 0;
 }
 
+#home-nav-link {
+  color: black;
+}
+
 #dashboard-header {
   /* border-top: .3em solid #9E4B3F; */
   height: 5em;
@@ -40,10 +44,7 @@
   box-shadow: 5px 10px #888888;
 }
 
-#upcoming-deliverable-container {
-  /* height: 50em; */
-  /* overflow-y: scroll; */
-}
+
 
 #upcoming-deliverable-item-container {
   display: flex;
@@ -51,6 +52,8 @@
   border-bottom: 1px solid rgba(34,36,38,.15);
   padding: .5em 0;
 }
+
+#upcoming-deliverable-item-container:last-child { border-bottom: none; }
 
 #dashboard-projects {
   background-color: white;
@@ -121,7 +124,7 @@
   height: 34.5em;
   padding: 1em .5em;
   margin-bottom:2em;
-  overflow:hidden;
+  /* overflow:hidden; */
   border-radius: .5em;
   box-shadow: 5px 10px #888888;
   background-color: #E26D5A
