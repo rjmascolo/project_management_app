@@ -56,7 +56,6 @@ class NavBar extends Component {
                 <Dropdown.Menu>
                   <Dropdown.Item text='Create Project' onClick={() => this.modalTrigger("project")} />
                   <Dropdown.Item text='Create New Campaign' onClick={() => this.modalTrigger("campaign")} />
-                  <Dropdown.Item text='Add Users' onClick={() => this.modalTrigger("users")} />
                 </Dropdown.Menu>
               </Dropdown>
 

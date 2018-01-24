@@ -65,3 +65,14 @@ export const sortDeliverableByData = (array) => {
     }
   })
 }
+
+export const createCampaignFormValidation = (formData) => {
+  let errors = {}
+  if (formData.name == ''){
+    errors["name"] = "Needs to be filled in";
+  }
+  if (formData.description == ''){
+    errors["name"] = "Needs to be filled in";
+  }
+  return errors
+}

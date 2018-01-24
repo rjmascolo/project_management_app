@@ -18,22 +18,28 @@ class CreateCampaign extends React.Component {
       current_company: this.props.current_company,
       startDate: moment(),
       endDate: moment(),
-      campaignCompanies: []
+      campaignCompanies: [],
+      errors: {}
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
     let x = this.state
-    this.props.createCampaign(
-      {
-        name: x.name,
-        current_company: x.current_company,
-        description: x.description,
-        launch_date:x.endDate._d,
-        end_date: x.startDate._d,
-        campaignCompanies: x.campaignCompanies
-      })
-    this.props.close()
+    const errors = createCampaignFormValidation(x)
+    if (errors.keys === undefined) {
+      this.props.createCampaign(
+        {
+          name: x.name,
+          current_company: x.current_company,
+          description: x.description,
+          launch_date:x.endDate._d,
+          end_date: x.startDate._d,
+          campaignCompanies: x.campaignCompanies
+        })
+      this.props.close()
+    } else {
+      this.setState({errors: errors})
+    }
   }
 
   handleChange = (e) => {

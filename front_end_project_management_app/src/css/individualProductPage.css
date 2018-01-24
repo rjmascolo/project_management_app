@@ -48,3 +48,11 @@
   justify-content: space-between;
   margin-bottom: 0;
 }
+
+#asset-item {
+  color: black;
+}
+
+#asset-item:hover {
+  color: #00b5ad;
+}

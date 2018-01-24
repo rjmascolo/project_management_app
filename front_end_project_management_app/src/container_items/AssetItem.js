@@ -27,7 +27,7 @@ class AssetItem extends React.Component {
   return (
     <Label image>
       {this.fileType(this.props.item.file_name)}
-     <a href={this.props.item.file_url} target="_blank" >{this.props.item.file_name}</a>
+     <a href={this.props.item.file_url} target="_blank" id="asset-item" >{this.props.item.file_name}</a>
     <Icon name='delete' onClick={this.deleteFile} />
     </Label>
     )
