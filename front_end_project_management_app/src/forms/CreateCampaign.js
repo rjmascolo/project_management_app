@@ -5,6 +5,9 @@ import { connect } from 'react-redux'
 
 import { createCampaign } from '../reducers/actions/actions'
 
+import { createCampaignFormValidation } from '../services/helpers.js'
+
+
 import DatePicker from 'react-datepicker';
 import moment from 'moment';
 
@@ -69,18 +72,30 @@ class CreateCampaign extends React.Component {
               placeholder="i.e. 3 mocks for Q1 banners"
             />
             </div>
-            <div className="field" >
-              <label>Start Date</label>
-              <DatePicker
-                selected={this.state.startDate}
-                onSelect={(date, string) => this.datePickerChange(date, "startDate")}/>
-            </div>
-            <div className="field" >
-              <label>End Date</label>
-              <DatePicker
-                selected={this.state.endDate}
-                name="end_date"
-                onSelect={(date, event) => this.datePickerChange(date, "endDate")}/>
+            <div id="campaign-dates">
+              <div className="field" id="campaign-date-margins" >
+                <label>Start Date</label>
+                <DatePicker
+                  selected={this.state.startDate}
+                  onSelect={(date, string) => this.datePickerChange(date, "startDate")}/>
+              </div>
+              <div className="field" >
+                <label>End Date</label>
+                <DatePicker
+                  selected={this.state.endDate}
+                  name="end_date"
+                  onSelect={(date, event) => this.datePickerChange(date, "endDate")}/>
+              </div>
+              <div>
+                <Dropdown placeholder='Add Companies' multiple search selection
+                  id="add-companies-campaign"
+                  onChange={this.handleUserDropDownChange}
+                  value={this.state.campaignCompanies}
+                  options={this.props.companies.map(company => {
+                    return {key: company.id , value: company.id, text: company.name }
+                  })}
+                />
+              </div>
             </div>
             <div className="field">
             <label>Campaign Description </label>
@@ -92,16 +107,8 @@ class CreateCampaign extends React.Component {
               placeholder="i.e. 3 mocks for Q1 banners"
             />
             </div>
-            <Dropdown placeholder='Add Companies' multiple search selection
-              id="add-users-project"
-              onChange={this.handleUserDropDownChange}
-              value={this.state.campaignCompanies}
-              options={this.props.companies.map(company => {
-                return {key: company.id , value: company.id, text: company.name }
-              })}
-            />
             </div>
-          <Button onClick={this.handleSubmit} floated="right" color="teal">Save</Button>
+          <Button onClick={this.handleSubmit} floated="right" color="teal" id="button-margin" >Save</Button>
         </form>
       </div>
     )

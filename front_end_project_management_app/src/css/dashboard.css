@@ -179,6 +179,16 @@
   justify-content: space-between;
 }
 
+#campaign-dates {
+  display:flex;
+  justify-content: flex-start;
+  align-items: center;
+}
+
+#campaign-date-margins {
+  margin-right: 1em;
+}
+
 #due-next {
   display: flex;
   justify-content:flex-end;
@@ -187,6 +197,23 @@
   text-align: left;
   padding-left: .3em
 }
+
+#add-companies-campaign{
+  max-width: 38em;
+  min-width: 38em;
+  margin-top: .4em;
+  margin-left: 1em;
+}
+
+#button-margin {
+  margin-bottom: 1em;
+}
+
+#icon-larger i {
+  font-size: 1.5em;
+  padding-left: .3em;
+}
+
 
 time.icon
 {

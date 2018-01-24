@@ -52,7 +52,7 @@ class NavBar extends Component {
               <Menu.Item>
                 <SearchBar />
               </Menu.Item>
-              <Dropdown item icon="setting" >
+              <Dropdown item icon="setting" id="icon-larger" >
                 <Dropdown.Menu>
                   <Dropdown.Item text='Create Project' onClick={() => this.modalTrigger("project")} />
                   <Dropdown.Item text='Create New Campaign' onClick={() => this.modalTrigger("campaign")} />
