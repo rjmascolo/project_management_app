@@ -1,6 +1,8 @@
 import React from 'react'
 import { Input, Button, Checkbox, Label } from 'semantic-ui-react'
 
+import { editDeliverablesValidation } from '../services/helpers.js'
+
 import { createRevision, updateDeliverable } from '../reducers/actions/actions'
 import { connect } from 'react-redux'
 import { withRouter } from 'react-router'
@@ -22,14 +24,18 @@ class EditDeliverables extends React.Component {
   handleSubmit = (e) => {
     e.preventDefault()
     let x = this.state
-    this.props.updateDeliverable(
-      {
-        id: x.id,
-        description: x.description,
-        date:x.date._d,
-        done: x.done
-      },
-        this.props.projectId)
+    let errors  = editDeliverablesValidation(x)
+    if (!Object.keys(errors)) {
+      this.props.updateDeliverable(
+        {
+          id: x.id,
+          description: x.description,
+          date:x.date._d,
+          done: x.done
+        },
+          this.props.projectId)
+    }
+
     // this.props.close()
   }
 

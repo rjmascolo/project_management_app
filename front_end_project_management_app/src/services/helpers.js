@@ -77,3 +77,12 @@ export const createCampaignFormValidation = (formData) => {
 
   return errors
 }
+
+
+export const editDeliverablesValidation = (data) => {
+  let errors = {}
+  if (data.description === '') {
+    errors["description"] = "Needs to be filled in";
+  }
+  return errors
+}
