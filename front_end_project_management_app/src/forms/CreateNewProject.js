@@ -40,7 +40,7 @@ class CreateNewProject extends React.Component {
 
     const state = this.state
     const errors = createProjectFormValidation(state)
-    if (errors.keys === undefined) {
+    if (Object.keys(errors) === undefined) {
       this.props.createNewProject(state, this.props.current_user).then(x => this.props.history.push(`/projects/${x.id}`))
 
       this.props.close()
@@ -144,13 +144,15 @@ class CreateNewProject extends React.Component {
               />
                 {errors.projectUsers ? <Label basic color='red' basic color='red' pointing>{errors.projectUsers}</Label> : null}
             </div>
-            <Dropdown fluid selection
-              placeholder='Select Campaign'
-              name="projectCampaign"
-              value={this.state.projectCampaign}
-              onChange={this.handleDropDownChange}
-              options={this.props.campaigns.map(campaign => Object.assign({text: campaign.name}, {value: campaign.id})) } />
-              {errors.projectType ? <Label basic color='red' pointing>{errors.projectCampaign}</Label> : null}
+            <div id="select-campaign-project">
+              <Dropdown fluid selection
+                placeholder='Select Campaign'
+                name="projectCampaign"
+                value={this.state.projectCampaign}
+                onChange={this.handleDropDownChange}
+                options={this.props.campaigns.map(campaign => Object.assign({text: campaign.name}, {value: campaign.id})) } />
+                {errors.projectCampaign ? <Label basic color='red' pointing floated="right">{errors.projectCampaign}</Label> : null}
+              </div>
           </div>
         </div>
           <div>
@@ -186,7 +188,7 @@ class CreateNewProject extends React.Component {
                 )
               })}
               <br/>
-              <Button onClick={this.handleSubmit} color="teal" floated="right" > Submit </Button>
+              <Button onClick={this.handleSubmit} color="teal" floated="right" id="button-margin" > Submit </Button>
           </div>
           </div>
         </div>

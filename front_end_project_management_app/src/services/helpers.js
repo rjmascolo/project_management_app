@@ -72,7 +72,8 @@ export const createCampaignFormValidation = (formData) => {
     errors["name"] = "Needs to be filled in";
   }
   if (formData.description == ''){
-    errors["name"] = "Needs to be filled in";
+    errors["description"] = "Needs to be filled in";
   }
+
   return errors
 }

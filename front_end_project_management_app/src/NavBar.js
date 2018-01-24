@@ -72,7 +72,7 @@ class NavBar extends Component {
               this.state.modalType === "users" ? "Edit Users" :
               this.state.modalType === "project" ? "Create A New Project" : "Project Complete" }
             </Modal.Header>
-            <Modal.Content>
+            <Modal.Content scrolling >
               <Modal.Description>
                 {
                  this.state.modalType === "campaign" ?

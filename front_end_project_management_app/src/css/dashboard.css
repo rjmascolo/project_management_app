@@ -214,6 +214,10 @@
   padding-left: .3em;
 }
 
+#select-campaign-project {
+  width:50%;
+}
+
 
 time.icon
 {

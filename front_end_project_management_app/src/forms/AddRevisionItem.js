@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button } from 'semantic-ui-react'
+import { Input, Button, Label } from 'semantic-ui-react'
 
 import { createRevisionAsset } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
@@ -8,7 +8,8 @@ class AddRevisionItem extends React.Component {
   state ={
       file_text:"",
       file_upload: null,
-      link:''
+      link:'',
+      errors: false
   }
 
   handleFileSubmit = (e) => {
@@ -17,20 +18,24 @@ class AddRevisionItem extends React.Component {
     var file = this.state.file_upload
     var item = "file"
 
-    var formData = new FormData();
+    if (file) {
+      var formData = new FormData();
 
-    formData.append("revision_item[file_upload]", file);
-    formData.append("revision_item[item_type]", item);
-    formData.append("revision_item[revision_id]", this.props.revisionId)
-    formData.append("revision_item[file_name]", file.name)
-    formData.append("revision_item[user_id]", this.props.user.id)
-    formData.append("revision_item[project_id]", parseInt(this.props.projectId))
+      formData.append("revision_item[file_upload]", file);
+      formData.append("revision_item[item_type]", item);
+      formData.append("revision_item[revision_id]", this.props.revisionId)
+      formData.append("revision_item[file_name]", file.name)
+      formData.append("revision_item[user_id]", this.props.user.id)
+      formData.append("revision_item[project_id]", parseInt(this.props.projectId))
 
-    this.props.createRevisionAsset(formData, parseInt(this.props.projectId))
+      this.props.createRevisionAsset(formData, parseInt(this.props.projectId))
 
-    this.setState({ file_upload: null, file_text:""})
-    this.props.closeItemModule()
-    this.props.triggerRerender()
+      this.setState({ file_upload: null, file_text:""})
+      this.props.closeItemModule()
+    } else {
+      this.setState({errors: true})
+    }
+
   }
 
   handleLinkSubmit = (e) => {
@@ -58,6 +63,7 @@ class AddRevisionItem extends React.Component {
           <input name="file" type="file" onChange={this.handleFileChange} value={this.state.file_text}/>
           <Button type="submit" color="teal">Upload</Button>
         </form>
+        {this.state.errors ? <Label basic color='red' pointing>You need to enter a file</Label> : null}
       </div>
     )
   }

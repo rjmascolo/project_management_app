@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input, Button, Checkbox } from 'semantic-ui-react'
+import { Input, Button, Checkbox, Label } from 'semantic-ui-react'
 
 import { createRevision, updateDeliverable } from '../reducers/actions/actions'
 import { connect } from 'react-redux'
@@ -11,21 +11,27 @@ import '../css/RevisionCreateForm.css'
 class CreateRevision extends React.Component {
   state ={
       description:'',
-      forDeliverable: true
+      forDeliverable: true,
+      errors: false
   }
 
 
   handleSubmit = (e) => {
     e.preventDefault()
     const state = this.state
-    this.props.createRevision({description: state.description, revision_type: 'revision', project_id: this.props.projectId, user: this.props.user})
-    this.setState({description: '', forDeliverable: true})
-    if(this.props.deliverable) {
-      let newDeliverable = this.props.deliverable
-      newDeliverable.done = true
-      this.props.updateDeliverable(newDeliverable, this.props.projectId)
+    if (state.description !== '') {
+      this.props.createRevision({description: state.description, revision_type: 'revision', project_id: this.props.projectId, user: this.props.user})
+      this.setState({description: '', forDeliverable: true})
+      if(this.props.deliverable) {
+        let newDeliverable = this.props.deliverable
+        newDeliverable.done = true
+        this.props.updateDeliverable(newDeliverable, this.props.projectId)
+      }
+        this.props.closeRevision()
+    } else {
+      this.setState({errors: true})
     }
-      this.props.closeRevision()
+
   }
 
   handleChange = (e) => {
@@ -44,6 +50,7 @@ class CreateRevision extends React.Component {
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
           <div className="field" >
+            {this.state.errors ? <Label basic color='red' >You need to enter a description</Label> : null}
             <label>Revision Description</label>
             <textarea id="textarea-revision-description" name="description" onChange={this.handleChange} value={this.state.description} ></textarea>
           </div>

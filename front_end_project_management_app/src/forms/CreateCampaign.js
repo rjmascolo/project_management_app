@@ -29,7 +29,7 @@ class CreateCampaign extends React.Component {
     e.preventDefault()
     let x = this.state
     const errors = createCampaignFormValidation(x)
-    if (errors.keys === undefined) {
+    if (Object.keys(errors) === undefined) {
       this.props.createCampaign(
         {
           name: x.name,
@@ -58,6 +58,7 @@ class CreateCampaign extends React.Component {
   }
 
   render() {
+    const errors = this.state.errors
     return(
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
@@ -71,6 +72,7 @@ class CreateCampaign extends React.Component {
               value={this.state.name}
               placeholder="i.e. 3 mocks for Q1 banners"
             />
+            {errors.name ? <Label basic color='red' pointing>{errors.name}</Label> : null}
             </div>
             <div id="campaign-dates">
               <div className="field" id="campaign-date-margins" >
@@ -106,6 +108,8 @@ class CreateCampaign extends React.Component {
               value={this.state.description}
               placeholder="i.e. 3 mocks for Q1 banners"
             />
+            {errors.description ? <Label basic color='red' pointing>{errors.description}</Label> : null}
+
             </div>
             </div>
           <Button onClick={this.handleSubmit} floated="right" color="teal" id="button-margin" >Save</Button>
