@@ -30,11 +30,13 @@ export function deliverablesReducer(state, action) {
   }
 }
 
-export function usersReducer(state, action) {
+export function usersReducer(state = [], action) {
   switch(action.type) {
 
     case 'UPDATE_PROJECT_USERS':
       return action.users;
+    case 'FETCH_CAMPAIGN_USERS':
+      return action.users
 
     default:
       return state

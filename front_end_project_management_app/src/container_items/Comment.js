@@ -35,12 +35,12 @@ class Comment extends React.Component {
     <div id="single-comment">
       <div id="single-comment-header">
           <div id="comment-username">
-            <Image avatar src={this.props.comments_user.image} />
-            <p id="user-name-text">{this.props.comments_user.first_name} {this.props.comments_user.last_name}</p>
+            <Image avatar src={this.props.comments_user ? this.props.comments_user.image : null} />
+            <p id="user-name-text">{this.props.comments_user ? this.props.comments_user.first_name : null} {this.props.comments_user ? this.props.comments_user.last_name : null}</p>
             <p id="timestamp-text" > &#9702; {moment(this.props.comment.created_at).fromNow()}</p>
           </div>
         <div>
-          {this.props.current_user.id === this.props.comments_user.id ? (
+          { this.props.comments_user && this.props.current_user.id === this.props.comments_user.id ? (
             <Button.Group basic size='small'>
               <Button icon onClick={this.handleEdit} compact>
                 <Icon name='edit' color="grey" />
@@ -62,7 +62,7 @@ class Comment extends React.Component {
 
 function mapStateToProps(state, props) {
   return {
-    comments_user: state.projects ? state.projects.find(project => project.id === parseInt(props.projectId)).get_users.find( user => user.id === props.comment.user_id) : null,
+    comments_user: state.users ? state.users.find( user => user.id === props.comment.user_id) : null,
     current_user: state.user ? state.user : null
   }
 }

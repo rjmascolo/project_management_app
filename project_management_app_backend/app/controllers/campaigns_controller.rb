@@ -1,5 +1,5 @@
 class CampaignsController < ApplicationController
-  before_action :set_campaign, only: [:show, :update, :destroy]
+  before_action :set_campaign, only: [:show, :update, :destroy, :get_campaign_users]
 
   # GET /campaigns
   def index
@@ -11,6 +11,11 @@ class CampaignsController < ApplicationController
   # GET /campaigns/1
   def show
     render json: @campaign, includes: '**'
+  end
+
+  def get_campaign_users
+    users = @campaign.companies.map{ |company| company.users.map{ |user| user.slice(:id, :email, :first_name, :last_name, :position, :image, :company_id)} }.flatten
+    render json: users
   end
 
   # POST /campaigns

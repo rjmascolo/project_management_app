@@ -24,7 +24,7 @@ export function fetchUser(id) {
         const campaigns = user.current_campaigns
         const company = user.company
         dispatch({ type: 'FETCH_USER', user: newUser, projects: projects, campaigns: campaigns, company: company })
-        return newUser.company.id
+        return campaigns[0].id
         }
        }
     );
@@ -228,6 +228,7 @@ export const fetchCompanyData = (id) => {
     return fetch(`${API_URL}companies/${id}`)
       .then(response => response.json())
       .then( company => {
+        debugger;
         dispatch({ type: 'FETCH_COMPANY' , company });
       }
     );
@@ -244,6 +245,17 @@ export const createCampaign = (data) => {
     }).then(response => response.json())
       .then( campaign => {
         dispatch({ type: 'CREATE_CAMPAIGN' , campaign: campaign });
+      }
+    );
+  };
+}
+
+export const getCampaignUsers = (id) => {
+  return (dispatch) => {
+    dispatch({ type: 'START_UPDATING_DELIVERABLE' });
+    return fetch(`${API_URL}campaign-users/${id}`).then(response => response.json())
+      .then( campaignUsers => {
+        dispatch({ type: 'FETCH_CAMPAIGN_USERS' , users: campaignUsers });
       }
     );
   };

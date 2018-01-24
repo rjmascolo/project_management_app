@@ -1,5 +1,5 @@
 import React from 'react'
-import { Input } from 'semantic-ui-react'
+import { Input, Button } from 'semantic-ui-react'
 
 import { createRevisionAsset } from '../reducers/actions/actions'
 import {connect} from 'react-redux'
@@ -56,18 +56,7 @@ class AddRevisionItem extends React.Component {
         <form onSubmit={this.handleFileSubmit}>
           <h4>Enter File</h4>
           <input name="file" type="file" onChange={this.handleFileChange} value={this.state.file_text}/>
-          <input type="submit" value="Upload"/>
-        </form>
-        <br/>
-        <form onSubmit={this.handleLinkSubmit}>
-          <h4>Or Enter Link</h4>
-          <Input
-            name="link" label='http://'
-            placeholder='document-link.com'
-            value={this.state.link}
-            onChange={this.handleChange}
-          />
-          <input type="submit"/>
+          <Button type="submit" color="teal">Upload</Button>
         </form>
       </div>
     )
