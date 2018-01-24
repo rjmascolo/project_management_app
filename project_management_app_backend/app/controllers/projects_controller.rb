@@ -1,5 +1,5 @@
 class ProjectsController < ApplicationController
-  before_action :set_project, only: [:show, :update, :destroy]
+  before_action :set_project, only: [:show, :update, :destroy, :edit_project_users]
 
   # GET /projects
   def index
@@ -11,6 +11,23 @@ class ProjectsController < ApplicationController
   # GET /projects/1
   def show
     render json: @project, includes: '**'
+  end
+
+  def edit_project_users
+    users = UserProject.all.where('project_id IN (?)', @project.id)
+    users.each{ |user|
+      if !params[:userIds].include?(user.user_id)
+        user.destroy
+      end
+    }
+    current_ids = @project.users.map{ |x| x.id }
+    params[:userIds].each{ |id|
+      if !current_ids.include?(id)
+        UserProject.create(project_type: "client", user_id: id, project_id: @project.id)
+      end
+    }
+    project_users = Project.find(@project.id).get_users
+    render json: project_users
   end
 
   # POST /projects
@@ -36,27 +53,10 @@ class ProjectsController < ApplicationController
 
   # PATCH/PUT /projects/1
   def update
-    if params[:updateType] == "edit users"
-      users = UserProject.all.where('project_id IN (?)', @project.id)
-      users.each{ |user|
-        if !params[:userIds].include?(user.user_id)
-          user.destroy
-        end
-      }
-      current_ids = @project.users.map{ |x| x.id }
-      params[:userIds].each{ |id|
-        if !current_ids.include?(id)
-          UserProject.create(project_type: "client", user_id: id, project_id: @project.id)
-        end
-      }
-      project_users = Project.find(@project.id).get_users
-      render json: project_users
+    if @project.update(project_params)
+      render json: @project, include: '**'
     else
-      if @project.update(project_params)
-        render json: @project, include: '**'
-      else
-        render json: @project.errors, status: :unprocessable_entity
-      end
+      render json: @project.errors, status: :unprocessable_entity
     end
   end
 

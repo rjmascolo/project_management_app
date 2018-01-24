@@ -192,7 +192,7 @@ export const updateDeliverable = (deliverable, projectId) => {
 export const updateUsers = (projectUsers) => {
   return (dispatch) => {
     dispatch({ type: 'START_UPDATING_DELIVERABLE' });
-    return fetch(`${API_URL}projects/${projectUsers.project_id}`, {
+    return fetch(`${API_URL}edit-project-users/${projectUsers.project_id}`, {
       method:'PATCH',
       headers: headers,
       body:JSON.stringify( projectUsers )
