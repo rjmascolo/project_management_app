@@ -1,6 +1,6 @@
 
 #header {
-  /* background: #E26D5A; */
+  background: white;
   /* padding-top: .9em; */
   /* padding-bottom:1em; */
   box-shadow: 0px 3px #EAE3E3;
@@ -23,7 +23,7 @@
 #flex-between {
   display:flex;
   justify-content: safe center;
-  margin: 2em 0 0 0;
+  padding: 2em 0 0 0;
 }
 
 #title-description-image {
