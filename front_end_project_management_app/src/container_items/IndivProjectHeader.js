@@ -33,11 +33,17 @@ class IndivProjectHeader extends React.Component {
 
   close = () => this.setState({  modalOpen: false })
 
+  closeConfigShow = (closeOnEscape, closeOnRootNodeClick) => (data) => {
+    this.setState({ closeOnEscape, closeOnRootNodeClick, modalOpen: true, modalType: data })
+  }
+
   handleClick = () => this.setState( prevState => {
     return {accordionOpen: !prevState.accordionOpen}
   })
 
   render(){
+    const { modalOpen, closeOnEscape, closeOnRootNodeClick } = this.state
+
     return(
       <div id="header">
         <div id="header-content">
@@ -77,7 +83,7 @@ class IndivProjectHeader extends React.Component {
             <div>
               <Dropdown floating button className='icon' icon='setting' pointing="top right" >
                 <Dropdown.Menu>
-                  <Dropdown.Item text='Edit Project' onClick={() => this.modalTrigger("project")} />
+                  <Dropdown.Item text='Edit Project' onClick={() => this.closeConfigShow(true,false)("project")} />
                   <Dropdown.Item text='Edit Deliverables' onClick={() => this.modalTrigger("deliverables")} />
                   <Dropdown.Item text='Edit Users' onClick={() => this.modalTrigger("users")} />
                 </Dropdown.Menu>
@@ -101,7 +107,13 @@ class IndivProjectHeader extends React.Component {
               </div>
             </Accordion.Content>
           </Accordion>
-        <Modal open={this.state.modalOpen} onClose={this.close}>
+        <Modal
+          open={this.state.modalOpen}
+          closeOnEscape={closeOnEscape}
+          closeOnRootNodeClick={closeOnRootNodeClick}
+          onClose={this.close}
+          closeIcon
+          >
           <Modal.Header>
             {this.state.modalType === "deliverables" ? "Edit Deliverables" :
             this.state.modalType === "users" ? "Edit Users" :

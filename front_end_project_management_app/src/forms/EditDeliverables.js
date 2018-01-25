@@ -18,22 +18,24 @@ class EditDeliverables extends React.Component {
       id: this.props.deliverable.id,
       description: this.props.deliverable.description,
       date: moment(),
-      done: this.props.deliverable.done
+      done: this.props.deliverable.done,
+      errors: false
   }
 
   handleSubmit = (e) => {
     e.preventDefault()
-    let x = this.state
-    let errors  = editDeliverablesValidation(x)
-    if (!Object.keys(errors)) {
+    let state = this.state
+    if (state.description !== '') {
       this.props.updateDeliverable(
         {
-          id: x.id,
-          description: x.description,
-          date:x.date._d,
-          done: x.done
+          id: state.id,
+          description: state.description,
+          date:state.date._d,
+          done: state.done
         },
           this.props.projectId)
+    } else {
+      this.setState({errors: true})
     }
 
     // this.props.close()
@@ -54,6 +56,7 @@ class EditDeliverables extends React.Component {
   }
 
   render() {
+
     return(
       <div>
         <form onSubmit={this.handleSubmit} className="ui form" >
@@ -67,6 +70,7 @@ class EditDeliverables extends React.Component {
               value={this.state.description}
               placeholder="i.e. 3 mocks for Q1 banners"
             />
+            {this.state.errors ? <Label basic color='red' >You need to enter a description</Label> : null}
             </div>
             <div className="field" >
               <label>Date Due</label>

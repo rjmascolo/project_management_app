@@ -35,7 +35,7 @@ class LogIn extends React.Component {
 
   render() {
     return (
-      <div id="fill-page">
+      <div id="fill-page" style={{ minHeight: window.innerHeight}}>
       <div id="login-form">
       <div className="ui middle aligned center aligned grid">
         <div className="column">

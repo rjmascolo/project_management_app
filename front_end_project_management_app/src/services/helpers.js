@@ -79,10 +79,19 @@ export const createCampaignFormValidation = (formData) => {
 }
 
 
-export const editDeliverablesValidation = (data) => {
+export const editProjectValidation = (data) => {
   let errors = {}
-  if (data.description === '') {
-    errors["description"] = "Needs to be filled in";
+  if (data.projectName === '') {
+    errors["projectName"] = "Needs to be filled in";
+  }
+  if (data.projectDescription === '') {
+    errors["projectDescription"] = "Needs to be filled in";
+  }
+  if (data.projectType === '') {
+    errors["projectType"] = "Needs to be filled in";
+  }
+  if (data.projectImage === '') {
+    errors["projectImage"] = "Needs to be filled in";
   }
   return errors
 }
